@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOC | Cybersecurity & Emerging Trends</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b1220;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --primary:#38bdf8;
+  --secondary:#6366f1;
+  --accent:#22c55e;
+  --pink:#ec4899;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+
+body{
+  background:
+    radial-gradient(circle at top,#1e293b,var(--bg) 70%),
+    linear-gradient(120deg,#020617,#020617);
+  color:var(--text);
+  padding:30px;
+  overflow-x:hidden;
+}
+
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:auto}
+
+/* ---------- HEADER ---------- */
+h1{
+  font-size:3rem;
+  background:linear-gradient(135deg,var(--primary),var(--secondary),var(--pink));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.subtitle{color:var(--muted);margin-bottom:50px}
+
+/* ---------- BACK BUTTON ---------- */
+.back-btn{
+  display:inline-block;
+  margin-bottom:30px;
+  padding:12px 22px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--primary);
+  transition:.35s;
+}
+.back-btn:hover{
+  transform:translateX(-6px);
+  box-shadow:0 12px 30px rgba(56,189,248,.35);
+}
+
+/* ---------- SECTION ---------- */
+.section{
+  position:relative;
+  background:var(--card);
+  border-radius:22px;
+  padding:36px;
+  margin-bottom:45px;
+  border:1px solid var(--border);
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .9s cubic-bezier(.22,1,.36,1);
+}
+.section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* animated gradient border */
+.section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  padding:1px;
+  background:linear-gradient(120deg,transparent,var(--primary),transparent);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.3;
+  animation:borderMove 6s linear infinite;
+}
+@keyframes borderMove{
+  0%{background-position:0%}
+  100%{background-position:200%}
+}
+
+.section h2{
+  font-size:1.7rem;
+  color:var(--primary);
+  margin-bottom:14px;
+}
+.section p{
+  line-height:2;
+  color:#cbd5f5;
+  margin-bottom:14px;
+}
+
+/* ---------- GRID ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+  margin-top:25px;
+}
+
+/* ---------- CARD ---------- */
+.card{
+  position:relative;
+  background:var(--card);
+  border-radius:18px;
+  padding:22px;
+  border:1px solid var(--border);
+  transition:.4s cubic-bezier(.22,1,.36,1);
+}
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top,rgba(56,189,248,.15),transparent 60%);
+  opacity:0;
+  transition:.4s;
+}
+.card:hover::after{opacity:1}
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 30px 60px rgba(56,189,248,.25);
+}
+.card h3{
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+/* ---------- FLOW ---------- */
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+.flow span{
+  padding:10px 16px;
+  border-radius:999px;
+  background:var(--card);
+  border:1px solid var(--border);
+  animation:flowPulse 3s ease-in-out infinite;
+}
+.flow span:nth-child(2){animation-delay:.2s}
+.flow span:nth-child(3){animation-delay:.4s}
+.flow span:nth-child(4){animation-delay:.6s}
+
+@keyframes flowPulse{
+  0%,100%{box-shadow:0 0 0 rgba(56,189,248,0)}
+  50%{box-shadow:0 0 18px rgba(56,189,248,.35)}
+}
+
+/* ---------- HIGHLIGHT ---------- */
+.highlight{
+  background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(99,102,241,.15));
+  border-left:5px solid var(--primary);
+  padding:18px 22px;
+  border-radius:16px;
+  margin-top:20px;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  text-align:center;
+  margin-top:90px;
+  color:#64748b;
+}
+
+/* ---------- SCROLL REVEAL ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .section{will-change:transform,opacity}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<a href="foc.html" class="back-btn">← Back to Chapters</a>
+
+<h1>Cybersecurity & Emerging Trends</h1>
+<p class="subtitle">FOC | BTech Semester 1 • PRO Animated Notes</p>
+
+<!-- CYBERSECURITY -->
+<div class="section">
+<h2>1️⃣ Cybersecurity</h2>
+<p>
+Cybersecurity is the practice of protecting computer systems, networks, and digital
+data from unauthorized access, cyber attacks, and damage. It ensures data
+confidentiality, integrity, and availability.
+</p>
+
+<div class="grid">
+<div class="card">
+<h3>Firewall</h3>
+<p>Monitors and filters incoming and outgoing network traffic.</p>
+</div>
+<div class="card">
+<h3>Encryption</h3>
+<p>Transforms readable data into secure, unreadable ciphertext.</p>
+</div>
+<div class="card">
+<h3>Malware</h3>
+<p>Malicious software such as viruses, worms, trojans, ransomware.</p>
+</div>
+<div class="card">
+<h3>Phishing</h3>
+<p>Fraudulent attempts to steal sensitive information.</p>
+</div>
+</div>
+
+<div class="highlight">
+Cybersecurity focuses on the CIA Triad: Confidentiality, Integrity, Availability.
+</div>
+</div>
+
+<!-- AI -->
+<div class="section">
+<h2>2️⃣ Artificial Intelligence & Machine Learning</h2>
+<p>
+Artificial Intelligence enables machines to mimic human intelligence.
+Machine Learning allows systems to learn from data and improve automatically.
+</p>
+
+<div class="flow">
+<span>Data</span>
+<span>Training</span>
+<span>Model</span>
+<span>Prediction</span>
+<span>Learning</span>
+</div>
+
+<p>
+AI & ML are used in recommendation systems, fraud detection, medical diagnosis,
+self-driving vehicles, and smart assistants.
+</p>
+</div>
+
+<!-- BIG DATA -->
+<div class="section">
+<h2>3️⃣ Big Data & Data Science</h2>
+<p>
+Big Data refers to extremely large datasets that cannot be processed using
+traditional methods. Data Science extracts meaningful insights from data.
+</p>
+
+<ul>
+<li><b>Volume:</b> Massive data size</li>
+<li><b>Velocity:</b> High data generation speed</li>
+<li><b>Variety:</b> Structured & unstructured data</li>
+</ul>
+
+<div class="highlight">
+Data Science = Statistics + Programming + Domain Knowledge
+</div>
+</div>
+
+<!-- FUTURE -->
+<div class="section">
+<h2>4️⃣ Future Trends in Computing</h2>
+<p>
+Emerging technologies are shaping the future of computing by improving speed,
+security, decentralization, and intelligence.
+</p>
+
+<div class="grid">
+<div class="card">
+<h3>Quantum Computing</h3>
+<p>Uses qubits for massive parallel computation.</p>
+</div>
+<div class="card">
+<h3>Blockchain</h3>
+<p>Decentralized and tamper-proof digital ledger.</p>
+</div>
+<div class="card">
+<h3>Edge Computing</h3>
+<p>Processes data closer to the source for low latency.</p>
+</div>
+</div>
+</div>
+
+<footer>© 2025 STRINK EDU • PRO UI SYSTEM</footer>
+
+</div>
+
+<script>
+const sections = document.querySelectorAll('.section');
+const reveal = () => {
+  const trigger = window.innerHeight * 0.85;
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < trigger){
+      sec.classList.add('show');
+    }
+  });
+};
+window.addEventListener('scroll', reveal);
+reveal();
+</script>
+
+</body>
+</html>

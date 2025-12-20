@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chapter 3 Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Segoe UI, sans-serif;
+  background:linear-gradient(135deg,#0f0f1a,#1b1b3a);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+}
+
+.app{
+  width:95%;
+  max-width:900px;
+  background:#141428;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+}
+
+/* BACK BUTTON */
+.back-btn{
+  margin-bottom:15px;
+}
+
+.back-btn button{
+  background:#ff4757;
+  border:none;
+  color:#fff;
+  padding:8px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:13px;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.timer{
+  background:#ff4757;
+  padding:8px 16px;
+  border-radius:25px;
+  font-weight:600;
+}
+
+/* QUESTION */
+.question{
+  font-size:18px;
+  margin-bottom:15px;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+}
+
+.option{
+  background:#1e1e3f;
+  padding:14px;
+  border-radius:14px;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:.3s;
+}
+
+.option:hover{ background:#2a2a55; }
+.option.selected{
+  border-color:#6c63ff;
+  background:#262661;
+}
+
+.btn{
+  margin-top:20px;
+  padding:12px 24px;
+  border:none;
+  border-radius:25px;
+  background:#6c63ff;
+  color:#fff;
+  cursor:pointer;
+  font-size:15px;
+}
+
+/* RESULT */
+.result{
+  display:none;
+  text-align:center;
+}
+
+.charts{
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  margin-top:25px;
+}
+
+.chart-box{
+  background:#10102a;
+  padding:18px;
+  border-radius:16px;
+}
+
+canvas{
+  max-height:280px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- BACK BUTTON -->
+<div class="back-btn">
+  <button onclick="history.back()">⬅ Back</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz">
+  <div class="header">
+    <h3>🧠 Chapter 3 Quiz</h3>
+    <div class="timer">⏱ <span id="time">15</span>s</div>
+  </div>
+
+  <div class="question" id="question"></div>
+  <div class="options" id="options"></div>
+  <button class="btn" onclick="next()">Next</button>
+</div>
+
+<!-- RESULT -->
+<div class="result" id="result">
+  <h2 id="scoreText"></h2>
+
+  <div class="charts">
+
+    <div class="chart-box">
+      <h4>📊 Accuracy (Correct vs Wrong)</h4>
+      <canvas id="scoreChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+      <h4>⏱ Speed Analysis</h4>
+      <canvas id="timeChart"></canvas>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+/* ================= QUIZ DATA ================= */
+const quiz=[
+ {q:"Which property controls the space outside an element?",o:["padding","border","margin","content"],a:2},
+ {q:"Which property controls space inside border?",o:["margin","padding","outline","content"],a:1},
+ {q:"Correct box model order is?",o:["content > margin > padding > border","margin > border > padding > content","content > padding > border > margin","border > padding > content > margin"],a:2},
+ {q:"Which display value enables Flexbox?",o:["block","inline","flex","grid"],a:2},
+ {q:"Main axis in flexbox is controlled by?",o:["align-items","justify-content","flex-direction","flex-wrap"],a:2},
+ {q:"Which property aligns items vertically in flexbox?",o:["justify-content","align-items","flex-direction","gap"],a:1},
+ {q:"Which display value enables CSS Grid?",o:["flex","block","inline-grid","grid"],a:3},
+ {q:"Which grid property defines columns?",o:["grid-rows","grid-template-columns","grid-auto-flow","grid-gap"],a:1},
+ {q:"Which unit is commonly used in grid?",o:["px","fr","em","vh"],a:1},
+ {q:"Which layout is best for two-dimensional design?",o:["Float","Flexbox","Grid","Position"],a:2}
+];
+
+let i=0,score=0,time=15,intv,sel=null,times=[];
+
+/* LOAD QUESTION */
+function load(){
+  sel=null;
+  document.getElementById("question").innerText=`Q${i+1}. ${quiz[i].q}`;
+  const opt=document.getElementById("options");
+  opt.innerHTML="";
+  quiz[i].o.forEach((x,j)=>{
+    let d=document.createElement("div");
+    d.className="option";
+    d.innerText=x;
+    d.onclick=()=>{
+      document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));
+      d.classList.add("selected");
+      sel=j;
+    };
+    opt.appendChild(d);
+  });
+  startTimer();
+}
+
+/* TIMER */
+function startTimer(){
+  clearInterval(intv);
+  time=15;
+  document.getElementById("time").innerText=time;
+  intv=setInterval(()=>{
+    time--;
+    document.getElementById("time").innerText=time;
+    if(time===0) next();
+  },1000);
+}
+
+/* NEXT */
+function next(){
+  clearInterval(intv);
+  times.push(15-time);
+  if(sel===quiz[i].a) score++;
+  i++;
+  if(i<quiz.length) load();
+  else showResult();
+}
+
+/* RESULT */
+function showResult(){
+  document.getElementById("quiz").style.display="none";
+  document.getElementById("result").style.display="block";
+  document.getElementById("scoreText").innerText=`🎉 Score: ${score} / 10`;
+
+  new Chart(scoreChart,{
+    type:"bar",
+    data:{
+      labels:["Correct","Wrong"],
+      datasets:[{
+        data:[score,10-score],
+        backgroundColor:["#2ecc71","#ff4757"],
+        borderRadius:8
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false}
+  });
+
+  let fast=times.filter(t=>t<=5).length;
+  let mid=times.filter(t=>t>5 && t<=10).length;
+  let slow=times.filter(t=>t>10).length;
+
+  new Chart(timeChart,{
+    type:"doughnut",
+    data:{
+      labels:["Fast","Medium","Slow"],
+      datasets:[{
+        data:[fast,mid,slow],
+        backgroundColor:["#1dd1a1","#feca57","#ff6b6b"]
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false}
+  });
+}
+
+/* START */
+load();
+</script>
+
+</body>
+</html>

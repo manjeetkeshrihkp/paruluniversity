@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Physics Quiz – Chapter 4 | STRINK EDU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:radial-gradient(circle at top,#020617,#000);color:#e5e7eb}
+.container{max-width:1000px;margin:auto;padding:30px 20px}
+
+/* Header */
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+h1{
+  font-size:1.7rem;
+  background:linear-gradient(90deg,#38bdf8,#818cf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.timer{
+  padding:10px 18px;
+  border:1px solid #1e293b;
+  border-radius:20px;
+  color:#38bdf8;
+  font-weight:600;
+}
+
+/* Quiz Card */
+.card{background:#020617;border:1px solid #1e293b;border-radius:16px;padding:25px}
+.question{font-size:1.15rem;margin-bottom:20px}
+.options{display:grid;gap:14px}
+
+/* Option Effects */
+.option{
+  position:relative;
+  padding:14px 18px;
+  border-radius:12px;
+  background:#020617;
+  border:1px solid #1e293b;
+  cursor:pointer;
+  transition:.25s;
+  overflow:hidden;
+}
+.option::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at var(--x) var(--y),
+    rgba(56,189,248,.25),transparent 40%);
+  opacity:0;
+}
+.option:hover::before{opacity:1}
+.option:hover{transform:scale(1.02);border-color:#38bdf8}
+.option.active{
+  background:rgba(56,189,248,.18);
+  border-color:#38bdf8;
+  box-shadow:0 0 0 1px rgba(56,189,248,.4);
+}
+
+.nav{display:flex;justify-content:space-between;margin-top:25px}
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  background:linear-gradient(135deg,#38bdf8,#6366f1);
+  color:#020617;
+}
+
+/* Analysis */
+.analysis{display:none;margin-top:35px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+.box{
+  padding:16px;
+  border-radius:14px;
+  background:#020617;
+  border:1px solid #1e293b;
+}
+.box h3{font-size:.85rem;opacity:.7}
+.box p{font-size:1.4rem;font-weight:700}
+
+/* Graphs */
+.graph-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+.graph-box{
+  max-width:340px;
+  margin:auto;
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:14px;
+  padding:12px;
+}
+.graph-box canvas{width:100%!important;height:230px!important}
+
+/* Wrong Questions */
+.wrong-box{
+  margin-top:30px;
+  padding:20px;
+  border-radius:16px;
+  border:1px solid #1e293b;
+}
+.wrong-q{
+  margin-bottom:16px;
+  padding-bottom:12px;
+  border-bottom:1px dashed #1e293b;
+}
+.correct{color:#4ade80}
+.wrong{color:#f87171}
+.topic{color:#38bdf8;font-size:.85rem}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <h1>Physics Quiz – Chapter 4 (Low Dimensional Materials)</h1>
+  <div class="timer" id="timer">15:00</div>
+</header>
+
+<div class="card" id="quizBox">
+  <div class="question" id="question"></div>
+  <div class="options" id="options"></div>
+  <div class="nav">
+    <button onclick="prevQ()">Previous</button>
+    <button onclick="nextQ()">Next</button>
+  </div>
+</div>
+
+<div class="analysis" id="analysis">
+  <h2>📊 Advanced Analysis Dashboard</h2>
+
+  <div class="grid">
+    <div class="box"><h3>Total</h3><p>15</p></div>
+    <div class="box"><h3>Correct</h3><p id="correct"></p></div>
+    <div class="box"><h3>Wrong</h3><p id="wrong"></p></div>
+    <div class="box"><h3>Skipped</h3><p id="skipped"></p></div>
+    <div class="box"><h3>Accuracy</h3><p id="accuracy"></p></div>
+    <div class="box"><h3>Weak Topics</h3><p id="weak"></p></div>
+  </div>
+
+  <div class="graph-grid">
+    <div class="graph-box"><canvas id="resultChart"></canvas></div>
+    <div class="graph-box"><canvas id="topicChart"></canvas></div>
+    <div class="graph-box"><canvas id="accuracyChart"></canvas></div>
+    <div class="graph-box"><canvas id="radarChart"></canvas></div>
+  </div>
+
+  <div class="wrong-box">
+    <h3>❌ Wrong Questions & Correct Answers</h3>
+    <div id="wrongList"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const quiz=[
+{q:"Low dimensional materials have at least one dimension in the range of:",o:["mm","µm","nm","cm"],a:2,t:"Basics"},
+{q:"Quantum confinement occurs when particle size is comparable to:",o:["Mean free path","Wavelength","Bohr radius","Skin depth"],a:2,t:"Quantum Confinement"},
+{q:"Which is a 0D structure?",o:["Quantum wire","Quantum well","Quantum dot","Thin film"],a:2,t:"Classification"},
+{q:"Quantum well is confined in:",o:["1 dimension","2 dimensions","3 dimensions","0 dimension"],a:0,t:"Classification"},
+{q:"Quantum wire is confined in:",o:["1 dimension","2 dimensions","3 dimensions","0 dimension"],a:1,t:"Classification"},
+{q:"Quantum dot is confined in:",o:["1 dimension","2 dimensions","3 dimensions","No confinement"],a:2,t:"Classification"},
+{q:"Energy levels in quantum dots are:",o:["Continuous","Discrete","Overlapping","Zero"],a:1,t:"Quantum Dot"},
+{q:"Which property changes due to quantum confinement?",o:["Density","Melting point","Band gap","Viscosity"],a:2,t:"Properties"},
+{q:"Top-down synthesis includes:",o:["Sol-gel","CVD","Lithography","Self-assembly"],a:2,t:"Synthesis"},
+{q:"Bottom-up approach includes:",o:["Mechanical milling","Lithography","Etching","Chemical synthesis"],a:3,t:"Synthesis"},
+{q:"Graphene is a:",o:["0D","1D","2D","3D"],a:2,t:"Novel Materials"},
+{q:"Carbon nanotube is an example of:",o:["0D","1D","2D","3D"],a:1,t:"Novel Materials"},
+{q:"Graphene has extremely high:",o:["Density","Thermal conductivity","Viscosity","Opacity"],a:1,t:"Graphene"},
+{q:"Quantum dots are widely used in:",o:["Transistors","LED displays","Motors","Batteries"],a:1,t:"Applications"},
+{q:"CNTs are used in:",o:["Insulation","Sensors","Lubricants","Paint"],a:1,t:"Applications"}
+];
+
+let i=0,ans=Array(15).fill(null),time=900,timerInterval;
+const q=document.getElementById("question");
+const o=document.getElementById("options");
+
+function load(){
+  q.innerText=`Q${i+1}. ${quiz[i].q}`;
+  o.innerHTML="";
+  quiz[i].o.forEach((x,j)=>{
+    const d=document.createElement("div");
+    d.className="option"+(ans[i]===j?" active":"");
+    d.innerText=x;
+    d.onmousemove=e=>{
+      const r=d.getBoundingClientRect();
+      d.style.setProperty("--x",`${e.clientX-r.left}px`);
+      d.style.setProperty("--y",`${e.clientY-r.top}px`);
+    };
+    d.onclick=()=>{ans[i]=j;load();}
+    o.appendChild(d);
+  });
+}
+load();
+
+function nextQ(){i<14?(i++,load()):finish();}
+function prevQ(){if(i>0){i--;load();}}
+
+timerInterval=setInterval(()=>{
+  time--;
+  timer.innerText=`${String(Math.floor(time/60)).padStart(2,"0")}:${String(time%60).padStart(2,"0")}`;
+  if(time<=0)finish();
+},1000);
+
+function finish(){
+  clearInterval(timerInterval);
+  quizBox.style.display="none";
+  analysis.style.display="block";
+
+  let c=0,w=0,s=0,weak={},wrongHTML="";
+  quiz.forEach((x,j)=>{
+    if(ans[j]==null){s++;weak[x.t]=(weak[x.t]||0)+1}
+    else if(ans[j]===x.a)c++;
+    else{
+      w++;weak[x.t]=(weak[x.t]||0)+1;
+      wrongHTML+=`
+      <div class="wrong-q">
+        <div class="topic">${x.t}</div>
+        <p>${x.q}</p>
+        <p class="wrong">Your Answer: ${x.o[ans[j]]}</p>
+        <p class="correct">Correct Answer: ${x.o[x.a]}</p>
+      </div>`;
+    }
+  });
+
+  correct.innerText=c;
+  wrong.innerText=w;
+  skipped.innerText=s;
+  accuracy.innerText=Math.round(c/15*100)+"%";
+  weak.innerText=Object.keys(weak).join(", ")||"None 🎉";
+  wrongList.innerHTML=wrongHTML||"<p class='correct'>Perfect Attempt 🎉</p>";
+
+  new Chart(resultChart,{type:"doughnut",
+    data:{labels:["Correct","Wrong","Skipped"],
+    datasets:[{data:[c,w,s],backgroundColor:["#4ade80","#f87171","#facc15"]}]},
+    options:{maintainAspectRatio:false}
+  });
+
+  new Chart(topicChart,{type:"bar",
+    data:{labels:Object.keys(weak),
+    datasets:[{data:Object.values(weak),backgroundColor:"#38bdf8"}]},
+    options:{maintainAspectRatio:false}
+  });
+
+  let trend=[],score=0;
+  ans.forEach((a,j)=>{if(a===quiz[j].a)score++;trend.push(Math.round(score/(j+1)*100))});
+  new Chart(accuracyChart,{type:"line",
+    data:{labels:trend.map((_,i)=>`Q${i+1}`),
+    datasets:[{data:trend,borderColor:"#818cf8",tension:.4}]},
+    options:{maintainAspectRatio:false,scales:{y:{min:0,max:100}}}
+  });
+
+  const concepts=[...new Set(quiz.map(q=>q.t))];
+  const cs=concepts.map(t=>{
+    let tot=0,ok=0;
+    quiz.forEach((q,j)=>{if(q.t===t){tot++;if(ans[j]===q.a)ok++;}});
+    return Math.round((ok/tot)*100);
+  });
+
+  new Chart(radarChart,{type:"radar",
+    data:{labels:concepts,
+    datasets:[{data:cs,backgroundColor:"rgba(56,189,248,.2)",borderColor:"#38bdf8"}]},
+    options:{maintainAspectRatio:false}
+  });
+}
+</script>
+</body>
+</html>

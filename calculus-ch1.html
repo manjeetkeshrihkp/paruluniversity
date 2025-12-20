@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculus | BTech Semester 1</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    body{
+      background:radial-gradient(circle at top, #1e293b, #020617);
+      color:#e5e7eb;
+      padding:30px;
+      overflow-x:hidden;
+      animation:bgShift 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgShift{
+      0%{background-position:0% 50%;}
+      100%{background-position:100% 50%;}
+    }
+
+    a{color:inherit;text-decoration:none;}
+
+    .container{
+      max-width:1100px;
+      margin:auto;
+    }
+
+    .back-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:25px;
+      padding:10px 16px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#38bdf8,#2563eb);
+      color:white;
+      font-weight:500;
+      box-shadow:0 10px 30px rgba(56,189,248,.35);
+      transition:transform .3s, box-shadow .3s;
+    }
+
+    .back-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 15px 40px rgba(56,189,248,.55);
+    }
+
+    h1{
+      text-align:center;
+      font-size:2.3rem;
+      margin-bottom:6px;
+      text-shadow:0 0 25px rgba(56,189,248,.35);
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#94a3b8;
+      margin-bottom:50px;
+    }
+
+    .video-card{
+      background:rgba(2,6,23,.75);
+      backdrop-filter:blur(10px);
+      border-radius:22px;
+      padding:20px;
+      margin-bottom:45px;
+      border:1px solid rgba(56,189,248,.15);
+      box-shadow:0 30px 80px rgba(0,0,0,.6);
+      animation:fadeUp .8s ease both;
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(30px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    .video-frame{
+      border-radius:18px;
+      overflow:hidden;
+      margin-bottom:18px;
+      box-shadow:0 0 35px rgba(56,189,248,.25);
+    }
+
+    iframe{
+      width:100%;
+      height:420px;
+    }
+
+    .video-info h2{
+      font-size:1.45rem;
+      margin-bottom:8px;
+    }
+
+    .video-info p{
+      color:#cbd5f5;
+      line-height:1.7;
+      font-size:.95rem;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      background:linear-gradient(135deg,#38bdf8,#2563eb);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:.8rem;
+      box-shadow:0 0 18px rgba(56,189,248,.35);
+      animation:pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 18px rgba(56,189,248,.25);}
+      50%{box-shadow:0 0 35px rgba(56,189,248,.65);}
+    }
+
+    footer{
+      text-align:center;
+      margin-top:70px;
+      color:#64748b;
+      font-size:.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="calculus.html" class="back-btn">⬅ Back to Calculus</a>
+  <h1>🎥 Calculus – Chapter 1</h1>
+  <p class="subtitle">BTech / Engineering First Year • Exam Oriented</p>
+
+  <!-- Topic 1 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/28QlCKm61aE" title="Limits of Functions" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>1️⃣ Limits of Functions</h2>
+      <p>Live lecture covering limits of functions from basics to exam-level problems for BTech 1st year.</p>
+      <div class="tags"><span class="tag">Limits</span><span class="tag">Live Class</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 2 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/bQ_B9cHBYfQ" title="Continuity" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>2️⃣ Continuity of Functions</h2>
+      <p>Concept of continuity explained using graphical and numerical examples commonly asked in exams.</p>
+      <div class="tags"><span class="tag">Continuity</span><span class="tag">Theory</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 3 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/B_k3cWFoTp4" title="Differentiability" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>3️⃣ Differentiability</h2>
+      <p>Detailed explanation of differentiability conditions with solved problems.</p>
+      <div class="tags"><span class="tag">Differentiability</span><span class="tag">Concepts</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 4 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/Em6cGzwOq-Y" title="Mean Value Theorem" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>4️⃣ Mean Value Theorems</h2>
+      <p>Rolle’s Theorem and Lagrange Mean Value Theorem explained step-by-step.</p>
+      <div class="tags"><span class="tag">Rolle</span><span class="tag">LMVT</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 5 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/VOoxWFK04H0" title="Riemann Integration" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>5️⃣ Riemann Integration & FTC</h2>
+      <p>Explanation of Riemann sums and Fundamental Theorem of Calculus for engineering exams.</p>
+      <div class="tags"><span class="tag">FTC</span><span class="tag">Integration</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 6 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/lLpggHsXwew" title="Applications of Integration" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>6️⃣ Applications of Integration</h2>
+      <p>Area, volume and surface area of revolution – most scoring BTech topics.</p>
+      <div class="tags"><span class="tag">Area</span><span class="tag">Volume</span></div>
+    </div>
+  </div>
+
+  
+
+  
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://www.youtube.com/embed/q8SWoyDoNAg" title="Calculus Video" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-info"><h2>7️⃣ Limits – Advanced Problems</h2><p>In‑depth explanation aligned with Chapter‑1 Calculus syllabus for BTech / Engineering 1st year students.</p></div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://www.youtube.com/embed/x4U4n4DaxZ8" title="Calculus Video" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-info"><h2>8️⃣ Continuity – Solved Examples</h2><p>In‑depth explanation aligned with Chapter‑1 Calculus syllabus for BTech / Engineering 1st year students.</p></div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://www.youtube.com/embed/db7d_a0wiUg" title="Calculus Video" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-info"><h2>9️⃣ Differentiability – Theory & Numericals</h2><p>In‑depth explanation aligned with Chapter‑1 Calculus syllabus for BTech / Engineering 1st year students.</p></div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://www.youtube.com/embed/fXMyLYwBB3s" title="Calculus Video" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-info"><h2>🔟 Mean Value Theorem – Practice</h2><p>In‑depth explanation aligned with Chapter‑1 Calculus syllabus for BTech / Engineering 1st year students.</p></div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://www.youtube.com/embed/n4JJ3fNKHUc" title="Calculus Video" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-info"><h2>1️⃣1️⃣ Riemann Integration – Problems</h2><p>In‑depth explanation aligned with Chapter‑1 Calculus syllabus for BTech / Engineering 1st year students.</p></div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://www.youtube.com/embed/qwJYHoalErk" title="Calculus Video" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-info"><h2>1️⃣2️⃣ Applications of Integration – Area</h2><p>In‑depth explanation aligned with Chapter‑1 Calculus syllabus for BTech / Engineering 1st year students.</p></div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-frame"><iframe src="https://www.youtube.com/embed/LDPGDtxezWs" title="Calculus Video" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-info"><h2>1️⃣3️⃣ Applications of Integration – Volume & Surface</h2><p>In‑depth explanation aligned with Chapter‑1 Calculus syllabus for BTech / Engineering 1st year students.</p></div>
+  </div>
+
+  <footer>© 2025 STRINK EDU • Calculus Chapter 1</footer>
+</div>
+
+<script>
+  function toggleAccordion(header){
+    const content = header.nextElementSibling;
+    const icon = header.querySelector('span');
+
+    if(content.style.maxHeight){
+      content.style.maxHeight = null;
+      icon.textContent = '+';
+    }else{
+      document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+      document.querySelectorAll('.accordion-header span').forEach(i => i.textContent = '+');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      icon.textContent = '−';
+    }
+  }
+</script>
+
+</body>
+</html>

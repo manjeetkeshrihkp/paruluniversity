@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STRINK EDU</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --cyan: #06b6d4;
+        --gray: #94a3b8;
+        --dark-bg: #020617;
+        --light-text: #0f172a;
+        --dark-text: #e5e7eb;
+        --glow: rgba(79, 70, 229, 0.65);
+      }
+
+      /* ===== DARK DEFAULT ===== */
+      body {
+        --bg: var(--dark-bg);
+        --card: #020617;
+        --text: var(--dark-text);
+        --nav: rgba(5, 10, 30, 0.92);
+        --subject-text: #e5e7eb;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden; /* FIX MOBILE SHIFT */
+      }
+
+      /* ===== LIGHT ===== */
+      body.light {
+        --bg: linear-gradient(135deg, #eef2ff, #f8fafc);
+        --card: #ffffff;
+        --text: var(--light-text);
+        --nav: rgba(255, 255, 255, 0.9);
+        --subject-text: #0f172a;
+        --glow: rgba(79, 70, 229, 0.35);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Inter, system-ui, sans-serif;
+        transition: background 0.35s, color 0.35s, transform 0.3s;
+      }
+
+      /* ================= NAVBAR ================= */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 18px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--nav);
+        backdrop-filter: blur(16px);
+        z-index: 1000;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      nav::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary),
+          var(--cyan),
+          var(--primary),
+          transparent
+        );
+        animation: glowMove 6s linear infinite;
+      }
+
+      @keyframes glowMove {
+        from {
+          background-position: 0%;
+        }
+        to {
+          background-position: 200%;
+        }
+      }
+
+      nav h1 {
+        font-size: 22px;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 24px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--gray);
+      }
+
+      /* ===== REMOVE LINK UNDERLINE FROM BUTTON LINKS ===== */
+      .btn-group a {
+        text-decoration: none;
+      }
+
+      /* ===== THEME TOGGLE ===== */
+      .theme-toggle {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, var(--primary), var(--cyan));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 0 22px var(--glow);
+        font-size: 18px;
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 26px;
+        cursor: pointer;
+        color: var(--primary);
+      }
+
+      /* ================= HERO ================= */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 80px 60px;
+      }
+
+      .hero-container {
+        max-width: 1200px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .hero h2 {
+        font-size: 52px;
+        line-height: 1.2;
+      }
+
+      .hero h2 span {
+        color: var(--primary);
+      }
+
+      /* ===== BUTTON GROUP (HORIZONTAL SAFE) ===== */
+      .btn-group {
+        display: flex;
+        gap: 14px;
+        margin-top: 32px;
+        flex-wrap: nowrap;
+        max-width: 100%;
+      }
+
+      .btn-group a {
+        display: inline-flex;
+        flex-shrink: 1;
+      }
+
+      /* BUTTONS (UNCHANGED EFFECTS) */
+      .btn {
+        padding: 14px 26px;
+        border-radius: 12px;
+        border: none;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        color: white;
+        white-space: nowrap;
+        background: linear-gradient(135deg, #4f46e5, #3730a3);
+        box-shadow: 0 15px 35px rgba(79, 70, 229, 0.55);
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .btn.secondary {
+        background: linear-gradient(135deg, #0891b2, #0e7490);
+        box-shadow: 0 15px 35px rgba(6, 182, 212, 0.55);
+      }
+
+      /* ================= HERO CARD ================= */
+      .hero-card {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      .hero-card h3 {
+        text-align: center;
+        margin-bottom: 16px;
+        font-size: 22px;
+      }
+
+      /* ================= SUBJECTS (OLD EFFECTS PRESERVED) ================= */
+      .subject-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .subject {
+        padding: 14px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #020617, #020617);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        text-align: center;
+        cursor: pointer;
+        color: var(--subject-text);
+        transition: 0.3s;
+      }
+
+      body.light .subject {
+        background: linear-gradient(135deg, #f5f7ff, #ffffff);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        color: #0f172a;
+      }
+
+      /* ORIGINAL HOVER EFFECT */
+      .subject:hover {
+        transform: translateY(-3px);
+        color: var(--primary);
+        box-shadow: 0 0 30px var(--glow);
+      }
+
+      /* ================= MOBILE ================= */
+      @media (max-width: 900px) {
+        nav {
+          padding: 16px 20px;
+        }
+
+        nav ul {
+          position: absolute;
+          top: 75px;
+          right: 20px;
+          background: var(--card);
+          flex-direction: column;
+          padding: 18px 22px;
+          border-radius: 14px;
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+          display: none;
+        }
+
+        nav ul.show {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .hero {
+          padding: 120px 20px 40px;
+        }
+
+        .hero-container {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .btn-group {
+          justify-content: center;
+        }
+
+        .hero-card {
+          margin: 0 auto;
+          max-width: 420px;
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px;
+        color: var(--gray);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <h1>STRINK EDU ⚡</h1>
+
+      <div class="nav-right">
+        <ul id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="subjects.html">Subjects</a></li>
+          <li>Resources</li>
+          <li>About</li>
+        </ul>
+
+        <button class="theme-toggle" onclick="toggleTheme()">
+          <span id="themeIcon">🌙</span>
+        </button>
+
+        <div class="menu-toggle" id="menuToggle">☰</div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-container">
+        <div>
+          <h2>All College <span>Subjects</span><br />One Smart Platform</h2>
+
+          <div class="btn-group">
+            <a href="subjects.html"
+              ><button class="btn">Explore Subjects</button></a
+            >
+            <a href="#"
+              ><button class="btn secondary">About Owner</button></a
+            >
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>I Can't Speak Our Prodcuts And Lagacy Speak 👇</h3>
+          <div class="subject-list">
+<div class="subject">📐 JEE Matrix App</div>
+<div class="subject">🚀 Strink App</div>
+<div class="subject">📢 Strink SMM</div>
+<div class="subject">🔗 Strink Link Shortener</div>
+<div class="subject">📊 Strink Prediction</div>
+<div class="subject">🎓 Strink Internship</div>
+<div class="subject">🎬 Strink Movie</div>
+<div class="subject">🧑‍💻 Strink UGC</div>
+<div class="subject">🌐 Todaysaga.com</div>
+<div class="subject">🔴🟢 Strink Colour Club</div>
+<div class="subject">🤖 Arduino Link</div>
+<div class="subject">👥 500K+ Telegram Community</div>
+<div class="subject">📚 Study Rays</div>
+<div class="subject">📰 Crypto Matrix</div>
+
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2025 STRINK EDU</footer>
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const navMenu = document.getElementById("navMenu");
+
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+      });
+
+      function toggleTheme() {
+        document.body.classList.toggle("light");
+        document.getElementById("themeIcon").textContent =
+          document.body.classList.contains("light") ? "☀️" : "🌙";
+      }
+    </script>
+  </body>
+</html>

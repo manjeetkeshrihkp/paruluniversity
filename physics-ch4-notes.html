@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics | Chapter 4 – Low Dimensional Materials</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:32px;
+}
+a{text-decoration:none;color:inherit}
+
+.container{max-width:1350px;margin:auto}
+
+h1{text-align:center;font-size:2.8rem}
+.subtitle{text-align:center;color:#94a3b8;margin:10px 0 40px}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:30px;
+  background:#020617;
+  border:1px solid #1e293b;
+  padding:12px 22px;
+  border-radius:12px;
+  color:#38bdf8;
+  transition:.3s;
+}
+.back-btn:hover{
+  transform:translateX(-5px);
+  box-shadow:0 6px 22px rgba(56,189,248,.35);
+}
+
+/* Card */
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:22px;
+  padding:34px;
+  margin-bottom:34px;
+}
+.card h2{
+  font-size:1.8rem;
+  margin-bottom:16px;
+  background:linear-gradient(135deg,#a78bfa,#22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.card h3{
+  margin:18px 0 10px;
+  color:#93c5fd;
+}
+.card p{
+  line-height:2;
+  color:#cbd5f5;
+  margin-bottom:12px;
+}
+
+ul{padding-left:28px}
+li{margin:8px 0}
+
+/* Highlight */
+.highlight{
+  background:linear-gradient(135deg,#6366f1,#22d3ee);
+  padding:20px;
+  border-radius:18px;
+  margin-top:18px;
+  color:white;
+}
+
+/* Exam Box */
+.exam{
+  background:#020617;
+  border-left:5px solid #22d3ee;
+  padding:18px;
+  border-radius:16px;
+  margin-top:20px;
+}
+
+/* Visual Box */
+.visual-box{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:18px;
+  padding:22px;
+  margin-top:22px;
+}
+canvas{width:100%;height:220px}
+
+/* Dimension Animation */
+.dim-container{
+  display:flex;
+  justify-content:space-around;
+  margin-top:20px;
+}
+.dim{
+  width:120px;
+  height:120px;
+  border-radius:14px;
+  background:#020617;
+  border:2px solid #38bdf8;
+  position:relative;
+  overflow:hidden;
+}
+.particle{
+  width:10px;
+  height:10px;
+  background:#a78bfa;
+  border-radius:50%;
+  position:absolute;
+  animation:move 2.5s infinite alternate ease-in-out;
+}
+@keyframes move{
+  from{top:10px;left:10px}
+  to{top:90px;left:90px}
+}
+
+footer{
+  text-align:center;
+  margin-top:70px;
+  color:#64748b;
+  font-size:.9rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🧬 Physics – Chapter 4</h1>
+<p class="subtitle">Low Dimensional Materials (Engineering Physics – BTech 1st Year)</p>
+
+<a href="physics.html" class="back-btn">← Back to Physics</a>
+
+<!-- 1 -->
+<div class="card">
+<h2>1. Introduction to Low Dimensional Materials</h2>
+<p>
+Low dimensional materials are materials in which the motion of charge carriers (electrons and holes)
+is confined in one or more spatial dimensions to the nanometer scale. When at least one dimension
+of a material becomes comparable to the de Broglie wavelength of electrons, classical physics fails
+and <strong>quantum mechanical effects dominate</strong>.
+</p>
+<p>
+These materials exhibit unique electrical, optical, thermal, and mechanical properties that are
+not observed in bulk materials.
+</p>
+
+<div class="exam">
+📌 Very important definition question (2–3 marks).
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<h2>2. Basic Characteristics of Low Dimensional Materials</h2>
+
+<ul>
+<li>Dominance of quantum mechanical effects</li>
+<li>Discrete energy levels instead of continuous bands</li>
+<li>Enhanced optical and electrical properties</li>
+<li>Large surface-to-volume ratio</li>
+<li>Size-dependent physical properties</li>
+</ul>
+
+<div class="highlight">
+As dimensions decrease → quantum confinement increases → properties change drastically.
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<h2>3. Quantum Confinement Effect</h2>
+<p>
+Quantum confinement occurs when the dimensions of a material are reduced to the order of the
+electron’s de Broglie wavelength. As a result, the motion of electrons becomes restricted,
+leading to discrete energy levels.
+</p>
+
+<ul>
+<li>Stronger confinement → larger energy gap</li>
+<li>Energy levels depend on size of structure</li>
+<li>Explains color tuning in quantum dots</li>
+</ul>
+
+<h3>🔹 Visual: Carrier Confinement in Reduced Dimensions</h3>
+<div class="visual-box">
+  <div class="dim-container">
+    <div class="dim"><div class="particle"></div></div>
+    <div class="dim"><div class="particle"></div></div>
+    <div class="dim"><div class="particle"></div></div>
+  </div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<h2>4. Classification of Low Dimensional Materials</h2>
+
+<h3>(a) Quantum Well (2D)</h3>
+<p>
+In quantum wells, carriers are confined in one dimension and free to move in the other two.
+This results in discrete energy levels in one direction.
+</p>
+
+<ul>
+<li>Used in semiconductor lasers</li>
+<li>High electron mobility</li>
+</ul>
+
+<h3>(b) Quantum Wire (1D)</h3>
+<p>
+In quantum wires, carriers are confined in two dimensions and free to move in only one dimension.
+This leads to one-dimensional density of states.
+</p>
+
+<ul>
+<li>Used in nanoscale transistors</li>
+<li>Improved transport properties</li>
+</ul>
+
+<h3>(c) Quantum Dot (0D)</h3>
+<p>
+Quantum dots confine charge carriers in all three dimensions. They behave like artificial atoms
+with discrete energy levels.
+</p>
+
+<ul>
+<li>Size-dependent optical properties</li>
+<li>Sharp emission spectra</li>
+</ul>
+
+<div class="exam">
+📌 Differences between Quantum Well, Wire and Dot are frequently asked.
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<h2>5. Synthesis Techniques</h2>
+
+<ul>
+<li><b>Top-Down:</b> Lithography, etching</li>
+<li><b>Bottom-Up:</b> Chemical vapor deposition (CVD), molecular beam epitaxy (MBE)</li>
+<li><b>Colloidal synthesis:</b> For quantum dots</li>
+</ul>
+
+<p>
+The choice of synthesis method directly affects size control, uniformity, and performance
+of nanostructures.
+</p>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<h2>6. Properties of Low Dimensional Materials</h2>
+
+<ul>
+<li><b>Electrical:</b> Enhanced carrier mobility</li>
+<li><b>Optical:</b> Tunable band gap</li>
+<li><b>Thermal:</b> Reduced thermal conductivity</li>
+<li><b>Mechanical:</b> High strength-to-weight ratio</li>
+</ul>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<h2>7. Applications of Quantum Structures</h2>
+
+<h3>Quantum Wells</h3>
+<ul>
+<li>Laser diodes</li>
+<li>High electron mobility transistors (HEMTs)</li>
+</ul>
+
+<h3>Quantum Wires</h3>
+<ul>
+<li>Nanoelectronics</li>
+<li>Interconnects in ICs</li>
+</ul>
+
+<h3>Quantum Dots</h3>
+<ul>
+<li>Display technology (QLED)</li>
+<li>Bio-imaging</li>
+<li>Solar cells</li>
+</ul>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<h2>8. Novel Low Dimensional Materials</h2>
+
+<ul>
+<li>Graphene</li>
+<li>Carbon Nanotubes (CNTs)</li>
+<li>MXenes</li>
+<li>Transition Metal Dichalcogenides (MoS₂, WS₂)</li>
+</ul>
+
+<p>
+These materials exhibit exceptional electrical conductivity, flexibility, transparency,
+and mechanical strength.
+</p>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<h2>9. Applications of Novel Materials</h2>
+
+<ul>
+<li>Flexible electronics</li>
+<li>High-speed transistors</li>
+<li>Energy storage devices</li>
+<li>Biomedical sensors</li>
+<li>Next-generation quantum devices</li>
+</ul>
+
+<div class="highlight">
+Low dimensional materials are the foundation of nanotechnology and future electronics.
+</div>
+</div>
+
+<footer>
+© 2025 STRINK EDU • Engineering Physics
+</footer>
+
+</div>
+</body>
+</html>

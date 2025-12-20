@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOC | Chapter 6 – Networks & Internet</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --primary:#38bdf8;
+  --secondary:#6366f1;
+  --accent:#22c55e;
+  --pink:#ec4899;
+  --warn:#facc15;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background:
+    radial-gradient(circle at top,#1e293b,var(--bg) 65%),
+    linear-gradient(120deg,#020617,#020617);
+  color:var(--text);
+  padding:30px;
+}
+a{text-decoration:none;color:inherit}
+
+.container{max-width:1250px;margin:auto}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:25px;
+  background:#020617;
+  border:1px solid var(--border);
+  padding:10px 22px;
+  border-radius:14px;
+  color:var(--primary);
+  transition:.35s;
+}
+.back-btn:hover{
+  transform:translateX(-6px);
+  box-shadow:0 12px 30px rgba(56,189,248,.35);
+}
+
+h1{
+  font-size:3rem;
+  background:linear-gradient(135deg,var(--primary),var(--secondary),var(--pink));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.subtitle{color:var(--muted);margin-bottom:45px}
+
+.section{
+  background:linear-gradient(180deg,#020617,#020617);
+  border:1px solid var(--border);
+  border-radius:26px;
+  padding:38px;
+  margin-bottom:40px;
+  animation:fadeUp .8s ease both;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.section h2{
+  color:var(--primary);
+  font-size:1.7rem;
+  margin-bottom:14px;
+}
+.section p{line-height:2;color:#cbd5f5;margin-bottom:12px}
+.section ul{padding-left:24px;line-height:2;color:#cbd5f5}
+
+.mini-def{
+  font-size:.95rem;
+  color:#a5b4fc;
+  margin-bottom:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+  margin-top:30px;
+}
+
+.card{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:24px;
+  transition:.35s;
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(99,102,241,.15),transparent);
+  opacity:0;
+  transition:.35s;
+}
+.card:hover::before{opacity:1}
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 25px 55px rgba(99,102,241,.35);
+}
+.card h3{color:var(--accent);margin-bottom:8px;font-size:1.15rem}
+
+.highlight{
+  background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(99,102,241,.15));
+  border-left:6px solid var(--primary);
+  padding:20px 24px;
+  border-radius:18px;
+  margin-top:22px;
+}
+
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  justify-content:center;
+  margin-top:30px;
+}
+.flow div{
+  padding:16px 22px;
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:18px;
+  position:relative;
+  animation:pulse 2.8s infinite;
+}
+.flow div::after{
+  content:"➜";
+  position:absolute;
+  right:-22px;
+  color:var(--primary);
+  font-size:1.2rem;
+}
+.flow div:last-child::after{content:""}
+
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 rgba(56,189,248,0)}
+  50%{box-shadow:0 0 30px rgba(56,189,248,.45)}
+}
+
+.net-diagram{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+.node{
+  padding:22px;
+  border-radius:50%;
+  width:120px;
+  height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:#020617;
+  border:2px solid var(--primary);
+  animation:float 3.5s ease-in-out infinite;
+}
+.node:nth-child(2){animation-delay:.5s}
+.node:nth-child(3){animation-delay:1s}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+footer{
+  text-align:center;
+  margin-top:90px;
+  color:#64748b;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<a href="foc.html" class="back-btn">← Back to Chapters</a>
+
+<h1>🌐 Computer Networks & The Internet</h1>
+<p class="subtitle">FOC | BTech Semester 1 | Advanced Animated Notes</p>
+
+<!-- 1 -->
+<div class="section">
+<h2>1️⃣ Computer Network</h2>
+<p class="mini-def"><b>Definition:</b> A computer network is an interconnection of computing devices to share data, resources, and services.</p>
+<p>
+Networks enable communication, distributed processing, centralized control, and collaboration
+between geographically separated systems.
+</p>
+
+<div class="net-diagram">
+  <div class="node">PC</div>
+  <div class="node">Switch</div>
+  <div class="node">Server</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="section">
+<h2>2️⃣ Types of Networks (LAN, MAN, WAN)</h2>
+<p class="mini-def"><b>Definition:</b> Networks classified based on geographic span.</p>
+
+<div class="grid">
+<div class="card">
+<h3>LAN</h3>
+<p class="mini-def">Small area network (room, building, campus).</p>
+<p>High speed, low cost, privately owned.</p>
+</div>
+
+<div class="card">
+<h3>MAN</h3>
+<p class="mini-def">City-wide network.</p>
+<p>Connects multiple LANs using high-speed links.</p>
+</div>
+
+<div class="card">
+<h3>WAN</h3>
+<p class="mini-def">Large geographical network.</p>
+<p>The Internet is the biggest WAN.</p>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="section">
+<h2>3️⃣ Network Devices</h2>
+<p class="mini-def"><b>Definition:</b> Hardware components that enable data transmission.</p>
+
+<div class="grid">
+<div class="card">
+<h3>Router</h3>
+<p class="mini-def">Routes packets between different networks.</p>
+<p>Uses IP addresses.</p>
+</div>
+
+<div class="card">
+<h3>Switch</h3>
+<p class="mini-def">Connects devices within LAN.</p>
+<p>Uses MAC addresses.</p>
+</div>
+
+<div class="card">
+<h3>Modem</h3>
+<p class="mini-def">Modulator–Demodulator.</p>
+<p>Converts digital ↔ analog signals.</p>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="section">
+<h2>4️⃣ Internet</h2>
+<p class="mini-def"><b>Definition:</b> A global system of interconnected networks using TCP/IP.</p>
+<p>
+Internet provides services like WWW, Email, FTP, VoIP, Cloud platforms and IoT communication.
+</p>
+
+<div class="highlight">
+Internet = Infrastructure + Protocols + Services
+</div>
+</div>
+
+<!-- 5 -->
+<div class="section">
+<h2>5️⃣ Web Browser vs Search Engine</h2>
+
+<div class="grid">
+<div class="card">
+<h3>Web Browser</h3>
+<p class="mini-def">Software to access websites.</p>
+<ul>
+<li>Chrome</li>
+<li>Firefox</li>
+<li>Edge</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Search Engine</h3>
+<p class="mini-def">Service to find information.</p>
+<ul>
+<li>Google</li>
+<li>Bing</li>
+<li>DuckDuckGo</li>
+</ul>
+</div>
+</div>
+
+<div class="highlight">
+Browser displays web pages, Search Engine finds them.
+</div>
+</div>
+
+<!-- 6 -->
+<div class="section">
+<h2>6️⃣ Cloud Computing</h2>
+<p class="mini-def"><b>Definition:</b> On-demand access to shared computing resources over the Internet.</p>
+
+<div class="flow">
+<div>IaaS</div>
+<div>PaaS</div>
+<div>SaaS</div>
+</div>
+
+<ul>
+<li><b>IaaS:</b> Virtual machines, storage</li>
+<li><b>PaaS:</b> App development platforms</li>
+<li><b>SaaS:</b> Ready-to-use software</li>
+</ul>
+
+<div class="highlight">
+Examples: AWS, Google Cloud, Azure
+</div>
+</div>
+
+<!-- 7 -->
+<div class="section">
+<h2>7️⃣ Internet of Things (IoT)</h2>
+<p class="mini-def"><b>Definition:</b> Network of physical objects embedded with sensors and connectivity.</p>
+
+<div class="flow">
+<div>Sensors</div>
+<div>Internet</div>
+<div>Cloud</div>
+<div>Analytics</div>
+</div>
+
+<ul>
+<li>Smart Homes</li>
+<li>Healthcare Devices</li>
+<li>Industrial Automation</li>
+<li>Smart Cities</li>
+</ul>
+
+<div class="highlight">
+IoT enables automation + real-time decision making
+</div>
+</div>
+
+<footer>© 2025 STRINK EDU • Ultra-Premium Learning</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Designing – Semester 1</title>
+
+<style>
+:root{
+  --primary:#6366f1;
+  --cyan:#22d3ee;
+  --border-light:rgba(99,102,241,.2);
+  --border-dark:rgba(99,102,241,.35);
+}
+
+/* ===== DARK DEFAULT ===== */
+body{
+  --bg:#020617;
+  --card:#020617;
+  --text:#e5e7eb;
+  --nav:rgba(5,10,30,.92);
+  --btn-bg:#020617;
+  --border:var(--border-dark);
+}
+
+/* ===== LIGHT MODE ===== */
+body.light{
+  --bg:linear-gradient(135deg,#eef2ff,#f8fafc);
+  --card:#ffffff;
+  --text:#0f172a;
+  --nav:rgba(255,255,255,.9);
+  --btn-bg:#ffffff;
+  --border:var(--border-light);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,system-ui,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:18px 50px;
+  background:var(--nav);
+  backdrop-filter:blur(14px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+nav::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--primary),var(--cyan),var(--primary),transparent);
+}
+
+nav a{
+  font-size:22px;
+  font-weight:700;
+  text-decoration:none;
+  background:linear-gradient(135deg,var(--primary),var(--cyan));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.theme-toggle{
+  padding:8px 16px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--primary),var(--cyan));
+  color:#fff;
+}
+
+/* ===== BACK ===== */
+.back{
+  margin:90px 0 20px 40px;
+}
+.back a{
+  text-decoration:none;
+  padding:10px 18px;
+  border-radius:999px;
+  background:var(--card);
+  color:var(--primary);
+}
+
+/* ===== CONTENT ===== */
+.container{
+  max-width:1000px;
+  margin:20px auto 80px;
+  padding:0 20px;
+}
+
+h2{text-align:center;margin-bottom:30px}
+
+/* ===== ACCORDION ===== */
+.accordion{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.item{
+  background:var(--card);
+  border-radius:18px;
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+
+.head{
+  padding:20px 24px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  font-weight:600;
+}
+
+.content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s ease;
+  padding:0 24px;
+}
+
+.item.active .content{
+  max-height:900px;
+  padding-bottom:24px;
+}
+
+ul{margin:15px 0 10px 18px}
+
+/* ===== BUTTONS ===== */
+.resources{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:12px;
+  background:var(--btn-bg);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-size:14px;
+  font-weight:500;
+}
+
+.btn:hover{
+  background:linear-gradient(135deg,var(--primary),var(--cyan));
+  color:#fff;
+}
+
+.practice{
+  background:#022c22;
+}
+
+body.light .practice{
+  background:#ecfeff;
+}
+
+.practice:hover{
+  background:linear-gradient(135deg,#22d3ee,#06b6d4);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">STRINK EDU ⚡</a>
+  <button class="theme-toggle" onclick="toggleTheme()">☀️ / 🌙</button>
+</nav>
+
+<div class="back">
+  <a href="subjects.html">← Back to Subjects</a>
+</div>
+
+<div class="container">
+<h2>🌐 Web Designing – Chapter Wise</h2>
+
+<div class="accordion">
+
+<!-- CH 1 -->
+<div class="item">
+  <div class="head">Chapter 1: Introduction to HTML & CSS <span>+</span></div>
+  <div class="content">
+    <ul>
+      <li>HTML Basics</li>
+      <li>CSS Introduction</li>
+      <li>Types of CSS</li>
+    </ul>
+    <div class="resources">
+      <a href="web-design-notes-ch1.html" class="btn">📘 Notes</a>
+      <a href="web-design-video-ch1.html" class="btn">🎥 Video</a>
+      <a href="web-design-practice-ch1.html" class="btn practice">🧠 Practice</a>
+    </div>
+  </div>
+</div>
+
+<!-- CH 2 -->
+<div class="item">
+  <div class="head">Chapter 2: HTML Elements & Forms <span>+</span></div>
+  <div class="content">
+    <ul>
+      <li>Lists & Tables</li>
+      <li>Forms</li>
+      <li>Semantic Tags</li>
+    </ul>
+    <div class="resources">
+      <a href="web-design-notes-ch2.html" class="btn">📘 Notes</a>
+      <a href="web-design-video-ch2.html" class="btn">🎥 Video</a>
+      <a href="web-design-practice-ch2.html" class="btn practice">🧠 Practice</a>
+    </div>
+  </div>
+</div>
+
+<!-- CH 3 -->
+<div class="item">
+  <div class="head">Chapter 3: CSS Basics & Layout <span>+</span></div>
+  <div class="content">
+    <ul>
+      <li>Box Model</li>
+      <li>Flexbox</li>
+      <li>Grid</li>
+    </ul>
+    <div class="resources">
+      <a href="web-design-notes-ch3.html" class="btn">📘 Notes</a>
+      <a href="web-design-video-ch3.html" class="btn">🎥 Video</a>
+      <a href="web-design-practice-ch3.html" class="btn practice">🧠 Practice</a>
+    </div>
+  </div>
+</div>
+
+<!-- CH 4 -->
+<div class="item">
+  <div class="head">Chapter 4: Responsive & Advanced CSS <span>+</span></div>
+  <div class="content">
+    <ul>
+      <li>Media Queries</li>
+      <li>Animations</li>
+      <li>Transitions</li>
+    </ul>
+    <div class="resources">
+      <a href="web-design-notes-ch4.html" class="btn">📘 Notes</a>
+      <a href="web-design-video-ch4.html" class="btn">🎥 Video</a>
+      <a href="web-design-practice-ch4.html" class="btn practice">🧠 Practice</a>
+    </div>
+  </div>
+</div>
+
+<!-- CH 5 -->
+<div class="item">
+  <div class="head">Chapter 5: Hosting & Deployment <span>+</span></div>
+  <div class="content">
+    <ul>
+      <li>Domains</li>
+      <li>Hosting</li>
+      <li>GitHub Pages</li>
+    </ul>
+    <div class="resources">
+      <a href="web-design-notes-ch5.html" class="btn">📘 Notes</a>
+      <a href="web-design-video-ch5.html" class="btn">🎥 Video</a>
+      <a href="web-design-practice-ch5.html" class="btn practice">🧠 Practice</a>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<script>
+/* Accordion */
+document.querySelectorAll(".head").forEach(h=>{
+  h.addEventListener("click",()=>{
+    const p=h.parentElement;
+    p.classList.toggle("active");
+    h.querySelector("span").textContent =
+      p.classList.contains("active") ? "−" : "+";
+  });
+});
+
+/* Dark default */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
+}
+if(localStorage.getItem("theme")==="light"){
+  document.body.classList.add("light");
+}
+</script>
+
+</body>
+</html>

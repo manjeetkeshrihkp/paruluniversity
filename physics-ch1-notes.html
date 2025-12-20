@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics | Chapter 1 – Band Theory & Semiconductors</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+body{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:30px;
+}
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+}
+
+h1{
+  text-align:center;
+  font-size:2.5rem;
+}
+.subtitle{
+  text-align:center;
+  color:#94a3b8;
+  margin:8px 0 35px;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:30px;
+  background:#020617;
+  border:1px solid #1e293b;
+  padding:10px 18px;
+  border-radius:10px;
+  color:#38bdf8;
+  transition:.3s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 6px 18px rgba(56,189,248,.25);
+}
+
+/* CARD */
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:16px;
+  padding:26px;
+  margin-bottom:26px;
+}
+.card h2{
+  font-size:1.45rem;
+  margin-bottom:14px;
+  color:#38bdf8;
+}
+.card h3{
+  margin:16px 0 8px;
+  color:#93c5fd;
+}
+.card p{
+  line-height:1.85;
+  color:#cbd5f5;
+  margin-bottom:10px;
+}
+ul{
+  padding-left:22px;
+}
+li{
+  margin:8px 0;
+  color:#e2e8f0;
+}
+
+/* Table */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:14px;
+}
+th,td{
+  border:1px solid #1e293b;
+  padding:12px;
+  text-align:center;
+}
+th{
+  background:#020617;
+  color:#38bdf8;
+}
+
+/* Highlight */
+.highlight{
+  background:linear-gradient(135deg,#38bdf8,#2563eb);
+  padding:18px;
+  border-radius:12px;
+  margin-top:18px;
+  color:white;
+  font-size:.95rem;
+}
+
+/* Exam Box */
+.exam{
+  background:#020617;
+  border-left:4px solid #38bdf8;
+  padding:14px;
+  margin-top:14px;
+  border-radius:10px;
+}
+
+footer{
+  text-align:center;
+  margin-top:60px;
+  color:#64748b;
+  font-size:.9rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>📘 Physics – Chapter 1</h1>
+<p class="subtitle">Band Theory & Semiconductors (BTech Semester 1)</p>
+
+<a href="physics.html" class="back-btn">← Back to Physics</a>
+
+<!-- 1 -->
+<div class="card">
+<h2>1. Need for Band Theory</h2>
+<p>
+In isolated atoms, electrons occupy <b>discrete energy levels</b>. However, in solids,
+millions of atoms are closely packed and their outer orbitals overlap.
+As a result, discrete energy levels split into <b>continuous energy bands</b>.
+</p>
+<p>
+Classical theories like Drude–Lorentz theory failed to explain:
+</p>
+<ul>
+<li>Temperature dependence of conductivity</li>
+<li>Difference between conductors, semiconductors, and insulators</li>
+<li>Quantum behavior of electrons</li>
+</ul>
+<p>
+👉 <b>Band Theory</b>, based on quantum mechanics, successfully explains these phenomena.
+</p>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<h2>2. Electrical Resistivity & Material Classification</h2>
+<p>
+Electrical resistivity (ρ) is the intrinsic property of a material that opposes the flow
+of electric current.
+</p>
+<p><b>Formula:</b> ρ = (R × A) / L &nbsp;&nbsp; (Unit: Ω·m)</p>
+
+<table>
+<tr>
+<th>Material</th>
+<th>Resistivity (Ω·m)</th>
+<th>Examples</th>
+</tr>
+<tr>
+<td>Conductors</td>
+<td>~10⁻⁸</td>
+<td>Cu, Ag</td>
+</tr>
+<tr>
+<td>Semiconductors</td>
+<td>~10³</td>
+<td>Si, Ge</td>
+</tr>
+<tr>
+<td>Insulators</td>
+<td>>10⁶</td>
+<td>Glass, Rubber</td>
+</tr>
+</table>
+
+<div class="exam">
+<b>Exam Note:</b> Resistivity alone cannot explain carrier generation and temperature
+dependence → Band theory is required.
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<h2>3. Formation of Energy Bands</h2>
+<p>
+When N atoms come together to form a crystal, each atomic energy level splits into N closely
+spaced levels due to <b>Pauli’s Exclusion Principle</b>.
+</p>
+
+<h3>Main Energy Bands</h3>
+<ul>
+<li><b>Valence Band (VB):</b> Occupied by valence electrons</li>
+<li><b>Conduction Band (CB):</b> Electrons here contribute to conduction</li>
+<li><b>Forbidden Energy Gap (Eg):</b> Energy gap between VB and CB</li>
+</ul>
+
+<div class="highlight">
+Eg ≈ 0 eV → Conductors <br>
+Eg = 0.1–3 eV → Semiconductors <br>
+Eg > 3 eV → Insulators
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<h2>4. E–k Diagram</h2>
+<p>
+The E–k diagram represents the variation of electron energy (E) with wave vector (k).
+It gives information about:
+</p>
+<ul>
+<li>Electron velocity</li>
+<li>Effective mass</li>
+<li>Nature of band gap</li>
+</ul>
+<p>
+Curvature of E–k diagram decides the <b>effective mass</b> of charge carriers.
+</p>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<h2>5. Direct & Indirect Band Gap Semiconductors</h2>
+
+<h3>Direct Band Gap</h3>
+<p>
+CB minimum and VB maximum occur at the same k value. Electron transition releases energy
+directly as photon.
+</p>
+<ul>
+<li>High light emission efficiency</li>
+<li>Used in LEDs & Lasers</li>
+<li>Examples: GaAs, InP</li>
+</ul>
+
+<h3>Indirect Band Gap</h3>
+<p>
+CB minimum and VB maximum occur at different k values. Phonon involvement causes energy loss
+as heat.
+</p>
+<ul>
+<li>Poor light emission</li>
+<li>Used in electronic devices</li>
+<li>Examples: Si, Ge</li>
+</ul>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<h2>6. Effective Mass of Electron</h2>
+<p>
+In a crystal lattice, electrons experience periodic potential. Their motion differs from
+free electrons and is described using <b>effective mass (m*)</b>.
+</p>
+<p>
+Effective mass depends on curvature of E–k diagram:
+</p>
+<p><b>Higher curvature → Lower effective mass → Higher mobility</b></p>
+
+<div class="exam">
+<b>Important:</b> Effective mass explains why electrons and holes move differently
+inside semiconductors.
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<h2>7. Fermi Energy & Fermi Level</h2>
+<p>
+Fermi energy is the highest occupied energy level at absolute zero (0 K).
+Fermi level indicates probability of electron occupancy.
+</p>
+
+<table>
+<tr>
+<th>Material</th>
+<th>Fermi Level Position</th>
+</tr>
+<tr>
+<td>Conductor</td>
+<td>Inside conduction band</td>
+</tr>
+<tr>
+<td>Semiconductor</td>
+<td>Near middle of band gap</td>
+</tr>
+<tr>
+<td>Insulator</td>
+<td>Deep inside band gap</td>
+</tr>
+</table>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<h2>8. Intrinsic & Extrinsic Semiconductors</h2>
+
+<h3>Intrinsic Semiconductor</h3>
+<ul>
+<li>Pure semiconductor</li>
+<li>Equal electrons and holes</li>
+<li>Low conductivity</li>
+</ul>
+
+<h3>Extrinsic Semiconductor</h3>
+<ul>
+<li><b>n-type:</b> Pentavalent doping, electrons majority</li>
+<li><b>p-type:</b> Trivalent doping, holes majority</li>
+</ul>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<h2>9. Ohmic & Schottky Junctions</h2>
+
+<ul>
+<li><b>Ohmic Contact:</b> Low resistance, linear V–I, used for current flow</li>
+<li><b>Schottky Junction:</b> Rectifying, fast switching, used in high-frequency circuits</li>
+</ul>
+
+<div class="exam">
+<b>Difference between Ohmic & Schottky junctions</b> is a very common exam question.
+</div>
+</div>
+
+<footer>
+© 2025 STRINK EDU • Physics Notes
+</footer>
+
+</div>
+</body>
+</html>

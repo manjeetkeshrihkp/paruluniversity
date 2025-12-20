@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FOC Quiz – System Software & Programming Languages | STRINK EDU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:radial-gradient(circle at top,#020617,#000);color:#e5e7eb}
+.container{max-width:1000px;margin:auto;padding:30px 20px}
+
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+h1{
+  font-size:1.55rem;
+  background:linear-gradient(90deg,#38bdf8,#818cf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.timer{
+  padding:10px 18px;
+  border:1px solid #1e293b;
+  border-radius:20px;
+  color:#38bdf8;
+  font-weight:600;
+}
+
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:16px;
+  padding:25px;
+}
+.question{font-size:1.15rem;margin-bottom:20px}
+.options{display:grid;gap:14px}
+
+.option{
+  padding:14px 18px;
+  border-radius:12px;
+  background:#020617;
+  border:1px solid #1e293b;
+  cursor:pointer;
+  transition:.25s;
+}
+.option:hover{transform:scale(1.02);border-color:#38bdf8}
+.option.active{
+  background:rgba(56,189,248,.18);
+  border-color:#38bdf8;
+}
+
+.nav{display:flex;justify-content:space-between;margin-top:25px}
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  background:linear-gradient(135deg,#38bdf8,#6366f1);
+  color:#020617;
+}
+
+.analysis{display:none;margin-top:35px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+.box{
+  padding:16px;
+  border-radius:14px;
+  background:#020617;
+  border:1px solid #1e293b;
+}
+.box h3{font-size:.85rem;opacity:.7}
+.box p{font-size:1.4rem;font-weight:700}
+
+.graph-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+.graph-box{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:14px;
+  padding:12px;
+}
+
+.wrong-box{
+  margin-top:30px;
+  padding:20px;
+  border-radius:16px;
+  border:1px solid #1e293b;
+}
+.wrong-q{
+  margin-bottom:16px;
+  padding-bottom:10px;
+  border-bottom:1px dashed #1e293b;
+}
+.correct{color:#4ade80}
+.wrong{color:#f87171}
+
+.return-wrap{text-align:center;margin-top:40px}
+.return-btn{
+  padding:14px 28px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#38bdf8,#6366f1);
+  color:#020617;
+  font-weight:700;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <h1>FOC Quiz – System Software & Programming Languages</h1>
+  <div class="timer" id="timer">15:00</div>
+</header>
+
+<div class="card" id="quizBox">
+  <div class="question" id="question"></div>
+  <div class="options" id="options"></div>
+  <div class="nav">
+    <button onclick="prevQ()">Previous</button>
+    <button onclick="nextQ()">Next</button>
+  </div>
+</div>
+
+<div class="analysis" id="analysis">
+  <h2>📊 Performance Analysis</h2>
+
+  <div class="grid">
+    <div class="box"><h3>Total Questions</h3><p>15</p></div>
+    <div class="box"><h3>Correct</h3><p id="correct"></p></div>
+    <div class="box"><h3>Wrong</h3><p id="wrong"></p></div>
+    <div class="box"><h3>Skipped</h3><p id="skipped"></p></div>
+    <div class="box"><h3>Total Time Taken</h3><p id="timeTaken"></p></div>
+    <div class="box"><h3>Avg Time / Question</h3><p id="avgTime"></p></div>
+  </div>
+
+  <div class="graph-grid">
+    <div class="graph-box"><canvas id="resultChart"></canvas></div>
+    <div class="graph-box"><canvas id="accuracyChart"></canvas></div>
+    <div class="graph-box"><canvas id="weakChart"></canvas></div>
+    <div class="graph-box"><canvas id="radarChart"></canvas></div>
+  </div>
+
+  <div class="wrong-box">
+    <h3>❌ Wrong Questions & Correct Answers</h3>
+    <div id="wrongList"></div>
+  </div>
+
+  <div class="return-wrap">
+    <a href="foc.html" class="return-btn">← Return to FOC Chapters</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+const quiz=[
+{q:"System software is used to:",o:["Write programs","Control hardware","Design circuits","Browse internet"],a:1,t:"System Software"},
+{q:"Which is a system software?",o:["MS Word","Compiler","Photoshop","Browser"],a:1,t:"System Software"},
+{q:"High-level languages are:",o:["Machine dependent","User friendly","Binary","Assembly"],a:1,t:"Languages"},
+{q:"Operating system acts as:",o:["Hardware","Interface","Compiler","Processor"],a:1,t:"Operating System"},
+{q:"Which is NOT a function of OS?",o:["Memory management","Process scheduling","Virus creation","File management"],a:2,t:"Operating System"},
+{q:"UNIX is a:",o:["Programming language","Operating system","Database","Editor"],a:1,t:"UNIX"},
+{q:"Command to list files in UNIX is:",o:["ls","dir","list","show"],a:0,t:"UNIX"},
+{q:"Programming languages evolved from:",o:["High-level to low-level","Machine to high-level","Java to C","Python to C"],a:1,t:"Languages"},
+{q:"Which is a procedural language?",o:["C","Java","Python","SQL"],a:0,t:"Languages"},
+{q:"Which is an object-oriented language?",o:["C","Assembly","Java","BASIC"],a:2,t:"Languages"},
+{q:"Good programming language should be:",o:["Complex","Readable","Hardware dependent","Slow"],a:1,t:"Languages"},
+{q:"Algorithm is a:",o:["Program","Step-by-step procedure","Flowchart","Code"],a:1,t:"Algorithm"},
+{q:"Debugging means:",o:["Writing code","Testing","Removing errors","Documentation"],a:2,t:"Debugging"},
+{q:"Program documentation helps in:",o:["Execution","Maintenance","Compilation","Debugging"],a:1,t:"Documentation"},
+{q:"A good program should be:",o:["Lengthy","Unclear","Efficient & readable","Hardware dependent"],a:2,t:"Good Program"}
+];
+
+let i=0,ans=Array(15).fill(null);
+let time=900;
+const startTime=Date.now();
+
+const q=document.getElementById("question");
+const o=document.getElementById("options");
+
+function load(){
+  q.innerText=`Q${i+1}. ${quiz[i].q}`;
+  o.innerHTML="";
+  quiz[i].o.forEach((x,j)=>{
+    const d=document.createElement("div");
+    d.className="option"+(ans[i]===j?" active":"");
+    d.innerText=x;
+    d.onclick=()=>{ans[i]=j;load();}
+    o.appendChild(d);
+  });
+}
+load();
+
+function nextQ(){i<14?(i++,load()):finish();}
+function prevQ(){if(i>0){i--;load();}}
+
+const timerInterval=setInterval(()=>{
+  time--;
+  timer.innerText=`${String(Math.floor(time/60)).padStart(2,"0")}:${String(time%60).padStart(2,"0")}`;
+  if(time<=0)finish();
+},1000);
+
+function finish(){
+  clearInterval(timerInterval);
+  quizBox.style.display="none";
+  analysis.style.display="block";
+
+  let c=0,w=0,s=0,wrongHTML="";
+  let weak={};
+
+  quiz.forEach((x,j)=>{
+    if(ans[j]==null){
+      s++; weak[x.t]=(weak[x.t]||0)+1;
+    }
+    else if(ans[j]===x.a)c++;
+    else{
+      w++; weak[x.t]=(weak[x.t]||0)+1;
+      wrongHTML+=`
+      <div class="wrong-q">
+        <p>${x.q}</p>
+        <p class="wrong">Your Answer: ${x.o[ans[j]]}</p>
+        <p class="correct">Correct Answer: ${x.o[x.a]}</p>
+      </div>`;
+    }
+  });
+
+  const totalSeconds=Math.floor((Date.now()-startTime)/1000);
+  const avgSeconds=Math.round(totalSeconds/15);
+
+  correct.innerText=c;
+  wrong.innerText=w;
+  skipped.innerText=s;
+  timeTaken.innerText=`${Math.floor(totalSeconds/60)}m ${totalSeconds%60}s`;
+  avgTime.innerText=`${avgSeconds} sec`;
+  wrongList.innerHTML=wrongHTML||"<p class='correct'>Perfect Attempt 🎉</p>";
+
+  new Chart(resultChart,{
+    type:"doughnut",
+    data:{labels:["Correct","Wrong","Skipped"],
+    datasets:[{data:[c,w,s],backgroundColor:["#4ade80","#f87171","#facc15"]}]}
+  });
+
+  new Chart(accuracyChart,{
+    type:"line",
+    data:{labels:Array.from({length:15},(_,i)=>`Q${i+1}`),
+    datasets:[{data:ans.map((a,j)=>a===quiz[j].a?100:0),
+      borderColor:"#818cf8",tension:.4}]},
+    options:{scales:{y:{min:0,max:100}}}
+  });
+
+  new Chart(weakChart,{
+    type:"bar",
+    data:{
+      labels:Object.keys(weak),
+      datasets:[{
+        data:Object.values(weak),
+        backgroundColor:"#38bdf8"
+      }]
+    }
+  });
+
+  new Chart(radarChart,{
+    type:"radar",
+    data:{
+      labels:["Correct","Wrong","Skipped"],
+      datasets:[{
+        data:[c,w,s],
+        backgroundColor:"rgba(56,189,248,.25)",
+        borderColor:"#38bdf8"
+      }]
+    }
+  });
+}
+</script>
+</body>
+</html>

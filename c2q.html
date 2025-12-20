@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 2 – Assignment Based Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#020617,#0f172a,#020617);color:#e5e7eb;padding:30px}
+.container{max-width:1050px;margin:auto}
+h1{font-size:2.6rem;margin-bottom:8px;background:linear-gradient(to right,#a855f7,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#c7d2fe;margin-bottom:16px}
+.timer{background:rgba(255,255,255,0.08);padding:8px 14px;border-radius:10px;display:inline-block;margin-bottom:18px}
+.card{background:rgba(255,255,255,0.08);padding:28px;border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,0.4)}
+.question{font-size:1.15rem;color:hsl(199, 95%, 74%);margin-bottom:16px}
+.option{padding:12px 16px;margin-bottom:10px;border-radius:10px;background:rgba(0,0,0,0.45);cursor:pointer}
+.option:hover{background:rgba(56,189,248,0.25)}
+.correct{background:rgba(34,197,94,0.45)}
+.wrong{background:rgba(239,68,68,0.45)}
+input{width:100%;padding:12px;border-radius:10px;border:none;margin-bottom:12px}
+button{padding:10px 18px;border:none;border-radius:10px;background:#22c55e;color:#000;font-weight:600;cursor:pointer}
+button.secondary{background:#38bdf8}
+.solution{display:none;margin-top:18px;background:rgba(250,204,21,0.15);border-left:4px solid #facc15;padding:16px;border-radius:10px;color:#fde68a}
+.nav{margin-top:20px;text-align:right}
+.end{text-align:center;padding:40px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:25px}
+.stat{background:rgba(255,255,255,0.08);padding:18px;border-radius:14px}
+.stat h3{font-size:1.3rem;color:#22c55e}
+.chart{width:140px;height:140px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;font-weight:600}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Chapter 2 – Assignment Based Quiz</h1>
+<p class="subtitle">❤️ Multivariate Calculus</p>
+<div class="timer" id="timerBox">⏱ Question Time: <span id="qt">0</span> sec</div>
+
+<div class="card" id="card"></div>
+<div class="nav" id="nav"><button onclick="nextQ()">Next</button></div>
+</div>
+
+<script>
+/* ================= CORE STATE ================= */
+let qSeconds = 0, qTimer = null;
+let correct = 0, wrong = 0, totalTime = 0;
+let i = 0;
+
+const card = document.getElementById('card');
+const nav  = document.getElementById('nav');
+
+/* ================= TIMER ================= */
+function startQT(){
+  qSeconds = 0;
+  if(qTimer) clearInterval(qTimer);
+  qTimer = setInterval(() => {
+    document.getElementById('qt').innerText = ++qSeconds;
+  }, 1000);
+}
+
+/* ================= QUESTIONS ================= */
+const questions = [
+  // 10 Numerical MCQs
+  {type:'mcq',q:'If z = x²y + xy², then ∂z/∂x is:',opts:['2xy + y²','x² + 2xy','2x + y','xy'],ans:0,sol:'Treat y constant. ∂(x²y)/∂x = 2xy and ∂(xy²)/∂x = y².'},
+  {type:'mcq',q:'If z = x²y + xy², then ∂z/∂y is:',opts:['2xy + y²','x² + 2xy','2y + x','xy'],ans:1,sol:'Treat x constant. ∂(x²y)/∂y = x² and ∂(xy²)/∂y = 2xy.'},
+  {type:'mcq',q:'Degree of homogeneous function f(x,y)=x²y is:',opts:['1','2','3','4'],ans:2,sol:'Total degree = 2 + 1 = 3.'},
+  {type:'mcq',q:'If f(tx,ty)=t³f(x,y), degree of f is:',opts:['1','2','3','0'],ans:2,sol:'Power of t is 3, hence degree 3.'},
+  {type:'mcq',q:'For f(x,y)=x²+y², value of xfx+yfy is:',opts:['x²+y²','2(x²+y²)','x+y','0'],ans:1,sol:'fx=2x, fy=2y ⇒ xfx+yfy = 2(x²+y²).'},
+  {type:'mcq',q:'Jacobian of u=x²−y², v=2xy w.r.t (x,y) is:',opts:['0','4(x²+y²)','2(x²−y²)','x²+y²'],ans:1,sol:'J = (2x)(2x) − (−2y)(2y) = 4(x²+y²).'},
+  {type:'mcq',q:'For z=x²+y², fx at (1,1) is:',opts:['1','2','3','4'],ans:1,sol:'fx=2x ⇒ fx(1,1)=2.'},
+  {type:'mcq',q:'For z=x²+y², fy at (1,1) is:',opts:['1','2','3','4'],ans:1,sol:'fy=2y ⇒ fy(1,1)=2.'},
+  {type:'mcq',q:'Tangent plane to z=x²+y² at (1,1,2) is:',opts:['z−2=2(x−1)+2(y−1)','z=2x+2y','z−1=x+y','z=x²+y²'],ans:0,sol:'Use z−z₀ = fx(x−x₀)+fy(y−y₀).'},
+  {type:'mcq',q:'If limit depends on path, function is:',opts:['Continuous','Differentiable','Not continuous','Homogeneous'],ans:2,sol:'Different path limits imply non-continuity.'},
+
+  // 5 Numerical
+  {type:'num',q:'Find ∂z/∂x and ∂z/∂y for z = x²y + xy².',ans:'2xy+y^2',sol:'Treat y constant for ∂z/∂x.\n∂z/∂x = 2xy + y².\nTreat x constant for ∂z/∂y.\n∂z/∂y = x² + 2xy.'},
+  {type:'num',q:'Verify f(x,y)=x²+y² is homogeneous and find degree.',ans:'2',sol:'Replace x→tx, y→ty.\nf(tx,ty)=t²(x²+y²).\nHence homogeneous.\nDegree = 2.'},
+  {type:'num',q:'Using Euler’s theorem verify xfx+yfy = nf for f(x,y)=x²y.',ans:'verified',sol:'Find fx and fy.\nfx=2xy, fy=x².\nCompute xfx+yfy.\nResult = 3x²y.\nVerified.'},
+  {type:'num',q:'Find Jacobian of u=x²−y², v=2xy w.r.t x,y.',ans:'4(x^2+y^2)',sol:'ux=2x, uy=−2y.\nvx=2y, vy=2x.\nJacobian = u_x v_y − u_y v_x.\n=4(x²+y²).'},
+  {type:'num',q:'Find equation of tangent plane to z=x²+y² at (1,1,2).',ans:'z-2',sol:'fx=2x, fy=2y.\nAt (1,1): fx=2, fy=2.\nz−2 = 2(x−1)+2(y−1).'}
+];
+
+/* ================= HELPERS ================= */
+function renderSolution(sol){
+  const steps = sol.split('\n');
+  let html = '<div style="font-weight:600;color:#facc15;margin-bottom:10px">Step-by-step Solution</div>';
+  steps.forEach((s,idx)=>{
+    html += `<div style="background:rgba(0,0,0,0.35);padding:10px 12px;border-left:3px solid #22c55e;border-radius:8px;margin-bottom:8px">Step ${idx+1}: ${s}</div>`;
+  });
+  return html;
+}
+
+/* ================= LOAD QUESTION ================= */
+function load(){
+  startQT();
+  const q = questions[i];
+  card.innerHTML = `<div class="question">Q${i+1}. ${q.q}</div>`;
+
+  if(q.type === 'mcq'){
+    q.opts.forEach((o,idx)=>{
+      card.innerHTML += `<div class="option" onclick="mcq(${idx},this)">${o}</div>`;
+    });
+  } else {
+    card.innerHTML += `<input id="ans" placeholder="Write final answer only" />`;
+    card.innerHTML += `<button onclick="checkNum()">Submit</button>`;
+  }
+
+  card.innerHTML += `<div class="solution" id="sol"></div>`;
+}
+
+/* ================= ANSWER HANDLERS ================= */
+function mcq(idx,el){
+  clearInterval(qTimer);
+  totalTime += qSeconds;
+  const q = questions[i];
+  document.querySelectorAll('.option').forEach(o=>o.style.pointerEvents='none');
+  const sol = document.getElementById('sol');
+
+  if(idx === q.ans){
+    el.classList.add('correct');
+    correct++;
+  } else {
+    el.classList.add('wrong');
+    wrong++;
+    sol.innerHTML = renderSolution(q.sol);
+    sol.style.display = 'block';
+  }
+}
+
+function checkNum(){
+  clearInterval(qTimer);
+  totalTime += qSeconds;
+  const q = questions[i];
+  const val = document.getElementById('ans').value.replace(/\s/g,'');
+  const sol = document.getElementById('sol');
+
+  if(val === q.ans){
+    document.getElementById('ans').style.border = '2px solid #22c55e';
+    correct++;
+  } else {
+    document.getElementById('ans').style.border = '2px solid #ef4444';
+    wrong++;
+    sol.innerHTML = renderSolution(q.sol);
+    sol.style.display = 'block';
+  }
+}
+
+/* ================= NAVIGATION ================= */
+function nextQ(){
+  if(i < questions.length - 1){
+    i++;
+    load();
+  } else {
+    endTest();
+  }
+}
+
+function endTest(){
+  clearInterval(qTimer);
+  document.getElementById('timerBox').style.display = 'none';
+  const acc = Math.round((correct / questions.length) * 100);
+
+  card.innerHTML = `
+    <div class="end">
+      <h2>🎉 Quiz Completed</h2>
+      <div class="stats-grid">
+        <div class="stat"><h3>${correct}</h3><p>Correct</p></div>
+        <div class="stat"><h3>${wrong}</h3><p>Wrong</p></div>
+        <div class="stat"><h3>${totalTime}s</h3><p>Total Time</p></div>
+        <div class="stat"><h3>${acc}%</h3><p>Accuracy</p></div>
+      </div>
+      <div class="chart" style="background:conic-gradient(#22c55e ${acc*3.6}deg,#ef4444 0deg)">${acc}%</div>
+      <button class="secondary" onclick="location.href='calculus.html'">Back to Chapter 3</button>
+    </div>`;
+  nav.style.display = 'none';
+}
+
+window.addEventListener('DOMContentLoaded', load);
+</script>
+</body>
+</html>

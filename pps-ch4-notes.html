@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPS Chapter 4 | Functions, Structures & Unions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --purple:#818cf8;
+  --grad:linear-gradient(135deg,#38bdf8,#2563eb);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  padding:30px;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1300px;
+  margin:auto;
+}
+
+/* Back button */
+.back-wrap{
+  display:flex;
+  justify-content:flex-start;
+  margin:10px 0 35px;
+}
+.back-btn{
+  background:#020617;
+  border:1px solid var(--border);
+  padding:10px 18px;
+  border-radius:10px;
+  font-size:.95rem;
+  font-weight:500;
+  color:var(--blue);
+  transition:.25s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 6px 18px rgba(56,189,248,.25);
+}
+
+/* Headings */
+h1{
+  text-align:center;
+  font-size:3rem;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:70px;
+}
+
+/* Section */
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:40px;
+  margin-bottom:50px;
+  position:relative;
+}
+.section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left,rgba(56,189,248,.15),transparent 60%);
+}
+
+.section h2{
+  color:var(--blue);
+  margin-bottom:20px;
+  font-size:1.8rem;
+}
+
+.section p{
+  line-height:2.05;
+  color:#cbd5f5;
+  font-size:1.05rem;
+}
+
+/* Sub heading */
+.sub{
+  margin-top:30px;
+  font-weight:600;
+  color:var(--purple);
+}
+
+/* Highlight */
+.highlight{
+  background:rgba(56,189,248,.16);
+  border-left:5px solid var(--blue);
+  padding:18px 24px;
+  margin:24px 0;
+  border-radius:14px;
+}
+
+/* Flow */
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:20px;
+}
+.flow div{
+  padding:12px 18px;
+  border-radius:14px;
+  background:rgba(129,140,248,.18);
+  border:1px solid var(--border);
+  font-size:.9rem;
+}
+
+/* Code */
+pre{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  margin:24px 0;
+  overflow-x:auto;
+  color:#a5f3fc;
+  font-size:.95rem;
+}
+
+footer{
+  text-align:center;
+  margin-top:90px;
+  color:#64748b;
+  font-size:.95rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="back-wrap">
+  <a href="pps.html" class="back-btn">← Back to PPS</a>
+</div>
+
+<h1>Chapter 4: User-Defined Functions, Structures & Unions</h1>
+<p class="subtitle">
+Functions • Parameter Passing • Recursion • Macros • Preprocessing • Structures • Unions
+</p>
+
+<!-- USER DEFINED FUNCTIONS -->
+<div class="section">
+<h2>1️⃣ User-Defined Functions</h2>
+<p>
+A <b>user-defined function</b> is a programmer-created function that performs a specific task.
+Instead of writing the same code again and again, functions allow code reuse and modular design.
+</p>
+
+<div class="highlight">
+✔ Improves modularity  
+✔ Reduces code duplication  
+✔ Easier debugging and maintenance  
+✔ Supports structured programming  
+</div>
+
+<pre>
+#include &lt;stdio.h&gt;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main(void) {
+    int result = add(5, 3);
+    printf("Sum = %d", result);
+    return 0;
+}
+</pre>
+</div>
+
+<!-- FUNCTION PROTOTYPE -->
+<div class="section">
+<h2>2️⃣ Function Prototype</h2>
+<p>
+A <b>function prototype</b> declares a function before it is used.
+It tells the compiler about the function’s name, return type and parameters.
+</p>
+
+<pre>
+int add(int, int);   // prototype
+</pre>
+
+<div class="highlight">
+✔ Enables compile-time checking  
+✔ Avoids mismatched arguments  
+</div>
+</div>
+
+<!-- FUNCTION DEFINITION -->
+<div class="section">
+<h2>3️⃣ Function Definition</h2>
+<p>
+Function definition contains the actual code that executes when the function is called.
+It must match the prototype exactly.
+</p>
+
+<pre>
+int add(int a, int b) {
+    return a + b;
+}
+</pre>
+</div>
+
+<!-- PARAMETER PASSING -->
+<div class="section">
+<h2>4️⃣ Parameters & Parameter Passing</h2>
+<p>
+Parameters are used to pass data from one function to another.
+There are two main methods of parameter passing in C.
+</p>
+
+<div class="sub">🔹 Pass by Value</div>
+<p>
+A copy of data is passed. Changes do NOT affect the original variable.
+</p>
+
+<pre>
+void swap(int a, int b) {
+    int t = a;
+    a = b;
+    b = t;
+}
+</pre>
+
+<div class="sub">🔹 Pass by Reference</div>
+<p>
+Address of data is passed. Changes DO affect the original variable.
+</p>
+
+<pre>
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+</pre>
+</div>
+
+<!-- ARRAY AS PARAMETER -->
+<div class="section">
+<h2>5️⃣ Passing Arrays to Functions</h2>
+<p>
+Arrays are always passed by reference in C.
+Any modification inside the function affects the original array.
+</p>
+
+<pre>
+void updateArray(int arr[], int n) {
+    for(int i=0;i&lt;n;i++)
+        arr[i] += 10;
+}
+</pre>
+</div>
+
+<!-- RECURSION -->
+<div class="section">
+<h2>6️⃣ Recursive Functions</h2>
+<p>
+A <b>recursive function</b> is a function that calls itself.
+Every recursive function must have a base condition to avoid infinite recursion.
+</p>
+
+<div class="flow">
+  <div>Base Condition</div>
+  <div>Recursive Call</div>
+  <div>Stack Memory</div>
+</div>
+
+<pre>
+int factorial(int n) {
+    if(n == 0)
+        return 1;
+    return n * factorial(n - 1);
+}
+</pre>
+
+<div class="highlight">
+Used in factorial, Fibonacci, sum of digits, Tower of Hanoi
+</div>
+</div>
+
+<!-- MACROS -->
+<div class="section">
+<h2>7️⃣ Macros</h2>
+<p>
+Macros are defined using <code>#define</code>.
+They are processed before compilation and replace code directly.
+</p>
+
+<pre>
+#define PI 3.1416
+#define MAX(a,b) ((a) &gt; (b) ? (a) : (b))
+</pre>
+
+<div class="highlight">
+✔ Faster execution  
+❌ No type checking  
+</div>
+</div>
+
+<!-- PREPROCESSING -->
+<div class="section">
+<h2>8️⃣ Pre-Processing Directives</h2>
+<p>
+Preprocessor directives are executed before compilation begins.
+</p>
+
+<div class="flow">
+  <div>#include</div>
+  <div>#define</div>
+  <div>#ifdef</div>
+  <div>#ifndef</div>
+</div>
+
+<pre>
+#include &lt;stdio.h&gt;
+#define MAX 100
+</pre>
+</div>
+
+<!-- STRUCTURES -->
+<div class="section">
+<h2>9️⃣ Structures</h2>
+<p>
+A <b>structure</b> is a user-defined data type that allows grouping of variables
+of different data types under one name.
+</p>
+
+<pre>
+struct Student {
+    int roll;
+    char name[50];
+    float marks;
+};
+</pre>
+
+<div class="highlight">
+Used to represent real-world entities like students, employees, books, etc.
+</div>
+</div>
+
+<!-- STRUCTURE OPERATIONS -->
+<div class="section">
+<h2>🔟 Structure Operations</h2>
+<p>
+Structures support declaration, initialization, copying and passing to functions.
+</p>
+
+<pre>
+struct Student s1 = {101, "Alex", 88.5};
+struct Student s2 = s1; // copying
+</pre>
+</div>
+
+<!-- ARRAYS OF STRUCTURES -->
+<div class="section">
+<h2>1️⃣1️⃣ Arrays of Structures</h2>
+<p>
+An array of structures stores multiple records of the same type.
+</p>
+
+<pre>
+struct Student class[5];
+</pre>
+</div>
+
+<!-- NESTED STRUCTURES -->
+<div class="section">
+<h2>1️⃣2️⃣ Structures within Structures</h2>
+<p>
+One structure can be nested inside another structure.
+</p>
+
+<pre>
+struct Address {
+    char city[20];
+    int pin;
+};
+
+struct Student {
+    int id;
+    struct Address addr;
+};
+</pre>
+</div>
+
+<!-- STRUCTURES & FUNCTIONS -->
+<div class="section">
+<h2>1️⃣3️⃣ Structures & Functions</h2>
+<p>
+Structures can be passed to functions by value or by reference.
+</p>
+
+<pre>
+void display(struct Student s);
+void update(struct Student *s);
+</pre>
+</div>
+
+<!-- UNIONS -->
+<div class="section">
+<h2>1️⃣4️⃣ Unions</h2>
+<p>
+A <b>union</b> is similar to a structure, but all members share the same memory.
+Only one member can store a value at a time.
+</p>
+
+<pre>
+union Data {
+    int i;
+    float f;
+    char c;
+};
+</pre>
+
+<div class="highlight">
+✔ Memory efficient  
+❌ Data overwriting occurs  
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="section">
+<h2>📌 Summary</h2>
+<p>
+Chapter-4 is one of the most important and scoring chapters in PPS.
+It introduces modular programming, memory optimization and real-world data handling
+which are essential for advanced programming.
+</p>
+</div>
+
+<footer>© 2025 STRINK EDU • PPS Chapter-4 Advanced Notes</footer>
+
+</div>
+</body>
+</html>

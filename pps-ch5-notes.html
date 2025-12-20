@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPS Chapter 5 | User-Defined Functions, Structures & Unions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --violet:#818cf8;
+  --cyan:#22d3ee;
+  --grad1:linear-gradient(135deg,#38bdf8,#2563eb);
+  --grad2:linear-gradient(135deg,#818cf8,#6366f1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter}
+
+body{
+  background:radial-gradient(circle at top,#1e293b,#020617 70%);
+  color:var(--text);
+  padding:30px;
+}
+
+a{text-decoration:none;color:inherit}
+.container{max-width:1350px;margin:auto}
+
+/* Back Button */
+.back-wrap{margin:10px 0 40px}
+.back-btn{
+  background:#020617;
+  border:1px solid var(--border);
+  padding:10px 18px;
+  border-radius:10px;
+  font-size:.95rem;
+  color:var(--blue);
+  transition:.25s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 6px 18px rgba(56,189,248,.25);
+}
+
+/* Header */
+h1{
+  text-align:center;
+  font-size:3rem;
+  background:var(--grad1);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:70px;
+}
+
+/* Section */
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:26px;
+  padding:44px;
+  margin-bottom:55px;
+  position:relative;
+  overflow:hidden;
+  animation:fadeUp .8s ease both;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at top left,rgba(56,189,248,.18),transparent 55%),
+    radial-gradient(circle at bottom right,rgba(129,140,248,.18),transparent 55%);
+}
+
+.section h2{
+  font-size:1.9rem;
+  margin-bottom:14px;
+  background:var(--grad2);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.definition{
+  font-style:italic;
+  color:#a5f3fc;
+  margin-bottom:16px;
+}
+
+.section p{
+  line-height:2.05;
+  color:#cbd5f5;
+  font-size:1.05rem;
+}
+
+/* Highlight */
+.highlight{
+  background:rgba(56,189,248,.15);
+  border-left:5px solid var(--blue);
+  padding:18px 24px;
+  margin:24px 0;
+  border-radius:16px;
+}
+
+/* Chips */
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:22px;
+}
+.chip{
+  padding:12px 18px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#38bdf8,#818cf8);
+  font-size:.85rem;
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+/* Code */
+pre{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  margin:26px 0;
+  overflow-x:auto;
+  color:#a5f3fc;
+  font-size:.95rem;
+}
+
+/* Flow */
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:20px;
+}
+.flow div{
+  padding:12px 18px;
+  border-radius:14px;
+  background:rgba(34,211,238,.15);
+  border:1px solid var(--border);
+  font-size:.9rem;
+}
+
+footer{
+  text-align:center;
+  margin-top:90px;
+  color:#64748b;
+  font-size:.95rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="back-wrap">
+  <a href="pps.html" class="back-btn">← Back to PPS</a>
+</div>
+
+<h1>Chapter 5: User-Defined Functions, Structures & Unions</h1>
+<p class="subtitle">
+Modular Programming • Structured Data • Memory Optimization
+</p>
+
+<div class="section">
+<h2>User-Defined Functions</h2>
+<p class="definition">
+Definition: A user-defined function is a block of code written by the programmer to perform a specific task and can be reused multiple times.
+</p>
+<p>
+User-defined functions help divide a large program into smaller modules, improving readability and maintainability.
+</p>
+<pre>
+int add(int a, int b) {
+    return a + b;
+}
+</pre>
+</div>
+
+<div class="section">
+<h2>Function Prototype</h2>
+<p class="definition">
+Definition: A function prototype is a declaration that informs the compiler about a function’s name, return type and parameters before its use.
+</p>
+<pre>
+int add(int, int);
+</pre>
+</div>
+
+<div class="section">
+<h2>Function Definition & Calling</h2>
+<p class="definition">
+Definition: Function definition contains the actual code of the function, and function calling transfers control to that function.
+</p>
+<pre>
+int main() {
+    int sum = add(5, 10);
+    return 0;
+}
+</pre>
+</div>
+
+<div class="section">
+<h2>Parameters & Parameter Passing</h2>
+<p class="definition">
+Definition: Parameters are variables used to pass data to a function. Parameter passing decides how data is transferred between functions.
+</p>
+<pre>
+void change(int x) { x = 20; }
+void update(int *x) { *x = 20; }
+</pre>
+</div>
+
+<div class="section">
+<h2>Recursive Functions</h2>
+<p class="definition">
+Definition: A recursive function is a function that calls itself until a base condition is satisfied.
+</p>
+<pre>
+int fact(int n) {
+    if(n == 0) return 1;
+    return n * fact(n - 1);
+}
+</pre>
+</div>
+
+<div class="section">
+<h2>Macros</h2>
+<p class="definition">
+Definition: A macro is a preprocessor directive that replaces a piece of code or value before compilation.
+</p>
+<pre>
+#define PI 3.14159
+#define SQR(x) ((x)*(x))
+</pre>
+</div>
+
+<div class="section">
+<h2>Pre-Processing Directives</h2>
+<p class="definition">
+Definition: Pre-processing directives are commands executed by the compiler before actual compilation begins.
+</p>
+<div class="flow">
+  <div>#include</div>
+  <div>#define</div>
+  <div>#ifdef</div>
+  <div>#ifndef</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Structures</h2>
+<p class="definition">
+Definition: A structure is a user-defined data type that groups variables of different data types under a single name.
+</p>
+<pre>
+struct Student {
+    int roll;
+    float marks;
+};
+</pre>
+</div>
+
+<div class="section">
+<h2>Declaring & Initializing Structures</h2>
+<p class="definition">
+Definition: Structure variables are declared using the structure name and initialized with values.
+</p>
+<pre>
+struct Student s1 = {101, 88.5};
+</pre>
+</div>
+
+<div class="section">
+<h2>Accessing Structure Members</h2>
+<p class="definition">
+Definition: Structure members are accessed using the dot (.) operator.
+</p>
+<pre>
+printf("%d", s1.roll);
+</pre>
+</div>
+
+<div class="section">
+<h2>Copying & Comparison of Structures</h2>
+<p class="definition">
+Definition: Copying means assigning one structure to another, while comparison must be done member-wise.
+</p>
+<pre>
+struct Student s2 = s1;
+</pre>
+</div>
+
+<div class="section">
+<h2>Arrays of Structures</h2>
+<p class="definition">
+Definition: An array of structures stores multiple records of the same structure type.
+</p>
+<pre>
+struct Student class[5];
+</pre>
+</div>
+
+<div class="section">
+<h2>Structures within Structures</h2>
+<p class="definition">
+Definition: A structure can contain another structure as its member.
+</p>
+<pre>
+struct Address {
+    char city[20];
+};
+
+struct Student {
+    int roll;
+    struct Address addr;
+};
+</pre>
+</div>
+
+<div class="section">
+<h2>Structures and Functions</h2>
+<p class="definition">
+Definition: Structures can be passed to functions by value or by reference.
+</p>
+<pre>
+void display(struct Student s);
+void update(struct Student *s);
+</pre>
+</div>
+
+<div class="section">
+<h2>Unions</h2>
+<p class="definition">
+Definition: A union is a user-defined data type in which all members share the same memory location.
+</p>
+<pre>
+union Data {
+    int i;
+    float f;
+};
+</pre>
+</div>
+
+<div class="section">
+<h2>Summary</h2>
+<p>
+This chapter explains modular programming using user-defined functions and efficient data handling using structures and unions, which are essential for real-world programming.
+</p>
+</div>
+
+<footer>© 2025 STRINK EDU • PPS Chapter-5 Notes</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPS Chapter 2 | Advanced C Fundamentals</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --purple:#818cf8;
+  --green:#22c55e;
+  --grad:linear-gradient(135deg,#38bdf8,#2563eb);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  padding:30px;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+}
+
+h1{
+  text-align:center;
+  font-size:2.8rem;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:55px;
+}
+
+/* Section Card */
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:32px;
+  margin-bottom:36px;
+  position:relative;
+  overflow:hidden;
+}
+
+.section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left,rgba(56,189,248,.14),transparent 60%);
+}
+
+.section h2{
+  color:var(--blue);
+  margin-bottom:16px;
+  font-size:1.6rem;
+}
+
+.section p{
+  line-height:1.9;
+  color:#cbd5f5;
+  font-size:1.02rem;
+}
+
+/* Highlight */
+.highlight{
+  background:rgba(56,189,248,.14);
+  border-left:5px solid var(--blue);
+  padding:16px 20px;
+  margin:20px 0;
+  border-radius:12px;
+}
+
+/* Sub headings */
+.sub{
+  margin-top:22px;
+  font-weight:600;
+  color:var(--purple);
+}
+
+/* Code */
+pre{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  margin:18px 0;
+  overflow-x:auto;
+  color:#a5f3fc;
+  font-size:.95rem;
+}
+
+/* Pills */
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:16px;
+}
+
+.pill{
+  padding:10px 18px;
+  border-radius:999px;
+  background:var(--grad);
+  font-size:.9rem;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+
+/* Flow */
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:18px;
+}
+
+.flow div{
+  padding:12px 18px;
+  border-radius:14px;
+  background:rgba(129,140,248,.18);
+  border:1px solid var(--border);
+  font-size:.9rem;
+}
+
+/* Table */
+.table{
+  margin-top:20px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+.table div{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  padding:14px 18px;
+  background:#020617;
+  border-bottom:1px solid var(--border);
+}
+
+.table .head{
+  background:#020617;
+  color:var(--blue);
+  font-weight:600;
+}
+
+footer{
+  text-align:center;
+  margin-top:70px;
+  color:#64748b;
+  font-size:.95rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Chapter 2: C Programming Fundamentals</h1>
+<p class="subtitle">Constants • Variables • Data Types • Operators • Expressions</p>
+
+<!-- CHARACTER SET -->
+<div class="section">
+<h2>1️⃣ Character Set in C</h2>
+<p>
+The <b>character set</b> defines all valid characters that can be used while writing
+a C program. Any character outside this set is considered invalid by the compiler.
+</p>
+
+<div class="pills">
+  <div class="pill">Alphabets (A–Z, a–z)</div>
+  <div class="pill">Digits (0–9)</div>
+  <div class="pill">Special Symbols</div>
+  <div class="pill">White Spaces</div>
+</div>
+
+<div class="sub">Special Symbols Examples</div>
+<div class="flow">
+  <div>+  -  *  /  %</div>
+  <div>=  <  >  !</div>
+  <div>{ }  [ ]  ( )</div>
+  <div>#  ;  ,  .</div>
+</div>
+
+<div class="highlight">
+✔ C is <b>case-sensitive</b> → <code>total</code> ≠ <code>Total</code>
+</div>
+</div>
+
+<!-- TOKENS -->
+<div class="section">
+<h2>2️⃣ C Tokens</h2>
+<p>
+C tokens are the <b>smallest individual units</b> of a C program.
+The compiler breaks a program into tokens during compilation.
+</p>
+
+<div class="flow">
+  <div>Keywords</div>
+  <div>Identifiers</div>
+  <div>Constants</div>
+  <div>Strings</div>
+  <div>Operators</div>
+</div>
+
+<pre>
+// Example tokenization
+int sum = a + b;
+</pre>
+
+<div class="highlight">
+int → keyword | sum → identifier | = → operator | a,b → identifiers
+</div>
+</div>
+
+<!-- KEYWORDS -->
+<div class="section">
+<h2>3️⃣ Keywords</h2>
+<p>
+Keywords are <b>reserved words</b> that have predefined meaning to the compiler.
+They <b>cannot be used</b> as variable names or function names.
+</p>
+
+<div class="pills">
+  <div class="pill">int</div>
+  <div class="pill">float</div>
+  <div class="pill">if</div>
+  <div class="pill">else</div>
+  <div class="pill">return</div>
+  <div class="pill">while</div>
+</div>
+
+<div class="highlight">
+✔ Keywords are always written in <b>lowercase</b>
+</div>
+</div>
+
+<!-- IDENTIFIERS -->
+<div class="section">
+<h2>4️⃣ Identifiers</h2>
+<p>
+Identifiers are names given to <b>variables, functions, arrays, structures</b> etc.
+They help the compiler identify program elements during execution.
+</p>
+
+<div class="sub">Rules for Identifiers</div>
+<ul style="margin-left:20px;line-height:1.9;color:#cbd5f5">
+<li>Must start with alphabet or underscore (_)</li>
+<li>Cannot start with digit</li>
+<li>No spaces allowed</li>
+<li>Only letters, digits and _ allowed</li>
+<li>Maximum 31 characters significant</li>
+</ul>
+
+<pre>
+// Valid
+int total_sales;
+float avgMarks;
+
+// Invalid
+int 4marks;     // ❌ starts with digit
+int total$sum;  // ❌ special symbol
+</pre>
+</div>
+
+<!-- CONSTANTS -->
+<div class="section">
+<h2>5️⃣ Constants</h2>
+<p>
+Constants are values that <b>do not change</b> during program execution.
+They help make programs safer and more readable.
+</p>
+
+<div class="flow">
+  <div>Integer Constants</div>
+  <div>Real Constants</div>
+  <div>Character Constants</div>
+  <div>String Constants</div>
+</div>
+
+<pre>
+const int MAX_STUDENTS = 60;
+const float PI = 3.14;
+const char GRADE = 'A';
+</pre>
+
+<div class="highlight">
+✔ Using <code>const</code> prevents accidental modification
+</div>
+</div>
+
+<!-- DATA TYPES -->
+<div class="section">
+<h2>6️⃣ Data Types</h2>
+<p>
+A data type specifies:
+<b>what type of data</b> a variable can store and
+<b>how much memory</b> is allocated.
+</p>
+
+<div class="flow">
+  <div>Primary</div>
+  <div>Derived</div>
+  <div>User-Defined</div>
+</div>
+
+<div class="sub">Primary Data Types</div>
+<pre>
+int age = 20;
+float height = 5.9;
+char grade = 'A';
+</pre>
+
+<div class="highlight">
+✔ Choosing correct data type improves memory efficiency
+</div>
+</div>
+
+<!-- OPERATORS -->
+<div class="section">
+<h2>7️⃣ Operators in C</h2>
+<p>
+Operators perform operations on operands (variables or constants).
+They are the <b>core of expressions</b>.
+</p>
+
+<div class="flow">
+  <div>Arithmetic</div>
+  <div>Relational</div>
+  <div>Logical</div>
+  <div>Assignment</div>
+  <div>Bitwise</div>
+  <div>Conditional</div>
+</div>
+
+<pre>
+int a = 10, b = 3;
+int sum = a + b;
+int isGreater = a > b;
+</pre>
+</div>
+
+<!-- PRECEDENCE -->
+<div class="section">
+<h2>8️⃣ Operator Precedence & Associativity</h2>
+<p>
+Operator precedence determines <b>which operation is performed first</b>
+in an expression.
+</p>
+
+<div class="table">
+  <div class="head"><div>Operators</div><div>Example</div><div>Priority</div></div>
+  <div><div>* / %</div><div>a*b</div><div>High</div></div>
+  <div><div>+ -</div><div>a+b</div><div>Low</div></div>
+</div>
+
+<div class="highlight">
+Expression: <code>10 + 5 * 2</code> → Result = 20 (not 30)
+</div>
+</div>
+
+<!-- TYPE CONVERSION -->
+<div class="section">
+<h2>9️⃣ Type Conversion</h2>
+<p>
+Type conversion changes one data type into another.
+It can be <b>automatic</b> or <b>manual</b>.
+</p>
+
+<div class="sub">Implicit Conversion</div>
+<pre>
+int a = 5;
+float b = 2.5;
+float result = a + b;  // a converted to float automatically
+</pre>
+
+<div class="sub">Explicit Conversion (Type Casting)</div>
+<pre>
+float x = 5.75;
+int y = (int)x;  // manual conversion
+</pre>
+</div>
+
+<!-- SUMMARY -->
+<div class="section">
+<h2>🔟 Summary</h2>
+<p>
+Chapter-2 forms the <b>logical backbone</b> of C programming.
+Mastery of tokens, data types, operators and expressions is essential
+for loops, functions and real problem solving.
+</p>
+</div>
+
+<footer>© 2025 STRINK EDU • PPS Chapter-2 Advanced Notes</footer>
+
+</div>
+</body>
+</html>

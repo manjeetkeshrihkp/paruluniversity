@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics | Chapter 2 – Optoelectronics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+body{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:30px;
+}
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+h1{
+  text-align:center;
+  font-size:2.6rem;
+}
+.subtitle{
+  text-align:center;
+  color:#94a3b8;
+  margin:8px 0 35px;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:30px;
+  background:#020617;
+  border:1px solid #1e293b;
+  padding:10px 18px;
+  border-radius:10px;
+  color:#38bdf8;
+  transition:.3s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 6px 18px rgba(56,189,248,.25);
+}
+
+/* Card */
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:18px;
+  padding:28px;
+  margin-bottom:28px;
+}
+.card h2{
+  font-size:1.5rem;
+  margin-bottom:14px;
+  background:linear-gradient(135deg,#38bdf8,#22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.card h3{
+  margin:16px 0 8px;
+  color:#93c5fd;
+}
+.card p{
+  line-height:1.9;
+  color:#cbd5f5;
+  margin-bottom:10px;
+}
+
+ul{
+  padding-left:22px;
+}
+li{
+  margin:8px 0;
+  color:#e2e8f0;
+}
+
+/* Table */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:14px;
+}
+th,td{
+  border:1px solid #1e293b;
+  padding:12px;
+  text-align:center;
+}
+th{
+  background:#020617;
+  color:#38bdf8;
+}
+
+/* Highlight */
+.highlight{
+  background:linear-gradient(135deg,#6366f1,#22d3ee);
+  padding:18px;
+  border-radius:14px;
+  margin-top:18px;
+  color:white;
+  font-size:.95rem;
+}
+
+/* Exam Box */
+.exam{
+  background:#020617;
+  border-left:4px solid #22d3ee;
+  padding:16px;
+  margin-top:16px;
+  border-radius:12px;
+}
+
+footer{
+  text-align:center;
+  margin-top:60px;
+  color:#64748b;
+  font-size:.9rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🔬 Physics – Chapter 2</h1>
+<p class="subtitle">Optoelectronics (BTech Semester 1)</p>
+
+<a href="physics.html" class="back-btn">← Back to Physics</a>
+
+<!-- 1 -->
+<div class="card">
+<h2>1. Introduction to Optoelectronics</h2>
+<p>
+Optoelectronics is the branch of physics and electronics that deals with devices which
+<strong>emit, detect, or control light</strong> using semiconductor materials.
+These devices enable conversion between <b>electrical energy and optical energy</b>.
+</p>
+<p>
+Optoelectronic devices form the backbone of modern technologies such as optical communication,
+lasers, LEDs, photodetectors, medical imaging, and sensing systems.
+</p>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<h2>2. Nature of Light & Electromagnetic Spectrum</h2>
+<p>
+Light is a form of electromagnetic radiation visible to the human eye. It travels as waves
+and also shows particle nature in the form of photons.
+</p>
+
+<h3>Properties of Light</h3>
+<ul>
+<li>Speed in vacuum: <b>3 × 10⁸ m/s</b></li>
+<li>Energy relation: <b>E = hν</b></li>
+<li>Wavelength decides colour</li>
+</ul>
+
+<div class="exam">
+<b>Exam Tip:</b> Short questions often ask definition of light and EM spectrum.
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<h2>3. Interaction of Radiation with Matter</h2>
+
+<h3>1️⃣ Stimulated Absorption</h3>
+<p>
+A photon transfers its energy to an electron, exciting it to a higher energy level.
+This process is essential in photodetectors.
+</p>
+
+<h3>2️⃣ Spontaneous Emission</h3>
+<p>
+An excited electron returns to a lower energy state on its own and emits a photon randomly.
+Example: LED.
+</p>
+
+<h3>3️⃣ Stimulated Emission</h3>
+<p>
+An incoming photon stimulates an excited electron to emit another identical photon.
+This is the principle behind LASER.
+</p>
+
+<div class="highlight">
+Stimulated emission → Coherent, monochromatic, directional light
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<h2>4. LASER (Light Amplification by Stimulated Emission of Radiation)</h2>
+
+<p>
+A LASER is a device that produces highly intense, monochromatic, coherent, and directional
+beam of light using stimulated emission.
+</p>
+
+<h3>Characteristics of Laser Light</h3>
+<ul>
+<li>Highly monochromatic</li>
+<li>Highly coherent</li>
+<li>Highly directional</li>
+<li>High intensity</li>
+</ul>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<h2>5. Population Inversion</h2>
+<p>
+Population inversion is a non-equilibrium condition where the number of atoms in the excited
+state (N₂) is greater than those in the ground state (N₁).
+</p>
+
+<div class="highlight">
+Population inversion is a necessary condition for laser action.
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<h2>6. Components of Laser</h2>
+<ul>
+<li><b>Active Medium:</b> Solid, liquid, gas or semiconductor</li>
+<li><b>Pumping Mechanism:</b> Electrical, optical or chemical</li>
+<li><b>Optical Resonator:</b> Two mirrors (one fully reflective, one partially)</li>
+</ul>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<h2>7. Semiconductor Laser (Diode Laser)</h2>
+<p>
+A semiconductor laser is a p-n junction device that emits coherent light when forward biased.
+Photon generation occurs due to electron-hole recombination in the active region.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Small size</li>
+<li>Low power consumption</li>
+<li>High efficiency</li>
+</ul>
+
+<div class="exam">
+<b>Exam Focus:</b> Construction + working is a common 5–10 mark question.
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<h2>8. LED (Light Emitting Diode)</h2>
+<p>
+LED is an optoelectronic device that works on the principle of <b>electroluminescence</b>,
+where electrical energy is converted into light energy.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Low power consumption</li>
+<li>Long life</li>
+<li>Fast switching</li>
+</ul>
+
+<h3>Applications</h3>
+<ul>
+<li>Display panels</li>
+<li>Traffic signals</li>
+<li>Digital devices</li>
+</ul>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<h2>9. Photodiode</h2>
+<p>
+A photodiode is a light-sensitive semiconductor device that converts incident light into
+electrical current. It is operated in reverse bias.
+</p>
+
+<h3>Types</h3>
+<ul>
+<li>PN Junction Photodiode</li>
+<li>PIN Photodiode</li>
+<li>Avalanche Photodiode (APD)</li>
+</ul>
+</div>
+
+<!-- 10 -->
+<div class="card">
+<h2>10. PIN & Avalanche Photodiode</h2>
+
+<h3>PIN Photodiode</h3>
+<p>
+Uses an intrinsic layer to increase depletion region width, improving speed and sensitivity.
+</p>
+
+<h3>Avalanche Photodiode (APD)</h3>
+<p>
+Operates at high reverse bias and provides internal gain through avalanche multiplication.
+</p>
+
+<table>
+<tr>
+<th>Feature</th>
+<th>PIN</th>
+<th>APD</th>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>High</td>
+<td>Very High</td>
+</tr>
+<tr>
+<td>Voltage</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Noise</td>
+<td>Low</td>
+<td>Higher</td>
+</tr>
+</table>
+</div>
+
+<footer>
+© 2025 STRINK EDU • Physics Notes
+</footer>
+
+</div>
+</body>
+</html>

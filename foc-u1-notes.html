@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOC | Chapter 1 – Computer Architecture</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --primary:#38bdf8;
+  --secondary:#6366f1;
+  --accent:#22c55e;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:radial-gradient(circle at top,#1e293b,var(--bg) 60%);
+  color:var(--text);
+  padding:30px;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:25px;
+  background:linear-gradient(135deg,#020617,#020617);
+  border:1px solid var(--border);
+  padding:10px 20px;
+  border-radius:12px;
+  color:var(--primary);
+  font-weight:500;
+  transition:.3s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 10px 25px rgba(56,189,248,.25);
+}
+
+h1{
+  font-size:2.6rem;
+  margin-bottom:6px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+  color:var(--muted);
+  margin-bottom:35px;
+}
+
+.section{
+  background:linear-gradient(180deg,#020617,#020617);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:30px;
+  margin-bottom:30px;
+  animation:fadeUp .7s ease both;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.section h2{
+  font-size:1.45rem;
+  margin-bottom:14px;
+  color:var(--primary);
+}
+
+.section p{
+  line-height:1.9;
+  color:#cbd5f5;
+  margin-bottom:14px;
+}
+
+.section ul{
+  padding-left:22px;
+  line-height:2;
+  color:#cbd5f5;
+}
+
+.term{
+  display:inline-block;
+  background:rgba(99,102,241,.12);
+  border:1px solid rgba(99,102,241,.25);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:.85rem;
+  margin:6px 6px 0 0;
+}
+
+.highlight{
+  background:linear-gradient(135deg,rgba(56,189,248,.12),rgba(99,102,241,.12));
+  border-left:5px solid var(--primary);
+  padding:18px 20px;
+  border-radius:14px;
+  margin-top:18px;
+}
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+
+.mini-card{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  transition:.3s;
+}
+.mini-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 18px 35px rgba(99,102,241,.25);
+}
+
+.mini-card h3{
+  font-size:1.05rem;
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+
+footer{
+  text-align:center;
+  margin-top:70px;
+  color:#64748b;
+  font-size:.9rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<a href="foc.html" class="back-btn">← Back to Chapters</a>
+
+<h1>💻 Introduction to Computer & Its Architecture</h1>
+<p class="subtitle">FOC | BTech Semester 1 | Ultra-Modern Notes</p>
+
+<!-- 1 -->
+<div class="section">
+<h2>1️⃣ What is a Computer?</h2>
+<p>
+A <b>computer</b> is an electronic machine that accepts raw data (input),
+processes it using predefined instructions (programs),
+and produces meaningful information (output).
+</p>
+
+<div class="highlight">
+<b>IPO Cycle:</b>  
+Input → Process → Output → Storage
+</div>
+
+<span class="term">Data</span>
+<span class="term">Information</span>
+<span class="term">Program</span>
+<span class="term">Instruction</span>
+</div>
+
+<!-- 2 -->
+<div class="section">
+<h2>2️⃣ Characteristics of Computer</h2>
+
+<div class="card-grid">
+<div class="mini-card">
+<h3>⚡ Speed</h3>
+<p>Executes billions of instructions per second.</p>
+</div>
+
+<div class="mini-card">
+<h3>🎯 Accuracy</h3>
+<p>Produces accurate results if input & logic are correct.</p>
+</div>
+
+<div class="mini-card">
+<h3>🔁 Diligence</h3>
+<p>Never gets tired or bored, works continuously.</p>
+</div>
+
+<div class="mini-card">
+<h3>💾 Storage</h3>
+<p>Stores massive data for long-term usage.</p>
+</div>
+
+<div class="mini-card">
+<h3>🤖 Automation</h3>
+<p>Works automatically once programmed.</p>
+</div>
+
+<div class="mini-card">
+<h3>🔀 Versatility</h3>
+<p>Can perform different types of tasks.</p>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="section">
+<h2>3️⃣ Generations of Computers</h2>
+<ul>
+<li><b>1st:</b> Vacuum Tubes – huge size, high heat</li>
+<li><b>2nd:</b> Transistors – smaller & faster</li>
+<li><b>3rd:</b> ICs – more reliable</li>
+<li><b>4th:</b> Microprocessors – personal computers</li>
+<li><b>5th:</b> AI & Machine Learning based systems</li>
+</ul>
+</div>
+
+<!-- 4 -->
+<div class="section">
+<h2>4️⃣ Classification of Computers</h2>
+<p><b>Based on Size:</b> Supercomputer, Mainframe, Mini, Micro</p>
+<p><b>Based on Purpose:</b> General-purpose & Special-purpose</p>
+<p><b>Based on Data Handling:</b> Analog, Digital, Hybrid</p>
+</div>
+
+<!-- 5 -->
+<div class="section">
+<h2>5️⃣ Applications of Computer</h2>
+<ul>
+<li>Education & Online Learning</li>
+<li>Banking & Financial Systems</li>
+<li>Healthcare & Medical Diagnosis</li>
+<li>Engineering & Research</li>
+<li>E-commerce & Business</li>
+<li>Entertainment & Media</li>
+</ul>
+</div>
+
+<!-- 6 -->
+<div class="section">
+<h2>6️⃣ Computer Architecture</h2>
+<p>
+Computer architecture defines how hardware components are organized
+and how they communicate.
+</p>
+
+<div class="highlight">
+Input Unit → CPU → Memory → Output Unit
+</div>
+</div>
+
+<!-- 7 -->
+<div class="section">
+<h2>7️⃣ Central Processing Unit (CPU)</h2>
+<p>The <b>CPU</b> is the brain of the computer.</p>
+<ul>
+<li><b>ALU:</b> Performs arithmetic & logical operations</li>
+<li><b>Control Unit:</b> Controls instruction execution</li>
+<li><b>Registers:</b> Ultra-fast temporary storage</li>
+</ul>
+</div>
+
+<!-- 8 -->
+<div class="section">
+<h2>8️⃣ Memory Unit</h2>
+<ul>
+<li><b>Primary:</b> RAM (volatile), ROM (non-volatile)</li>
+<li><b>Secondary:</b> HDD, SSD, Pen Drive</li>
+<li><b>Cache:</b> High-speed memory between CPU & RAM</li>
+</ul>
+</div>
+
+<!-- 9 -->
+<div class="section">
+<h2>9️⃣ Communication Between Units</h2>
+<ul>
+<li><b>Data Bus:</b> Transfers actual data</li>
+<li><b>Address Bus:</b> Carries memory addresses</li>
+<li><b>Control Bus:</b> Carries control signals</li>
+</ul>
+</div>
+
+<!-- 10 -->
+<div class="section">
+<h2>🔟 Processor Speed</h2>
+<p>
+Measured in <b>GHz</b>. Higher GHz = faster instruction execution.
+</p>
+</div>
+
+<!-- 11 -->
+<div class="section">
+<h2>1️⃣1️⃣ Multiprocessor System</h2>
+<p>
+Uses multiple CPUs to increase speed, performance & reliability.
+</p>
+</div>
+
+<!-- 12 -->
+<div class="section">
+<h2>1️⃣2️⃣ Peripheral Buses</h2>
+<ul>
+<li>USB</li>
+<li>PCI / PCIe</li>
+<li>SATA</li>
+<li>HDMI</li>
+</ul>
+</div>
+
+<!-- 13 -->
+<div class="section">
+<h2>1️⃣3️⃣ Motherboard</h2>
+<p>
+The motherboard is the main circuit board connecting all components:
+CPU, memory, storage, ports and buses.
+</p>
+</div>
+
+<footer>© 2025 STRINK EDU • Ultra-Premium Learning</footer>
+
+</div>
+</body>
+</html>

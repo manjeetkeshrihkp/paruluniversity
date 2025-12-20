@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics | Unit 3 – Quantum Mechanics & Quantum Computing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0f172a;color:#e5e7eb;padding:32px}
+a{text-decoration:none;color:inherit}
+
+.container{max-width:1400px;margin:auto}
+
+h1{text-align:center;font-size:2.8rem}
+.subtitle{text-align:center;color:#94a3b8;margin:10px 0 40px}
+
+.back-btn{
+  display:inline-block;margin-bottom:30px;
+  background:#020617;border:1px solid #1e293b;
+  padding:12px 22px;border-radius:12px;color:#38bdf8;
+}
+
+.card{
+  background:#020617;border:1px solid #1e293b;
+  border-radius:22px;padding:36px;margin-bottom:36px;
+}
+.card h2{
+  font-size:1.9rem;margin-bottom:16px;
+  background:linear-gradient(135deg,#a78bfa,#22d3ee);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.card h3{color:#93c5fd;margin:18px 0 10px}
+.card p{line-height:2;color:#cbd5f5;margin-bottom:12px}
+ul{padding-left:28px}
+li{margin:8px 0}
+
+.visual-box{
+  background:#020617;border:1px solid #1e293b;
+  border-radius:18px;padding:22px;margin-top:22px;
+}
+canvas{width:100%;height:220px}
+
+.formula{
+  background:#020617;border-left:5px solid #38bdf8;
+  padding:16px;border-radius:14px;margin-top:14px;
+  font-size:1rem;
+}
+
+footer{text-align:center;margin-top:80px;color:#64748b;font-size:.9rem}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🧠 Unit 3 – Quantum Mechanics & Quantum Computing</h1>
+<p class="subtitle">Engineering Physics – BTech 1st Year</p>
+
+<a href="physics.html" class="back-btn">← Back to Physics</a>
+
+<!-- INTRODUCTION -->
+<div class="card">
+<h2>1. Introduction & Failure of Classical Mechanics</h2>
+<p>
+Quantum Mechanics describes the behavior of matter and energy at atomic and sub-atomic scales.
+Classical mechanics fails at microscopic levels, leading to the development of quantum theory.
+</p>
+<ul>
+<li>Black body radiation</li>
+<li>Stability of atom</li>
+<li>Photoelectric effect</li>
+</ul>
+</div>
+
+<!-- WAVE PARTICLE -->
+<div class="card">
+<h2>2. Wave–Particle Duality (De-Broglie Hypothesis)</h2>
+<p>
+Louis de Broglie proposed that every moving particle is associated with a wave.
+</p>
+<div class="formula">λ = h / p</div>
+
+<h3>🔹 Matter Wave Animation</h3>
+<div class="visual-box">
+  <canvas id="waveAnim"></canvas>
+</div>
+</div>
+
+<!-- UNCERTAINTY -->
+<div class="card">
+<h2>3. Heisenberg Uncertainty Principle</h2>
+<p>
+It is impossible to determine simultaneously the exact position and momentum of a quantum particle.
+</p>
+<div class="formula">Δx · Δp ≥ ħ / 2</div>
+</div>
+
+<!-- WAVE FUNCTION -->
+<div class="card">
+<h2>4. Wave Function & Probability Density</h2>
+<p>
+The wave function ψ(x,t) describes the quantum state of a particle.
+The probability density is given by |ψ|².
+</p>
+<ul>
+<li>Single valued</li>
+<li>Finite</li>
+<li>Continuous</li>
+<li>Normalizable</li>
+</ul>
+
+<h3>🔹 |ψ|² Probability Animation</h3>
+<div class="visual-box">
+  <canvas id="psiAnim"></canvas>
+</div>
+</div>
+
+<!-- OPERATORS -->
+<div class="card">
+<h2>5. Operators, Eigen Values & Eigen Functions</h2>
+<p>
+Operators represent physical observables such as position, momentum and energy.
+</p>
+<ul>
+<li>Momentum operator: −iħ ∂/∂x</li>
+<li>Energy operator: iħ ∂/∂t</li>
+</ul>
+</div>
+
+<!-- SCHRODINGER -->
+<div class="card">
+<h2>6. Schrödinger’s Equations</h2>
+
+<h3>Time Dependent</h3>
+<div class="formula">iħ ∂ψ/∂t = Ĥψ</div>
+
+<h3>Time Independent</h3>
+<div class="formula">−(ħ²/2m)∇²ψ + Vψ = Eψ</div>
+</div>
+
+<!-- PARTICLE IN BOX -->
+<div class="card">
+<h2>7. Particle in 1-D Infinite Potential Well</h2>
+<p>
+The particle is confined between x = 0 and x = a with infinite potential barriers.
+</p>
+<div class="formula">Eₙ = n²h² / 8ma²</div>
+
+<h3>🔹 Particle in a Box Animation</h3>
+<div class="visual-box">
+  <canvas id="boxAnim"></canvas>
+</div>
+</div>
+
+<!-- TUNNELING -->
+<div class="card">
+<h2>8. Quantum Tunneling</h2>
+<p>
+Quantum tunneling allows particles to penetrate finite potential barriers even when
+their energy is less than the barrier height.
+</p>
+
+<h3>🔹 Tunneling Animation</h3>
+<div class="visual-box">
+  <canvas id="tunnelAnim"></canvas>
+</div>
+</div>
+
+<!-- QUANTUM COMPUTING -->
+<div class="card">
+<h2>9. Quantum Computing Fundamentals</h2>
+<p>
+Quantum computing uses qubits which exist in superposition and entanglement.
+</p>
+<ul>
+<li>Qubit</li>
+<li>Superposition</li>
+<li>Entanglement</li>
+<li>Measurement</li>
+</ul>
+</div>
+
+<!-- QUBITS -->
+<div class="card">
+<h2>10. Qubits & Superposition</h2>
+<p>
+A qubit is represented as:
+</p>
+<div class="formula">|ψ⟩ = α|0⟩ + β|1⟩</div>
+</div>
+
+<!-- GATES -->
+<div class="card">
+<h2>11. Quantum Gates</h2>
+<ul>
+<li>Pauli-X, Y, Z</li>
+<li>Hadamard</li>
+<li>CNOT</li>
+</ul>
+
+<h3>🔹 Quantum Circuit (H + CNOT)</h3>
+<div class="visual-box">
+<svg width="100%" height="120">
+<line x1="20" y1="40" x2="500" y2="40" stroke="#38bdf8" stroke-width="3"/>
+<line x1="20" y1="80" x2="500" y2="80" stroke="#38bdf8" stroke-width="3"/>
+<rect x="120" y="25" width="40" height="30" fill="#a78bfa"/>
+<circle cx="260" cy="40" r="6" fill="#22d3ee"/>
+<line x1="260" y1="40" x2="260" y2="80" stroke="#22d3ee" stroke-width="2"/>
+<circle cx="260" cy="80" r="12" stroke="#22d3ee" fill="none" stroke-width="2"/>
+</svg>
+</div>
+</div>
+
+<!-- APPLICATIONS -->
+<div class="card">
+<h2>12. Applications & Challenges</h2>
+<ul>
+<li>Cryptography</li>
+<li>Drug discovery</li>
+<li>Optimization</li>
+<li>AI & Simulation</li>
+<li>Error correction & decoherence challenges</li>
+</ul>
+</div>
+
+<footer>
+© 2025 STRINK EDU • Unit-3 Quantum Mechanics
+</footer>
+
+</div>
+
+<script>
+// Matter wave
+const w=document.getElementById("waveAnim").getContext("2d");
+let t=0;
+function mw(){
+  w.clearRect(0,0,800,220);
+  w.beginPath();
+  for(let x=0;x<800;x++){
+    w.lineTo(x,110+40*Math.sin(x/50-t));
+  }
+  w.strokeStyle="#38bdf8";w.stroke();
+  t+=0.05;requestAnimationFrame(mw);
+}
+mw();
+
+// Probability wave
+const p=document.getElementById("psiAnim").getContext("2d");
+let k=0;
+function psi(){
+  p.clearRect(0,0,800,220);
+  p.beginPath();
+  for(let x=0;x<800;x++){
+    let y=110+60*Math.abs(Math.sin(x/80+k));
+    p.lineTo(x,y);
+  }
+  p.strokeStyle="#a78bfa";p.stroke();
+  k+=0.04;requestAnimationFrame(psi);
+}
+psi();
+
+// Particle in box
+const b=document.getElementById("boxAnim").getContext("2d");
+let x=50,d=2;
+function box(){
+  b.clearRect(0,0,800,220);
+  b.strokeRect(100,60,600,100);
+  b.beginPath();
+  b.arc(x,110,8,0,Math.PI*2);
+  b.fillStyle="#22d3ee";b.fill();
+  x+=d;if(x>700||x<100)d*=-1;
+  requestAnimationFrame(box);
+}
+box();
+
+// Tunneling
+const tn=document.getElementById("tunnelAnim").getContext("2d");
+let px=50;
+function tun(){
+  tn.clearRect(0,0,800,220);
+  tn.fillStyle="#1e293b";
+  tn.fillRect(350,40,100,140);
+  tn.beginPath();
+  tn.arc(px,110,8,0,Math.PI*2);
+  tn.fillStyle="#facc15";tn.fill();
+  px+=2;if(px>750)px=50;
+  requestAnimationFrame(tun);
+}
+tun();
+</script>
+
+</body>
+</html>

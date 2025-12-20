@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4 – Responsive & Advanced CSS</title>
+
+<style>
+:root{
+  --primary:#6366f1;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(99,102,241,.2);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,system-ui,sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#eef2ff,#f8fafc);
+  color:var(--text);
+  line-height:1.7;
+}
+
+.container{
+  max-width:900px;
+  margin:40px auto 80px;
+  padding:40px;
+  background:var(--card);
+  border-radius:20px;
+  box-shadow:0 30px 60px rgba(0,0,0,.08);
+}
+
+a.back{
+  display:inline-block;
+  margin-bottom:20px;
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:600;
+}
+
+h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+h2{
+  margin-top:35px;
+  color:var(--primary);
+}
+
+h3{
+  margin-top:20px;
+}
+
+p{
+  margin-top:10px;
+  color:var(--muted);
+}
+
+ul{
+  margin-top:10px;
+  padding-left:20px;
+}
+
+li{
+  margin-bottom:6px;
+}
+
+.card{
+  background:#f8fafc;
+  padding:22px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  margin-top:20px;
+}
+
+pre{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:16px;
+  border-radius:12px;
+  margin-top:12px;
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  margin-top:15px;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:12px;
+  border:1px solid var(--border);
+  text-align:left;
+}
+
+th{
+  background:#eef2ff;
+}
+
+hr{
+  margin:30px 0;
+  border:none;
+  border-top:1px solid var(--border);
+}
+
+@media(max-width:600px){
+  .container{padding:24px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="web-design.html" class="back">← Back to Web Designing</a>
+
+<h1>Chapter 4: Responsive & Advanced CSS</h1>
+<p>
+This chapter explains how to make websites responsive and interactive using
+media queries, transitions, and animations.
+</p>
+
+<hr>
+
+<h2>1. Media Queries</h2>
+
+<div class="card">
+<p>
+Media queries allow websites to adapt their layout based on screen size.
+They are essential for responsive web design.
+</p>
+
+<h3>Why Media Queries are Used</h3>
+<ul>
+  <li>Support mobile, tablet, and desktop screens</li>
+  <li>Improve user experience</li>
+  <li>Make websites responsive</li>
+</ul>
+
+<h3>Syntax of Media Query</h3>
+<pre>
+@media (max-width: 768px) {
+  body {
+    background-color: lightblue;
+  }
+}
+</pre>
+
+<p>
+The above code applies styles when the screen width is 768px or smaller.
+</p>
+</div>
+
+<hr>
+
+<h2>2. CSS Transitions</h2>
+
+<div class="card">
+<p>
+Transitions allow smooth change between CSS property values.
+They improve the visual experience of a website.
+</p>
+
+<h3>Transition Properties</h3>
+<ul>
+  <li><code>transition-property</code></li>
+  <li><code>transition-duration</code></li>
+  <li><code>transition-timing-function</code></li>
+  <li><code>transition-delay</code></li>
+</ul>
+
+<h3>Transition Example</h3>
+<pre>
+button {
+  background: blue;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: red;
+}
+</pre>
+</div>
+
+<hr>
+
+<h2>3. CSS Animations</h2>
+
+<div class="card">
+<p>
+CSS animations allow elements to change style over time using keyframes.
+They are more powerful than transitions.
+</p>
+
+<h3>Key Animation Properties</h3>
+<ul>
+  <li><code>@keyframes</code></li>
+  <li><code>animation-name</code></li>
+  <li><code>animation-duration</code></li>
+  <li><code>animation-iteration-count</code></li>
+</ul>
+
+<h3>Animation Example</h3>
+<pre>
+@keyframes move {
+  from { left: 0; }
+  to { left: 100px; }
+}
+
+.box {
+  position: relative;
+  animation: move 2s infinite;
+}
+</pre>
+</div>
+
+<hr>
+
+<h2>Summary</h2>
+<ul>
+  <li>Media queries make websites responsive</li>
+  <li>Transitions create smooth effects</li>
+  <li>Animations add movement to web pages</li>
+</ul>
+
+</div>
+
+</body>
+</html>

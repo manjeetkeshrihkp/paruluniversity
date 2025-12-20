@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 3 – CSS Basics & Layout</title>
+
+<style>
+:root{
+  --primary:#6366f1;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(99,102,241,.2);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,system-ui,sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#eef2ff,#f8fafc);
+  color:var(--text);
+  line-height:1.7;
+}
+
+.container{
+  max-width:900px;
+  margin:40px auto 80px;
+  padding:40px;
+  background:var(--card);
+  border-radius:20px;
+  box-shadow:0 30px 60px rgba(0,0,0,.08);
+}
+
+a.back{
+  display:inline-block;
+  margin-bottom:20px;
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:600;
+}
+
+h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+h2{
+  margin-top:35px;
+  color:var(--primary);
+}
+
+h3{
+  margin-top:20px;
+}
+
+p{
+  margin-top:10px;
+  color:var(--muted);
+}
+
+ul{
+  margin-top:10px;
+  padding-left:20px;
+}
+
+li{
+  margin-bottom:6px;
+}
+
+.card{
+  background:#f8fafc;
+  padding:22px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  margin-top:20px;
+}
+
+pre{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:16px;
+  border-radius:12px;
+  margin-top:12px;
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  margin-top:15px;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:12px;
+  border:1px solid var(--border);
+  text-align:left;
+}
+
+th{
+  background:#eef2ff;
+}
+
+hr{
+  margin:30px 0;
+  border:none;
+  border-top:1px solid var(--border);
+}
+
+@media(max-width:600px){
+  .container{padding:24px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="web-design.html" class="back">← Back to Web Designing</a>
+
+<h1>Chapter 3: CSS Basics & Layout</h1>
+<p>This chapter explains how CSS controls layout and spacing using the box model, flexbox, and grid.</p>
+
+<hr>
+
+<h2>1. CSS Box Model</h2>
+
+<div class="card">
+<p>
+The CSS Box Model defines how elements are structured and spaced on a webpage.
+Every HTML element is treated as a rectangular box.
+</p>
+
+<h3>Components of Box Model</h3>
+<ul>
+  <li><strong>Content</strong> – Actual text or image</li>
+  <li><strong>Padding</strong> – Space between content and border</li>
+  <li><strong>Border</strong> – Surrounds the padding</li>
+  <li><strong>Margin</strong> – Space outside the border</li>
+</ul>
+
+<h3>Box Model Example</h3>
+<pre>
+div {
+  width: 200px;
+  padding: 20px;
+  border: 2px solid black;
+  margin: 10px;
+}
+</pre>
+
+<p>
+Total width = width + padding + border + margin
+</p>
+</div>
+
+<hr>
+
+<h2>2. CSS Flexbox</h2>
+
+<div class="card">
+<p>
+Flexbox (Flexible Box Layout) is used to design one-dimensional layouts.
+It makes alignment and spacing easier.
+</p>
+
+<h3>Flex Container</h3>
+<pre>
+.container {
+  display: flex;
+}
+</pre>
+
+<h3>Common Flexbox Properties</h3>
+<ul>
+  <li><code>flex-direction</code> – Row or column</li>
+  <li><code>justify-content</code> – Horizontal alignment</li>
+  <li><code>align-items</code> – Vertical alignment</li>
+  <li><code>flex-wrap</code> – Wrap items</li>
+</ul>
+
+<h3>Flexbox Example</h3>
+<pre>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</pre>
+</div>
+
+<hr>
+
+<h2>3. CSS Grid</h2>
+
+<div class="card">
+<p>
+CSS Grid is used to create two-dimensional layouts (rows and columns).
+It is ideal for complex layouts.
+</p>
+
+<h3>Grid Container</h3>
+<pre>
+.grid {
+  display: grid;
+}
+</pre>
+
+<h3>Grid Properties</h3>
+<ul>
+  <li><code>grid-template-columns</code></li>
+  <li><code>grid-template-rows</code></li>
+  <li><code>gap</code></li>
+</ul>
+
+<h3>Grid Example</h3>
+<pre>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+</pre>
+</div>
+
+<hr>
+
+<h2>Summary</h2>
+<ul>
+  <li>Box Model controls spacing and size</li>
+  <li>Flexbox is best for one-dimensional layouts</li>
+  <li>Grid is best for two-dimensional layouts</li>
+</ul>
+
+</div>
+
+</body>
+</html>

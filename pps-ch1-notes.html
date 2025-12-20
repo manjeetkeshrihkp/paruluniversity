@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPS Chapter 1 | Introduction to C Programming</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --grad:linear-gradient(135deg,#38bdf8,#2563eb);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter}
+
+body{
+  background:#0f172a;
+  color:var(--text);
+  padding:30px;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+}
+
+h1{
+  text-align:center;
+  font-size:2.4rem;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:40px;
+}
+
+/* Section Card */
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:26px;
+  margin-bottom:26px;
+  position:relative;
+  overflow:hidden;
+}
+
+.section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left,rgba(56,189,248,.12),transparent 60%);
+}
+
+.section h2{
+  color:var(--blue);
+  margin-bottom:12px;
+}
+
+.section p{
+  line-height:1.8;
+  color:#cbd5f5;
+  font-size:1rem;
+}
+
+/* Highlight box */
+.highlight{
+  background:rgba(56,189,248,.12);
+  border-left:4px solid var(--blue);
+  padding:14px 18px;
+  margin:16px 0;
+  border-radius:10px;
+}
+
+/* Code */
+code{
+  background:#020617;
+  border:1px solid var(--border);
+  padding:10px 14px;
+  display:block;
+  border-radius:10px;
+  margin:12px 0;
+  color:#a5f3fc;
+  font-size:.95rem;
+}
+
+/* Flow animation */
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:16px;
+}
+
+.flow div{
+  padding:10px 16px;
+  border-radius:999px;
+  background:var(--grad);
+  font-size:.9rem;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+  100%{transform:scale(1)}
+}
+
+footer{
+  text-align:center;
+  margin-top:50px;
+  color:#64748b;
+  font-size:.9rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Chapter 1: Introduction to C Programming</h1>
+<p class="subtitle">Programming for Problem Solving • PPS</p>
+
+<!-- WHAT IS C -->
+<div class="section">
+<h2>1️⃣ What is C Language?</h2>
+<p>
+C is a <b>high-level, general-purpose programming language</b> developed by
+<b>Dennis Ritchie</b> at Bell Labs in the early 1970s.  
+It is called a <b>middle-level language</b> because it supports both
+high-level programming features and low-level hardware access.
+</p>
+
+<div class="highlight">
+✔ Fast execution  
+✔ Close to hardware  
+✔ Foundation of modern languages
+</div>
+</div>
+
+<!-- WHY C -->
+<div class="section">
+<h2>2️⃣ Why is C Important?</h2>
+<p>
+C is extremely important because it forms the base of many modern
+languages like <b>C++, Java, Python</b>.
+Most operating systems, embedded systems, and compilers are written in C.
+</p>
+</div>
+
+<!-- HISTORY -->
+<div class="section">
+<h2>3️⃣ History of C Language</h2>
+<p>
+C evolved from earlier languages:
+</p>
+
+<div class="flow">
+<div>ALGOL (1960)</div>
+<div>BCPL (1967)</div>
+<div>B (1969)</div>
+<div>C (1972)</div>
+<div>ANSI C (1989)</div>
+</div>
+
+<div class="highlight">
+Dennis Ritchie developed C to rewrite the UNIX operating system.
+</div>
+</div>
+
+<!-- APPLICATION -->
+<div class="section">
+<h2>4️⃣ Application Areas of C</h2>
+<p>
+C is widely used in:
+</p>
+<ul style="margin-left:18px;line-height:1.8;color:#cbd5f5">
+<li>Operating Systems (Linux, UNIX)</li>
+<li>Embedded Systems (Washing machines, IoT devices)</li>
+<li>Compilers & Interpreters</li>
+<li>Game Engines</li>
+<li>Database Systems</li>
+<li>Graphics & Animation</li>
+</ul>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+<h2>5️⃣ Features of C Language</h2>
+<p>
+C is known for:
+</p>
+<ul style="margin-left:18px;line-height:1.8;color:#cbd5f5">
+<li>Simple and efficient syntax</li>
+<li>Portability</li>
+<li>Memory management using pointers</li>
+<li>Rich library functions</li>
+<li>Modular programming using functions</li>
+<li>Compiler-based execution</li>
+</ul>
+</div>
+
+<!-- STRUCTURE -->
+<div class="section">
+<h2>6️⃣ Structure of a C Program</h2>
+<p>
+A C program follows a fixed structure:
+</p>
+
+<code>
+#include &lt;stdio.h&gt;<br>
+int main() {<br>
+&nbsp;&nbsp;printf("Hello World");<br>
+&nbsp;&nbsp;return 0;<br>
+}
+</code>
+
+<div class="highlight">
+✔ Header Files  
+✔ main() function  
+✔ Statements  
+</div>
+</div>
+
+<!-- EXECUTION FLOW -->
+<div class="section">
+<h2>7️⃣ Execution Flow of a C Program</h2>
+<p>
+A C program passes through multiple stages before execution:
+</p>
+
+<div class="flow">
+<div>Preprocessing</div>
+<div>Compilation</div>
+<div>Assembly</div>
+<div>Linking</div>
+<div>Execution</div>
+</div>
+</div>
+
+<!-- IO -->
+<div class="section">
+<h2>8️⃣ Input & Output in C</h2>
+<p>
+C uses <b>&lt;stdio.h&gt;</b> for input and output operations.
+</p>
+
+<code>
+scanf("%d",&amp;num);<br>
+printf("Value = %d", num);
+</code>
+
+<div class="highlight">
+%d → integer  
+%f → float  
+%c → character  
+%s → string
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="section">
+<h2>9️⃣ Summary</h2>
+<p>
+C is a powerful, fast, and flexible programming language.
+Understanding C helps students build strong logic and system-level
+programming skills.
+</p>
+</div>
+
+<footer>© 2025 STRINK EDU • PPS Chapter-1 Notes</footer>
+
+</div>
+</body>
+</html>

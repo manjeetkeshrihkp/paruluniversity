@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 1 – Assignment Based Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#020617,#0f172a,#020617);color:#e5e7eb;padding:30px}
+.container{max-width:1050px;margin:auto}
+h1{font-size:2.6rem;margin-bottom:8px;background:linear-gradient(to right,#22c55e,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#c7d2fe;margin-bottom:16px}
+.timer{background:rgba(255,255,255,0.08);padding:8px 14px;border-radius:10px;display:inline-block;margin-bottom:18px}
+.card{background:rgba(255,255,255,0.08);padding:28px;border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,0.4)}
+.question{font-size:1.15rem;color:#7dd3fc;margin-bottom:16px}
+.option{padding:12px 16px;margin-bottom:10px;border-radius:10px;background:rgba(0,0,0,0.45);cursor:pointer}
+.option:hover{background:rgba(56,189,248,0.25)}
+.correct{background:rgba(34,197,94,0.45)}
+.wrong{background:rgba(239,68,68,0.45)}
+input{width:100%;padding:12px;border-radius:10px;border:none;margin-bottom:12px}
+button{padding:10px 18px;border:none;border-radius:10px;background:#22c55e;color:#000;font-weight:600;cursor:pointer}
+button.secondary{background:#38bdf8}
+.solution{display:none;margin-top:18px;background:rgba(250,204,21,0.15);border-left:4px solid #facc15;padding:16px;border-radius:10px;color:#fde68a}
+.nav{margin-top:20px;text-align:right}
+.end{text-align:center;padding:40px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:25px}
+.stat{background:rgba(255,255,255,0.08);padding:18px;border-radius:14px}
+.stat h3{font-size:1.3rem;color:#22c55e}
+.chart{width:140px;height:140px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;font-weight:600}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Chapter 1 – Assignment Based Test</h1>
+<p class="subtitle">Parul University | Applications of Functions of One Variable</p>
+<div class="timer" id="timerBox">⏱ Question Time: <span id="qt">0</span> sec</div>
+
+<div class="card" id="card"></div>
+<div class="nav" id="nav"><button onclick="nextQ()">Next</button></div>
+</div>
+
+<script>
+let qSeconds=0,qTimer;
+let correct=0,wrong=0,totalTime=0;
+
+function startQT(){
+  qSeconds=0;
+  clearInterval(qTimer);
+  qTimer=setInterval(()=>{document.getElementById('qt').innerText=++qSeconds},1000);
+}
+
+const questions=[
+{type:'mcq',q:'lim (x→1) (x³−1)/(x−1) = ?',opts:['1','2','3','4'],ans:2,sol:'Factorize x³−1=(x−1)(x²+x+1). Substituting x=1 gives 3.'},
+{type:'mcq',q:'lim (x→0⁺) x ln x equals:',opts:['0','1','−∞','∞'],ans:0,sol:'x approaches 0 faster than ln x approaches −∞, so limit is 0.'},
+{type:'mcq',q:'Continuity at x=a requires:',opts:['Only f(a)','Only limit','Limit = f(a)','Differentiable'],ans:2,sol:'For continuity, limit must exist and equal f(a).'},
+{type:'mcq',q:'Derivative of eˣ is:',opts:['1','xeˣ','eˣ','0'],ans:2,sol:'Derivative of eˣ is eˣ.'},
+{type:'mcq',q:'Rolle’s theorem requires:',opts:['f(a)=f(b)','Open interval','Discontinuous','f′(a)=0'],ans:0,sol:'Main condition is f(a)=f(b).'},
+{type:'mcq',q:'Chain rule is applied when:',opts:['Single variable','Composite functions','Limits','Area'],ans:1,sol:'Chain rule is used for composite functions.'},
+{type:'mcq',q:'Area under a curve is found by:',opts:['Differentiation','Integration','Limit','Continuity'],ans:1,sol:'Integration gives area under curve.'},
+{type:'mcq',q:'Length of curve depends on:',opts:['y','dy/dx','√(1+(dy/dx)²)','x'],ans:2,sol:'Arc length formula contains √(1+(dy/dx)²).'},
+{type:'mcq',q:'Volume about x-axis is:',opts:['∫y dx','π∫y²dx','2π∫y dx','∫dx'],ans:1,sol:'Disk method: π∫y² dx.'},
+{type:'mcq',q:'Surface area includes factor:',opts:['y','x','√(1+(dy/dx)²)','dx'],ans:2,sol:'Surface area depends on slope factor.'},
+
+{type:'num',q:'Evaluate lim (x→1) (x³−1)/(x−1).',ans:'3',sol:'Direct substitution gives 0/0.\nFactorize x³−1.\nCancel (x−1).\nSubstitute x=1.\nLimit equals 3.'},
+{type:'num',q:'Find c such that f(x)=(eˣ−1)/x for x≠0 and f(0)=c is continuous.',ans:'1',sol:'Continuity requires limit at 0 equals c.\nCompute lim(x→0)(eˣ−1)/x.\nStandard limit equals 1.\nHence c=1.'},
+{type:'num',q:'Differentiate f(x)=9x³−6x+5.',ans:'27x^2-6',sol:'Differentiate each term.\nd/dx(9x³)=27x².\nd/dx(−6x)=−6.\nConstant term vanishes.\nDerivative is 27x²−6.'},
+{type:'num',q:'Find area bounded by y=4−x² and x-axis.',ans:'32/3',sol:'Find intersection with x-axis.\nLimits are −2 to 2.\nIntegrate (4−x²).\nApply limits.\nArea equals 32/3.'},
+{type:'num',q:'Find volume generated by y=x² from x=0 to 1 about x-axis.',ans:'π/5',sol:'Use disk method.\nV = π∫x⁴ dx.\nIntegrate x⁴.\nApply limits 0 to 1.\nVolume equals π/5.'}
+];
+
+let i=0;
+const card=document.getElementById('card');
+const nav=document.getElementById('nav');
+
+function renderSolution(sol){
+  const steps=sol.split('\n');
+  let html='<div style="font-weight:600;color:#facc15;margin-bottom:10px">Step-by-step Solution</div>';
+  steps.forEach((s,idx)=>{
+    html+=`<div style="background:rgba(0,0,0,0.35);padding:10px 12px;border-left:3px solid #22c55e;border-radius:8px;margin-bottom:8px">Step ${idx+1}: ${s}</div>`;
+  });
+  return html;
+}
+
+function load(){
+  startQT();
+  const q=questions[i];
+  card.innerHTML=`<div class='question'>Q${i+1}. ${q.q}</div>`;
+
+  if(q.type==='mcq'){
+    q.opts.forEach((o,idx)=>{
+      card.innerHTML+=`<div class='option' onclick='mcq(${idx},this)'>${o}</div>`;
+    });
+  } else {
+    card.innerHTML+=`<input id='ans' placeholder='Write final answer only'>\n<button onclick='checkNum()'>Submit</button>`;
+  }
+
+  card.innerHTML+=`<div class='solution' id='sol'></div>`;
+}
+
+function mcq(idx,el){
+  clearInterval(qTimer);
+  totalTime+=qSeconds;
+  const q=questions[i];
+  document.querySelectorAll('.option').forEach(o=>o.style.pointerEvents='none');
+  const sol=document.getElementById('sol');
+  if(idx===q.ans){el.classList.add('correct');correct++;}
+  else{el.classList.add('wrong');wrong++;sol.innerHTML=renderSolution(q.sol);sol.style.display='block';}
+}
+
+function checkNum(){
+  clearInterval(qTimer);
+  totalTime+=qSeconds;
+  const q=questions[i];
+  const val=document.getElementById('ans').value.replace(/\s/g,'');
+  const sol=document.getElementById('sol');
+  if(val===q.ans){document.getElementById('ans').style.border='2px solid #22c55e';correct++;}
+  else{document.getElementById('ans').style.border='2px solid #ef4444';wrong++;sol.innerHTML=renderSolution(q.sol);sol.style.display='block';}
+}
+
+function nextQ(){if(i<questions.length-1){i++;load();}else endTest();}
+
+function endTest(){
+  clearInterval(qTimer);
+  document.getElementById('timerBox').style.display='none';
+  const acc=Math.round((correct/questions.length)*100);
+  card.innerHTML=`<div class='end'>
+    <h2>🎉 Test Completed</h2>
+    <div class='stats-grid'>
+      <div class='stat'><h3>${correct}</h3><p>Correct</p></div>
+      <div class='stat'><h3>${wrong}</h3><p>Wrong</p></div>
+      <div class='stat'><h3>${totalTime}s</h3><p>Total Time</p></div>
+      <div class='stat'><h3>${acc}%</h3><p>Accuracy</p></div>
+    </div>
+    <div class='chart' style='background:conic-gradient(#22c55e ${acc*3.6}deg,#ef4444 0deg)'>${acc}%</div>
+    <button class='secondary' onclick="location.href='calculus.html'">Go to Chapter 2</button>
+  </div>`;
+  nav.style.display='none';
+}
+
+window.addEventListener('DOMContentLoaded',load);
+</script>
+</body>
+</html>

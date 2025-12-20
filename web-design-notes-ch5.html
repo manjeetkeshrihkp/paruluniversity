@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 5 – Hosting & Deployment</title>
+
+<style>
+:root{
+  --primary:#6366f1;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(99,102,241,.2);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,system-ui,sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#eef2ff,#f8fafc);
+  color:var(--text);
+  line-height:1.7;
+}
+
+.container{
+  max-width:900px;
+  margin:40px auto 80px;
+  padding:40px;
+  background:var(--card);
+  border-radius:20px;
+  box-shadow:0 30px 60px rgba(0,0,0,.08);
+}
+
+a.back{
+  display:inline-block;
+  margin-bottom:20px;
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:600;
+}
+
+h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+h2{
+  margin-top:35px;
+  color:var(--primary);
+}
+
+h3{
+  margin-top:20px;
+}
+
+p{
+  margin-top:10px;
+  color:var(--muted);
+}
+
+ul{
+  margin-top:10px;
+  padding-left:20px;
+}
+
+li{
+  margin-bottom:6px;
+}
+
+.card{
+  background:#f8fafc;
+  padding:22px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  margin-top:20px;
+}
+
+pre{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:16px;
+  border-radius:12px;
+  margin-top:12px;
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  margin-top:15px;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:12px;
+  border:1px solid var(--border);
+  text-align:left;
+}
+
+th{
+  background:#eef2ff;
+}
+
+hr{
+  margin:30px 0;
+  border:none;
+  border-top:1px solid var(--border);
+}
+
+@media(max-width:600px){
+  .container{padding:24px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="web-design.html" class="back">← Back to Web Designing</a>
+
+<h1>Chapter 5: Hosting & Deployment</h1>
+<p>
+This chapter explains how websites are published on the internet using domains,
+hosting services, and GitHub Pages.
+</p>
+
+<hr>
+
+<h2>1. Domains</h2>
+
+<div class="card">
+<p>
+A domain name is the <strong>address of a website</strong> on the internet.
+It is used to identify and access a website easily.
+</p>
+
+<h3>Example of Domain Names</h3>
+<ul>
+  <li>www.google.com</li>
+  <li>www.github.com</li>
+  <li>www.collegewebsite.in</li>
+</ul>
+
+<h3>Parts of a Domain Name</h3>
+<ul>
+  <li><strong>Top-Level Domain (TLD)</strong> – .com, .org, .in</li>
+  <li><strong>Second-Level Domain</strong> – google, github</li>
+  <li><strong>Subdomain</strong> – www, blog</li>
+</ul>
+
+<p>
+Domain names are registered through domain registrars.
+</p>
+</div>
+
+<hr>
+
+<h2>2. Web Hosting</h2>
+
+<div class="card">
+<p>
+Web hosting is a service that stores website files on a server and makes them
+accessible on the internet.
+</p>
+
+<h3>Types of Hosting</h3>
+<ul>
+  <li>Shared Hosting</li>
+  <li>VPS Hosting</li>
+  <li>Dedicated Hosting</li>
+  <li>Cloud Hosting</li>
+</ul>
+
+<h3>Hosting Example</h3>
+<p>
+When a user enters a domain name in the browser, the server delivers the website
+files to the user.
+</p>
+</div>
+
+<hr>
+
+<h2>3. GitHub Pages</h2>
+
+<div class="card">
+<p>
+GitHub Pages is a free service provided by GitHub to host static websites directly
+from a GitHub repository.
+</p>
+
+<h3>Advantages of GitHub Pages</h3>
+<ul>
+  <li>Free hosting</li>
+  <li>Easy to use</li>
+  <li>Direct GitHub integration</li>
+  <li>Best for student projects</li>
+</ul>
+
+<h3>Steps to Deploy Website Using GitHub Pages</h3>
+<ol>
+  <li>Create a GitHub repository</li>
+  <li>Upload website files</li>
+  <li>Go to Settings → Pages</li>
+  <li>Select branch and save</li>
+  <li>Access website via generated URL</li>
+</ol>
+
+<h3>Example URL</h3>
+<pre>
+https://username.github.io/repository-name/
+</pre>
+</div>
+
+<hr>
+
+<h2>Summary</h2>
+<ul>
+  <li>Domains provide website identity</li>
+  <li>Hosting stores website files</li>
+  <li>GitHub Pages allows free deployment</li>
+</ul>
+
+</div>
+
+</body>
+</html>

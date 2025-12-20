@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Physics Quiz – Chapter 2 | STRINK EDU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:radial-gradient(circle at top,#020617,#000);color:#e5e7eb}
+.container{max-width:1000px;margin:auto;padding:30px 20px}
+
+/* Header */
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+h1{
+  font-size:1.7rem;
+  background:linear-gradient(90deg,#38bdf8,#818cf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.timer{padding:10px 18px;border:1px solid #1e293b;border-radius:20px;color:#38bdf8;font-weight:600}
+
+/* Quiz Card */
+.card{background:#020617;border:1px solid #1e293b;border-radius:16px;padding:25px}
+.question{font-size:1.15rem;margin-bottom:20px}
+.options{display:grid;gap:14px}
+
+/* Option Effects */
+.option{
+  position:relative;
+  padding:14px 18px;
+  border-radius:12px;
+  background:#020617;
+  border:1px solid #1e293b;
+  cursor:pointer;
+  transition:.25s;
+  overflow:hidden;
+}
+.option::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at var(--x) var(--y),
+    rgba(56,189,248,.25),transparent 40%);
+  opacity:0;
+}
+.option:hover::before{opacity:1}
+.option:hover{transform:scale(1.02);border-color:#38bdf8}
+.option.active{
+  background:rgba(56,189,248,.18);
+  border-color:#38bdf8;
+  box-shadow:0 0 0 1px rgba(56,189,248,.4);
+}
+
+.nav{display:flex;justify-content:space-between;margin-top:25px}
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  background:linear-gradient(135deg,#38bdf8,#6366f1);
+  color:#020617;
+}
+
+/* Analysis */
+.analysis{display:none;margin-top:35px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+.box{
+  padding:16px;
+  border-radius:14px;
+  background:#020617;
+  border:1px solid #1e293b;
+}
+.box h3{font-size:.85rem;opacity:.7}
+.box p{font-size:1.4rem;font-weight:700}
+
+/* Graphs */
+.graph-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+.graph-box{
+  max-width:340px;
+  margin:auto;
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:14px;
+  padding:12px;
+}
+.graph-box canvas{width:100%!important;height:230px!important}
+
+/* Wrong Questions */
+.wrong-box{
+  margin-top:30px;
+  padding:20px;
+  border-radius:16px;
+  border:1px solid #1e293b;
+}
+.wrong-q{
+  margin-bottom:16px;
+  padding-bottom:12px;
+  border-bottom:1px dashed #1e293b;
+}
+.correct{color:#4ade80}
+.wrong{color:#f87171}
+.topic{color:#38bdf8;font-size:.85rem}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <h1>Physics Quiz – Chapter 2 (Optoelectronics)</h1>
+  <div class="timer" id="timer">15:00</div>
+</header>
+
+<!-- QUIZ -->
+<div class="card" id="quizBox">
+  <div class="question" id="question"></div>
+  <div class="options" id="options"></div>
+  <div class="nav">
+    <button onclick="prevQ()">Previous</button>
+    <button onclick="nextQ()">Next</button>
+  </div>
+</div>
+
+<!-- ANALYSIS -->
+<div class="analysis" id="analysis">
+  <h2>📊 Advanced Analysis Dashboard</h2>
+
+  <div class="grid">
+    <div class="box"><h3>Total</h3><p>15</p></div>
+    <div class="box"><h3>Correct</h3><p id="correct"></p></div>
+    <div class="box"><h3>Wrong</h3><p id="wrong"></p></div>
+    <div class="box"><h3>Skipped</h3><p id="skipped"></p></div>
+    <div class="box"><h3>Accuracy</h3><p id="accuracy"></p></div>
+    <div class="box"><h3>Weak Topics</h3><p id="weak"></p></div>
+  </div>
+
+  <div class="graph-grid">
+    <div class="graph-box"><canvas id="resultChart"></canvas></div>
+    <div class="graph-box"><canvas id="topicChart"></canvas></div>
+    <div class="graph-box"><canvas id="accuracyChart"></canvas></div>
+    <div class="graph-box"><canvas id="radarChart"></canvas></div>
+  </div>
+
+  <div class="wrong-box">
+    <h3>❌ Wrong Questions & Correct Answers</h3>
+    <div id="wrongList"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const quiz=[
+{q:"Optoelectronic devices mainly work by:",o:["Heat transfer","Electron flow only","Light–electric signal conversion","Magnetic effect"],a:2,t:"Optoelectronics"},
+{q:"Speed of light in vacuum is:",o:["3×10⁶ m/s","3×10⁸ m/s","1.5×10⁸ m/s","9.8 m/s²"],a:1,t:"Light"},
+{q:"Energy of photon is given by:",o:["E=mc²","E=hν","E=qV","E=IR"],a:1,t:"Light"},
+{q:"Stimulated emission is the basis of:",o:["LED","Photodiode","LASER","Solar cell"],a:2,t:"LASER"},
+{q:"LASER stands for:",o:["Light Amplified System","Light Amplification by Stimulated Emission of Radiation","Linear Amplified Source","Light Atomic Source"],a:1,t:"LASER"},
+{q:"Population inversion means:",o:["N₁ > N₂","N₂ > N₁","N₁ = N₂","No excitation"],a:1,t:"LASER"},
+{q:"Which is NOT a laser component?",o:["Active medium","Optical cavity","Pumping source","Transformer"],a:3,t:"LASER"},
+{q:"Semiconductor laser works on:",o:["Photoelectric effect","Stimulated emission","Thermionic emission","Magnetic effect"],a:1,t:"Semiconductor Laser"},
+{q:"LED works on the principle of:",o:["Photoelectric effect","Electroluminescence","Thermionic emission","Avalanche effect"],a:1,t:"LED"},
+{q:"LED emits light due to:",o:["Electron flow","Recombination","Ionization","Reflection"],a:1,t:"LED"},
+{q:"Photodiode is usually operated in:",o:["Forward bias","Reverse bias","Zero bias","AC bias"],a:1,t:"Photodiode"},
+{q:"PIN photodiode has an extra:",o:["P layer","N layer","Intrinsic layer","Metal layer"],a:2,t:"Photodiode"},
+{q:"APD provides:",o:["Low noise","Internal gain","Low voltage","No amplification"],a:1,t:"APD"},
+{q:"Which detector is best for very weak light?",o:["PN photodiode","PIN photodiode","APD","LED"],a:2,t:"APD"},
+{q:"Laser light is:",o:["Incoherent","Polychromatic","Highly directional","Diffuse"],a:2,t:"LASER"}
+];
+
+let i=0,ans=Array(15).fill(null);
+let time=900,timerInterval;
+
+const q=document.getElementById("question");
+const o=document.getElementById("options");
+
+function load(){
+  q.innerText=`Q${i+1}. ${quiz[i].q}`;
+  o.innerHTML="";
+  quiz[i].o.forEach((x,j)=>{
+    const d=document.createElement("div");
+    d.className="option"+(ans[i]===j?" active":"");
+    d.innerText=x;
+    d.onmousemove=e=>{
+      const r=d.getBoundingClientRect();
+      d.style.setProperty("--x",`${e.clientX-r.left}px`);
+      d.style.setProperty("--y",`${e.clientY-r.top}px`);
+    };
+    d.onclick=()=>{ans[i]=j;load();}
+    o.appendChild(d);
+  });
+}
+load();
+
+function nextQ(){i<14?(i++,load()):finish();}
+function prevQ(){if(i>0){i--;load();}}
+
+timerInterval=setInterval(()=>{
+  time--;
+  timer.innerText=`${String(Math.floor(time/60)).padStart(2,"0")}:${String(time%60).padStart(2,"0")}`;
+  if(time<=0)finish();
+},1000);
+
+function finish(){
+  clearInterval(timerInterval);
+  quizBox.style.display="none";
+  analysis.style.display="block";
+
+  let c=0,w=0,s=0,weak={},wrongHTML="";
+  quiz.forEach((x,j)=>{
+    if(ans[j]==null){s++;weak[x.t]=(weak[x.t]||0)+1}
+    else if(ans[j]===x.a)c++;
+    else{
+      w++;weak[x.t]=(weak[x.t]||0)+1;
+      wrongHTML+=`
+      <div class="wrong-q">
+        <div class="topic">${x.t}</div>
+        <p>${x.q}</p>
+        <p class="wrong">Your Answer: ${x.o[ans[j]]}</p>
+        <p class="correct">Correct Answer: ${x.o[x.a]}</p>
+      </div>`;
+    }
+  });
+
+  correct.innerText=c;
+  wrong.innerText=w;
+  skipped.innerText=s;
+  accuracy.innerText=Math.round((c/15)*100)+"%";
+  weak.innerText=Object.keys(weak).join(", ")||"None 🎉";
+  wrongList.innerHTML=wrongHTML||"<p class='correct'>Perfect Attempt 🎉</p>";
+
+  new Chart(resultChart,{type:"doughnut",
+    data:{labels:["Correct","Wrong","Skipped"],
+    datasets:[{data:[c,w,s],backgroundColor:["#4ade80","#f87171","#facc15"]}]},
+    options:{maintainAspectRatio:false}
+  });
+
+  new Chart(topicChart,{type:"bar",
+    data:{labels:Object.keys(weak),
+    datasets:[{data:Object.values(weak),backgroundColor:"#38bdf8"}]},
+    options:{maintainAspectRatio:false}
+  });
+
+  let trend=[],score=0;
+  ans.forEach((a,j)=>{if(a===quiz[j].a)score++;trend.push(Math.round(score/(j+1)*100))});
+  new Chart(accuracyChart,{type:"line",
+    data:{labels:trend.map((_,i)=>`Q${i+1}`),
+    datasets:[{data:trend,borderColor:"#818cf8",tension:.4}]},
+    options:{maintainAspectRatio:false,scales:{y:{min:0,max:100}}}
+  });
+
+  const concepts=[...new Set(quiz.map(q=>q.t))];
+  const cs=concepts.map(t=>{
+    let tot=0,ok=0;
+    quiz.forEach((q,j)=>{if(q.t===t){tot++;if(ans[j]===q.a)ok++;}});
+    return Math.round((ok/tot)*100);
+  });
+
+  new Chart(radarChart,{type:"radar",
+    data:{labels:concepts,
+    datasets:[{data:cs,backgroundColor:"rgba(56,189,248,.2)",borderColor:"#38bdf8"}]},
+    options:{maintainAspectRatio:false}
+  });
+}
+</script>
+</body>
+</html>

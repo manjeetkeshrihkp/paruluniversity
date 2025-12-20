@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semester 1 Subjects</title>
+
+  <style>
+    /* ================= THEME VARIABLES ================= */
+    :root {
+      --primary: #6366f1;
+      --bg-dark: #020617;
+      --bg-light-1: #eef2ff;
+      --bg-light-2: #f8fafc;
+      --card-dark: #020617;
+      --card-light: #ffffff;
+      --text-dark: #e5e7eb;
+      --text-light: #0f172a;
+      --glow: rgba(99,102,241,0.6);
+    }
+
+    body {
+      --bg1: var(--bg-dark);
+      --bg2: var(--bg-dark);
+      --card: var(--card-dark);
+      --text: var(--text-dark);
+    }
+
+    body.light {
+      --bg1: var(--bg-light-1);
+      --bg2: var(--bg-light-2);
+      --card: var(--card-light);
+      --text: var(--text-light);
+      --glow: rgba(99,102,241,0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, system-ui, sans-serif;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ================= NAVBAR ================= */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 18px 60px;
+      background: rgba(2,6,23,0.9);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    body.light nav {
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ================= TOGGLE ================= */
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 20px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #6366f1, #22d3ee);
+      color: #fff;
+      box-shadow: 0 10px 25px var(--glow);
+    }
+
+    /* ================= BACK BUTTON ================= */
+    .back-btn {
+      margin-top: 95px;
+      margin-left: 40px;
+    }
+
+    .back-btn a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--primary);
+      text-decoration: none;
+      box-shadow: 0 10px 25px var(--glow);
+    }
+
+    .back-btn a:hover {
+      background: linear-gradient(135deg, #6366f1, #22d3ee);
+      color: #fff;
+      transform: translateX(-6px);
+    }
+
+    /* ================= MAIN CARD ================= */
+    .container {
+      max-width: 1100px;
+      margin: 50px auto 70px;
+      padding: 0 20px;
+    }
+
+    .main-card {
+      background: rgba(2,6,23,0.95);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    }
+
+    body.light .main-card {
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+    }
+
+    .main-card h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    /* ================= SUBJECT GRID ================= */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 22px;
+    }
+
+    .subject {
+      height: 130px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--card), #020617);
+      border: 1px solid rgba(99,102,241,0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      transition: 0.35s ease;
+    }
+
+    body.light .subject {
+      background: linear-gradient(135deg, #ffffff, #f5f7ff);
+      border: 1px solid rgba(99,102,241,0.15);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+
+    .subject::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #6366f1, #22d3ee);
+      opacity: 0;
+      transition: 0.35s ease;
+    }
+
+    .subject:hover::before {
+      opacity: 0.15;
+    }
+
+    .subject:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 55px var(--glow);
+    }
+
+    .icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+      z-index: 1;
+    }
+
+    .title {
+      font-size: 15px;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 600px) {
+      nav { padding: 16px 24px; }
+      .back-btn { margin-left: 20px; }
+      .main-card { padding: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html">STRINK EDU ⚡</a>
+    <button class="theme-toggle" onclick="toggleTheme()">☀️ / 🌙</button>
+  </nav>
+
+  <!-- BACK BUTTON -->
+  <div class="back-btn">
+    <a href="index.html">← Back</a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container">
+    <div class="main-card">
+      <h2>Semester 1 – Subjects</h2>
+
+      <div class="subject-grid">
+        <a href="NA.html" class="subject"><div class="icon">🗣️</div><div class="title">English</div></a>
+        <a href="pps.html" class="subject"><div class="icon">💻</div><div class="title">PPS (C)</div></a>
+        <a href="physics.html" class="subject"><div class="icon">🔬</div><div class="title">Physics</div></a>
+        <a href="foc.html" class="subject"><div class="icon">🧠</div><div class="title">FOC</div></a>
+        <a href="calculus.html" class="subject"><div class="icon">📐</div><div class="title">Calculus</div></a>
+        <a href="web-design.html" class="subject"><div class="icon">🌐</div><div class="title">Web Designing</div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+    const toggleTheme = () => {
+      document.body.classList.toggle("light");
+      localStorage.setItem(
+        "theme",
+        document.body.classList.contains("light") ? "light" : "dark"
+      );
+    };
+
+    // DARK MODE DEFAULT
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.add("light");
+    }
+  </script>
+
+</body>
+</html>

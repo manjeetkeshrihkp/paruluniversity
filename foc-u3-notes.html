@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOC | Chapter 3 – Computational Problem Solving</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --primary:#38bdf8;
+  --secondary:#6366f1;
+  --accent:#22c55e;
+  --warn:#facc15;
+  --danger:#ef4444;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background:radial-gradient(circle at top,#1e293b,var(--bg) 65%);
+  color:var(--text);
+  padding:30px;
+}
+a{text-decoration:none;color:inherit}
+
+.container{max-width:1200px;margin:auto}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:25px;
+  background:#020617;
+  border:1px solid var(--border);
+  padding:10px 20px;
+  border-radius:12px;
+  color:var(--primary);
+  transition:.3s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 10px 25px rgba(56,189,248,.25);
+}
+
+h1{
+  font-size:2.8rem;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.subtitle{color:var(--muted);margin-bottom:40px}
+
+.section{
+  background:linear-gradient(180deg,#020617,#020617);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:34px;
+  margin-bottom:35px;
+  animation:fadeUp .7s ease both;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(35px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.section h2{
+  color:var(--primary);
+  font-size:1.55rem;
+  margin-bottom:14px;
+}
+.section p{line-height:1.95;color:#cbd5f5;margin-bottom:14px}
+.section ul{padding-left:22px;line-height:2;color:#cbd5f5}
+
+.highlight{
+  background:linear-gradient(135deg,rgba(56,189,248,.12),rgba(99,102,241,.12));
+  border-left:5px solid var(--primary);
+  padding:18px 22px;
+  border-radius:16px;
+  margin-top:18px;
+}
+
+.term{
+  display:inline-block;
+  background:rgba(99,102,241,.15);
+  border:1px solid rgba(99,102,241,.3);
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:.85rem;
+  margin:6px 6px 0 0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+  margin-top:25px;
+}
+
+.card{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 20px 40px rgba(99,102,241,.3);
+}
+.card h3{color:var(--accent);margin-bottom:8px}
+
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  justify-content:center;
+  margin-top:25px;
+}
+.flow div{
+  padding:14px 18px;
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:14px;
+  position:relative;
+  animation:pulse 2.5s infinite;
+}
+.flow div::after{
+  content:"→";
+  position:absolute;
+  right:-18px;
+  color:var(--primary);
+}
+.flow div:last-child::after{content:""}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 rgba(56,189,248,0)}
+  50%{box-shadow:0 0 25px rgba(56,189,248,.35)}
+}
+
+.compare{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.compare .card:first-child{border-left:4px solid var(--accent)}
+.compare .card:last-child{border-left:4px solid var(--warn)}
+
+code{
+  display:block;
+  background:#020617;
+  border:1px solid var(--border);
+  padding:16px;
+  border-radius:14px;
+  margin-top:14px;
+  white-space:pre-wrap;
+}
+
+footer{
+  text-align:center;
+  margin-top:80px;
+  color:#64748b;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<a href="foc.html" class="back-btn">← Back to Chapters</a>
+
+<h1>🧠 Computational Problem Solving</h1>
+<p class="subtitle">FOC | BTech Semester 1 | Advanced Premium Notes</p>
+
+<!-- PDC -->
+<div class="section">
+<h2>1️⃣ Program Development Cycle (PDC)</h2>
+<p>
+The <b>Program Development Cycle</b> is a structured approach to convert a real-world
+problem into a correct, efficient computer program.
+</p>
+
+<div class="flow">
+  <div>Problem Definition</div>
+  <div>Analysis</div>
+  <div>Algorithm</div>
+  <div>Coding</div>
+  <div>Testing</div>
+  <div>Maintenance</div>
+</div>
+
+<span class="term">Logic</span>
+<span class="term">Algorithm</span>
+<span class="term">Debugging</span>
+</div>
+
+<!-- Algorithm -->
+<div class="section">
+<h2>2️⃣ Algorithm</h2>
+<p>
+An <b>algorithm</b> is a finite, ordered set of unambiguous steps used to solve a problem.
+</p>
+
+<div class="highlight">
+<b>Properties:</b> Finite • Precise • Effective • Input • Output
+</div>
+
+<code>
+Algorithm to add two numbers
+1. Start
+2. Read a, b
+3. Sum = a + b
+4. Display Sum
+5. Stop
+</code>
+</div>
+
+<!-- Pseudocode -->
+<div class="section">
+<h2>3️⃣ Pseudocode</h2>
+<p>
+<b>Pseudocode</b> bridges human thinking and programming logic using plain language.
+</p>
+
+<code>
+START
+INPUT n
+IF n % 2 == 0
+  PRINT "Even"
+ELSE
+  PRINT "Odd"
+END
+</code>
+</div>
+
+<!-- Flowchart -->
+<div class="section">
+<h2>4️⃣ Flowchart (Visual Logic)</h2>
+<p>
+A <b>flowchart</b> uses symbols to visually represent logic flow.
+</p>
+
+<div class="grid">
+<div class="card"><h3>Oval</h3><p>Start / End</p></div>
+<div class="card"><h3>Rectangle</h3><p>Processing</p></div>
+<div class="card"><h3>Diamond</h3><p>Decision</p></div>
+<div class="card"><h3>Parallelogram</h3><p>Input / Output</p></div>
+</div>
+</div>
+
+<!-- Bits -->
+<div class="section">
+<h2>5️⃣ Representation of Data (Bits)</h2>
+<p>
+All data inside a computer is stored in <b>binary form</b>.
+</p>
+
+<ul>
+<li><b>Bit:</b> Smallest unit (0 or 1)</li>
+<li><b>Byte:</b> 8 bits</li>
+<li><b>Word:</b> CPU data size</li>
+</ul>
+
+<div class="highlight">
+Text → ASCII / Unicode  
+Image → Pixels + Color bits  
+Audio → Sampling
+</div>
+</div>
+
+<!-- Integer & Fraction -->
+<div class="section">
+<h2>6️⃣ Storing Numbers</h2>
+<div class="grid">
+<div class="card">
+<h3>Integers</h3>
+<p>Stored using binary with fixed bits (8/16/32).</p>
+</div>
+<div class="card">
+<h3>Fractions</h3>
+<p>Stored using IEEE-754 Floating Point format.</p>
+</div>
+</div>
+</div>
+
+<!-- Iteration vs Recursion -->
+<div class="section">
+<h2>7️⃣ Iteration vs Recursion</h2>
+
+<div class="compare">
+<div class="card">
+<h3>Iteration</h3>
+<p>Uses loops</p>
+<p>Less memory usage</p>
+<p>Faster execution</p>
+</div>
+
+<div class="card">
+<h3>Recursion</h3>
+<p>Function calls itself</p>
+<p>More memory usage</p>
+<p>Elegant logic</p>
+</div>
+</div>
+
+<div class="highlight">
+<b>Rule:</b> Use recursion when problem is naturally recursive (tree, divide & conquer).
+</div>
+</div>
+
+<!-- Complexity -->
+<div class="section">
+<h2>8️⃣ Easy vs Hard Computational Problems</h2>
+<ul>
+<li><b>P Problems:</b> Solvable in polynomial time (sorting, searching)</li>
+<li><b>NP Problems:</b> Solution verifiable in polynomial time</li>
+<li><b>NP-Hard:</b> Extremely complex problems</li>
+</ul>
+
+<span class="term">P</span>
+<span class="term">NP</span>
+<span class="term">NP-Hard</span>
+</div>
+
+<footer>© 2025 STRINK EDU • Ultra-Premium Learning</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOC | Chapter 2 – Number Systems</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --primary:#38bdf8;
+  --secondary:#6366f1;
+  --accent:#22c55e;
+  --warn:#facc15;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:radial-gradient(circle at top,#1e293b,var(--bg) 60%);
+  color:var(--text);
+  padding:30px;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:25px;
+  background:#020617;
+  border:1px solid var(--border);
+  padding:10px 20px;
+  border-radius:12px;
+  color:var(--primary);
+  font-weight:500;
+  transition:.3s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 10px 25px rgba(56,189,248,.25);
+}
+
+h1{
+  font-size:2.6rem;
+  margin-bottom:6px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+  color:var(--muted);
+  margin-bottom:35px;
+}
+
+.section{
+  background:linear-gradient(180deg,#020617,#020617);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:30px;
+  margin-bottom:30px;
+  animation:fadeUp .7s ease both;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.section h2{
+  font-size:1.45rem;
+  margin-bottom:14px;
+  color:var(--primary);
+}
+
+.section p{
+  line-height:1.9;
+  color:#cbd5f5;
+  margin-bottom:14px;
+}
+
+.section ul{
+  padding-left:22px;
+  line-height:2;
+  color:#cbd5f5;
+}
+
+.term{
+  display:inline-block;
+  background:rgba(99,102,241,.12);
+  border:1px solid rgba(99,102,241,.25);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:.85rem;
+  margin:6px 6px 0 0;
+}
+
+.highlight{
+  background:linear-gradient(135deg,rgba(56,189,248,.12),rgba(99,102,241,.12));
+  border-left:5px solid var(--primary);
+  padding:18px 20px;
+  border-radius:14px;
+  margin-top:18px;
+}
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+
+.mini-card{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  transition:.3s;
+}
+.mini-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 18px 35px rgba(99,102,241,.25);
+}
+
+.mini-card h3{
+  font-size:1.05rem;
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+footer{
+  text-align:center;
+  margin-top:70px;
+  color:#64748b;
+  font-size:.9rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<a href="foc.html" class="back-btn">← Back to Chapters</a>
+
+<h1>🔢 Chapter 2: Number Systems</h1>
+<p class="subtitle">FOC | BTech Semester 1 | Ultra-Modern Notes</p>
+
+<!-- 1 -->
+<div class="section">
+<h2>1️⃣ Introduction to Number System</h2>
+<p>
+A <b>number system</b> is a method of representing numbers using a set of
+symbols (digits) and a base (radix).
+Computers use number systems to store, process, and manipulate data.
+</p>
+
+<div class="highlight">
+<b>Positional Number System:</b><br>
+Value of a digit depends on its position and base.
+</div>
+
+<span class="term">Digit</span>
+<span class="term">Base (Radix)</span>
+<span class="term">Positional Value</span>
+</div>
+
+<!-- 2 -->
+<div class="section">
+<h2>2️⃣ Types of Number System</h2>
+
+<div class="card-grid">
+<div class="mini-card">
+<h3>Decimal (Base-10)</h3>
+<p>Digits: 0–9<br>Used by humans in daily life.</p>
+</div>
+
+<div class="mini-card">
+<h3>Binary (Base-2)</h3>
+<p>Digits: 0, 1<br>Used internally by computers.</p>
+</div>
+
+<div class="mini-card">
+<h3>Octal (Base-8)</h3>
+<p>Digits: 0–7<br>Compact form of binary.</p>
+</div>
+
+<div class="mini-card">
+<h3>Hexadecimal (Base-16)</h3>
+<p>Digits: 0–9, A–F<br>Easy binary representation.</p>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="section">
+<h2>3️⃣ Number System Conversion</h2>
+<p>
+Conversion means changing a number from one base to another without
+changing its value.
+</p>
+
+<ul>
+<li><b>Non-decimal → Decimal:</b> Multiply each digit with its positional weight</li>
+<li><b>Decimal → Non-decimal:</b> Repeated division by base</li>
+<li><b>Binary ↔ Octal:</b> Group 3 bits</li>
+<li><b>Binary ↔ Hexadecimal:</b> Group 4 bits</li>
+</ul>
+
+<div class="highlight">
+<b>Example:</b>  
+Binary → Decimal  
+1011₂ = (1×2³)+(0×2²)+(1×2¹)+(1×2⁰) = 11₁₀
+</div>
+</div>
+
+<!-- 4 -->
+<div class="section">
+<h2>4️⃣ Arithmetic Operations in Number System</h2>
+<p>
+All arithmetic operations inside a computer are performed in
+<b>binary</b> using the <b>ALU (Arithmetic Logic Unit)</b>.
+</p>
+
+<ul>
+<li><b>Binary Addition:</b> Uses carry (0+1, 1+1=10)</li>
+<li><b>Binary Subtraction:</b> Uses borrow or complements</li>
+<li><b>Binary Multiplication:</b> Repeated addition</li>
+<li><b>Binary Division:</b> Similar to decimal division</li>
+</ul>
+
+<div class="highlight">
+<b>Binary Addition Rule:</b><br>
+1 + 1 = 10 (Sum = 0, Carry = 1)
+</div>
+</div>
+
+<!-- 5 -->
+<div class="section">
+<h2>5️⃣ Signed and Unsigned Numbers</h2>
+
+<div class="card-grid">
+<div class="mini-card">
+<h3>Unsigned Numbers</h3>
+<p>
+• Represent only positive numbers<br>
+• No sign bit<br>
+• Range (n-bit): 0 to 2ⁿ − 1
+</p>
+</div>
+
+<div class="mini-card">
+<h3>Signed Numbers</h3>
+<p>
+• Represent positive & negative numbers<br>
+• MSB used as sign bit<br>
+• 0 → Positive, 1 → Negative
+</p>
+</div>
+</div>
+
+<div class="highlight">
+<b>Example (8-bit):</b><br>
+Unsigned: 0 to 255<br>
+Signed: −128 to +127
+</div>
+</div>
+
+<!-- 6 -->
+<div class="section">
+<h2>6️⃣ One’s & Two’s Complement (Important)</h2>
+<p>
+Complements are used to represent negative numbers in binary.
+</p>
+
+<ul>
+<li><b>One’s Complement:</b> Invert all bits (0→1, 1→0)</li>
+<li><b>Two’s Complement:</b> One’s complement + 1</li>
+</ul>
+
+<div class="highlight">
+<b>Why Two’s Complement?</b><br>
+• Simplifies subtraction<br>
+• Most widely used in computers
+</div>
+</div>
+
+<footer>© 2025 STRINK EDU • Ultra-Premium Learning</footer>
+
+</div>
+</body>
+</html>

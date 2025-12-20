@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 2 – Multivariate Calculus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: #eaeaea;
+      line-height: 1.8;
+      padding: 30px;
+    }
+    .container { max-width: 1150px; margin: auto; }
+    h1 {
+      font-size: 2.7rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(to right, #ff512f, #dd2476);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: #cbd5e1; margin-bottom: 35px; }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+    }
+    .card h2 {
+      font-size: 1.9rem;
+      margin-bottom: 14px;
+      color: #38bdf8;
+    }
+    .card h3 {
+      margin-top: 20px;
+      font-size: 1.35rem;
+      color: #facc15;
+    }
+    p { margin-top: 12px; color: #f1f5f9; }
+    ul { margin: 12px 0 12px 22px; }
+    li { margin-bottom: 8px; }
+    .formula {
+      background: rgba(0,0,0,0.4);
+      border-left: 4px solid #22c55e;
+      padding: 14px 16px;
+      margin: 16px 0;
+      font-family: monospace;
+      color: #bbf7d0;
+      border-radius: 10px;
+    }
+    .note {
+      background: rgba(250, 204, 21, 0.15);
+      border-left: 4px solid #facc15;
+      padding: 14px 16px;
+      margin: 16px 0;
+      border-radius: 10px;
+      color: #fde68a;
+    }
+    .example {
+      background: rgba(56, 189, 248, 0.15);
+      border-left: 4px solid #38bdf8;
+      padding: 14px 16px;
+      margin: 16px 0;
+      border-radius: 10px;
+      color: #e0f2fe;
+    }
+    .important {
+      background: rgba(244, 63, 94, 0.18);
+      border-left: 4px solid #fb7185;
+      padding: 14px 16px;
+      margin: 16px 0;
+      border-radius: 10px;
+      color: #ffe4e6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chapter 2: Multivariate Calculus</h1>
+    <p class="subtitle">Functions of Several Variables, Partial Derivatives, Jacobian, Taylor Series & Optimization</p>
+
+    <div class="card">
+      <h2>1. Functions of Several Variables</h2>
+      <p>A <b>multivariable function</b> is a function that depends on two or more independent variables.</p>
+      <div class="formula">z = f(x, y),  &nbsp; z = f(x, y, z)</div>
+      <p>Geometrically, a function z = f(x, y) represents a surface in three-dimensional space.</p>
+      <h3>Level Curves</h3>
+      <p>Level curves are curves obtained by setting f(x, y) = c, where c is constant.</p>
+      <div class="note">Level curves help visualize surfaces on a 2D plane.</div>
+    </div>
+
+    <div class="card">
+      <h2>2. Partial Derivatives</h2>
+      <p>Partial derivatives measure the rate of change of a function with respect to one variable while keeping other variables constant.</p>
+      <h3>Definition</h3>
+      <div class="formula">∂f/∂x = lim(h→0) [f(x+h, y) − f(x, y)] / h</div>
+      <div class="formula">∂f/∂y = lim(h→0) [f(x, y+h) − f(x, y)] / h</div>
+      <h3>Higher Order Partial Derivatives</h3>
+      <div class="formula">∂²f/∂x² ,  ∂²f/∂y² ,  ∂²f/∂x∂y</div>
+      <div class="important">If second-order partial derivatives are continuous, then ∂²f/∂x∂y = ∂²f/∂y∂x.</div>
+    </div>
+
+    <div class="card">
+      <h2>3. Chain Rule</h2>
+      <p>The chain rule is used when variables are functions of other variables.</p>
+      <h3>Two Variable Form</h3>
+      <div class="formula">dz/dt = (∂z/∂x)(dx/dt) + (∂z/∂y)(dy/dt)</div>
+      <div class="example">Useful in physics, machine learning gradients and optimization problems.</div>
+    </div>
+
+    <div class="card">
+      <h2>4. Jacobian</h2>
+      <p>The Jacobian is a determinant used for transformation of variables.</p>
+      <h3>Jacobian of (u, v) with respect to (x, y)</h3>
+      <div class="formula">J = ∂(u, v)/∂(x, y) = | ∂u/∂x  ∂u/∂y ; ∂v/∂x  ∂v/∂y |</div>
+      <div class="note">Jacobian plays a key role in multiple integrals and coordinate transformations.</div>
+    </div>
+
+    <div class="card">
+      <h2>5. Taylor Expansion</h2>
+      <p>Taylor expansion approximates a function near a given point.</p>
+      <h3>Two Variable Taylor Series</h3>
+      <div class="formula">f(x,y) ≈ f(a,b) + (x−a)fₓ + (y−b)fᵧ + 1/2[(x−a)²fₓₓ + 2(x−a)(y−b)fₓᵧ + (y−b)²fᵧᵧ]</div>
+      <div class="example">Used in numerical methods, optimization and AI models.</div>
+    </div>
+
+    <div class="card">
+      <h2>6. Maxima and Minima</h2>
+      <p>Critical points occur where first-order partial derivatives vanish.</p>
+      <div class="formula">fₓ = 0 ,  fᵧ = 0</div>
+      <h3>Second Derivative Test</h3>
+      <div class="formula">D = fₓₓ fᵧᵧ − (fₓᵧ)²</div>
+      <ul>
+        <li>If D > 0 and fₓₓ > 0 → Minimum</li>
+        <li>If D > 0 and fₓₓ < 0 → Maximum</li>
+        <li>If D < 0 → Saddle point</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>7. Lagrange Multipliers</h2>
+      <p>Lagrange multipliers are used to find extrema of a function subject to constraints.</p>
+      <h3>Method</h3>
+      <div class="formula">∇f = λ ∇g</div>
+      <p>Where g(x, y) = 0 is the constraint.</p>
+      <div class="important">Extremely important for optimization in economics, engineering and AI.</div>
+    </div>
+
+  </div>
+</body>
+</html>

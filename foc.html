@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOC | BTech Semester 1</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background: #0f172a;
+        color: #e5e7eb;
+        padding: 30px;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2.2rem;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #94a3b8;
+        margin-bottom: 10px;
+      }
+
+      .back-wrap {
+        display: flex;
+        justify-content: flex-start;
+        margin: 20px 0 40px;
+      }
+
+      .back-btn {
+        background: #020617;
+        border: 1px solid #1e293b;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #38bdf8;
+        transition: all 0.25s ease;
+      }
+
+      .back-btn:hover {
+        transform: translateX(-4px);
+        box-shadow: 0 6px 18px rgba(56, 189, 248, 0.25);
+      }
+
+      .accordion {
+        background: #020617;
+        border-radius: 14px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        border: 1px solid #1e293b;
+      }
+
+      .accordion-header {
+        padding: 22px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .accordion-header span {
+        color: #38bdf8;
+        font-size: 1.4rem;
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        padding: 0 22px;
+      }
+
+      .accordion-content p {
+        margin: 14px 0;
+        line-height: 1.7;
+        color: #cbd5f5;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0 30px;
+      }
+
+      .tag {
+        background: linear-gradient(135deg, #38bdf8, #2563eb);
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        color: white;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35);
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 60px;
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>💻 Fundamentals of Computer Science</h1>
+      <p class="subtitle">BTech Semester 1</p>
+
+      <div class="back-wrap">
+        <a href="subjects.html" class="back-btn">← Back to Subjects</a>
+      </div>
+
+      <!-- UNIT 1 -->
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Unit 1: Introduction to Computer & Architecture
+          <span>+</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            Introduction to computers, characteristics, generations,
+            classification, applications, computer architecture, CPU, memory,
+            motherboard and buses.
+          </p>
+          <div class="tags">
+            <a href="foc-u1-notes.html" class="tag">📄 Notes</a>
+            <a href="foc-u1.html" class="tag">🎥 Video</a>
+            <a href="NA.html" class="tag">📘 PDF Notes</a>
+            <a href="NA.html" class="tag">📗 PDF Assignment</a>
+            <a href="foc1q.html" class="tag">✏️ Practice</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNIT 2 -->
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Unit 2: Number Systems
+          <span>+</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            Binary, decimal, octal, hexadecimal number systems, conversions,
+            arithmetic operations, signed and unsigned numbers.
+          </p>
+          <div class="tags">
+            <a href="foc-u2-notes.html" class="tag">📄 Notes</a>
+            <a href="foc-u2.html" class="tag">🎥 Video</a>
+            <a href="NA.html" class="tag">📘 PDF Notes</a>
+            <a href="NA.html" class="tag">📗 PDF Assignment</a>
+            <a href="foc2q.html" class="tag">✏️ Practice</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNIT 3 -->
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Unit 3: Computational Problem Solving
+          <span>+</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            Program development cycle, algorithm, pseudocode, flowcharts,
+            iterative and recursive problem solving.
+          </p>
+          <div class="tags">
+            <a href="foc-u3-notes.html" class="tag">📄 Notes</a>
+            <a href="foc-u3.html" class="tag">🎥 Video</a>
+            <a href="NA.html" class="tag">📘 PDF Notes</a>
+            <a href="NA.html" class="tag">📗 PDF Assignment</a>
+            <a href="foc3q.html" class="tag">✏️ Practice</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNIT 4 -->
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Unit 4: System Software & Programming Languages
+          <span>+</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            Operating systems, types and functions, Unix commands, programming
+            languages, debugging, documentation and paradigms.
+          </p>
+          <div class="tags">
+            <a href="foc-u4-notes.html" class="tag">📄 Notes</a>
+            <a href="foc-u4.html" class="tag">🎥 Video</a>
+            <a href="NA.html" class="tag">📘 PDF Notes</a>
+            <a href="NA.html" class="tag">📗 PDF Assignment</a>
+            <a href="foc4q.html" class="tag">✏️ Practice</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNIT 5 -->
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Unit 5: Computer Hardware
+          <span>+</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            CPU components, memory hierarchy, input-output devices, motherboard
+            components and bus architecture.
+          </p>
+          <div class="tags">
+            <a href="foc-u5-notes.html" class="tag">📄 Notes</a>
+            <a href="foc-u5.html" class="tag">🎥 Video</a>
+            <a href="NA.html" class="tag">📘 PDF Notes</a>
+            <a href="NA.html" class="tag">📗 PDF Assignment</a>
+            <a href="foc5q.html" class="tag">✏️ Practice</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNIT 6 -->
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Unit 6: Computer Networks & Internet
+          <span>+</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            LAN, MAN, WAN, network devices, internet basics, cloud computing and
+            IoT.
+          </p>
+          <div class="tags">
+            <a href="foc-u6-notes.html" class="tag">📄 Notes</a>
+            <a href="foc-u6.html" class="tag">🎥 Video</a>
+            <a href="NA.html" class="tag">📘 PDF Notes</a>
+            <a href="NA.html" class="tag">📗 PDF Assignment</a>
+            <a href="foc6q.html" class="tag">✏️ Practice</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNIT 7 -->
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Unit 7: Cybersecurity & Emerging Trends
+          <span>+</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            Cybersecurity basics, threats, firewalls, encryption, AI, machine
+            learning, blockchain and quantum computing.
+          </p>
+          <div class="tags">
+            <a href="foc-u7-notes.html" class="tag">📄 Notes</a>
+            <a href="foc-u7.html" class="tag">🎥 Video</a>
+            <a href="NA.html" class="tag">📘 PDF Notes</a>
+            <a href="NA.html" class="tag">📗 PDF Assignment</a>
+            <a href="foc7q.html" class="tag">✏️ Practice</a>
+          </div>
+        </div>
+      </div>
+
+      <footer>© 2025 STRINK EDU</footer>
+    </div>
+
+    <script>
+      function toggleAccordion(header) {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector("span");
+
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          icon.textContent = "+";
+        } else {
+          document
+            .querySelectorAll(".accordion-content")
+            .forEach((c) => (c.style.maxHeight = null));
+          document
+            .querySelectorAll(".accordion-header span")
+            .forEach((i) => (i.textContent = "+"));
+          content.style.maxHeight = content.scrollHeight + "px";
+          icon.textContent = "−";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPS Chapter 6 | Pointers, DMA & File Management</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --violet:#818cf8;
+  --cyan:#22d3ee;
+  --grad1:linear-gradient(135deg,#38bdf8,#2563eb);
+  --grad2:linear-gradient(135deg,#818cf8,#6366f1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter}
+
+body{
+  background:radial-gradient(circle at top,#1e293b,#020617 70%);
+  color:var(--text);
+  padding:30px;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{max-width:1350px;margin:auto}
+
+/* Back Button */
+.back-wrap{margin:10px 0 40px}
+.back-btn{
+  background:#020617;
+  border:1px solid var(--border);
+  padding:10px 18px;
+  border-radius:10px;
+  font-size:.95rem;
+  color:var(--blue);
+  transition:.25s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 6px 18px rgba(56,189,248,.25);
+}
+
+/* Header */
+h1{
+  text-align:center;
+  font-size:3rem;
+  background:var(--grad1);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:70px;
+}
+
+/* Section */
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:26px;
+  padding:44px;
+  margin-bottom:55px;
+  position:relative;
+  overflow:hidden;
+  animation:fadeUp .8s ease both;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at top left,rgba(56,189,248,.18),transparent 55%),
+    radial-gradient(circle at bottom right,rgba(129,140,248,.18),transparent 55%);
+}
+
+.section h2{
+  font-size:1.9rem;
+  margin-bottom:20px;
+  background:var(--grad2);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.section p{
+  line-height:2.05;
+  color:#cbd5f5;
+  font-size:1.05rem;
+}
+
+/* Highlight */
+.highlight{
+  background:rgba(56,189,248,.15);
+  border-left:5px solid var(--blue);
+  padding:18px 24px;
+  margin:24px 0;
+  border-radius:16px;
+}
+
+/* Chips */
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:22px;
+}
+.chip{
+  padding:12px 18px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#38bdf8,#818cf8);
+  font-size:.85rem;
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+/* Code */
+pre{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  margin:26px 0;
+  overflow-x:auto;
+  color:#a5f3fc;
+  font-size:.95rem;
+}
+
+/* Flow */
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:20px;
+}
+.flow div{
+  padding:12px 18px;
+  border-radius:14px;
+  background:rgba(34,211,238,.15);
+  border:1px solid var(--border);
+  font-size:.9rem;
+}
+
+footer{
+  text-align:center;
+  margin-top:90px;
+  color:#64748b;
+  font-size:.95rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="back-wrap">
+  <a href="pps.html" class="back-btn">← Back to PPS</a>
+</div>
+
+<h1>Chapter 6: Pointers, Dynamic Memory Allocation & File Management</h1>
+<p class="subtitle">
+Memory Handling • Runtime Allocation • Permanent Data Storage in C
+</p>
+
+<!-- POINTER BASICS -->
+<div class="section">
+<h2>Basics of Pointers</h2>
+<p>
+A pointer is a variable that stores the memory address of another variable.
+Pointers allow direct memory access and efficient manipulation of data.
+</p>
+
+<div class="chips">
+  <div class="chip">Address Storage</div>
+  <div class="chip">Efficient Access</div>
+  <div class="chip">Low-level Control</div>
+</div>
+
+<pre>
+int x = 10;
+int *p = &x;
+
+printf("%d", *p);   // value
+printf("%p", p);    // address
+</pre>
+</div>
+
+<!-- POINTER TO POINTER -->
+<div class="section">
+<h2>Pointer to Pointer</h2>
+<p>
+A pointer to pointer stores the address of another pointer.
+It is useful in dynamic memory allocation and complex data structures.
+</p>
+
+<pre>
+int a = 5;
+int *p = &a;
+int **q = &p;
+
+printf("%d", **q);
+</pre>
+</div>
+
+<!-- POINTER AND ARRAY -->
+<div class="section">
+<h2>Pointer and Array Relationship</h2>
+<p>
+Array name acts as a constant pointer to its first element.
+Pointer arithmetic allows traversal of arrays efficiently.
+</p>
+
+<pre>
+int arr[5] = {1,2,3,4,5};
+int *p = arr;
+
+for(int i=0;i<5;i++)
+  printf("%d ", *(p+i));
+</pre>
+</div>
+
+<!-- POINTER TO ARRAY -->
+<div class="section">
+<h2>Pointer to Array</h2>
+<p>
+A pointer to array points to the entire array rather than a single element.
+</p>
+
+<pre>
+int arr[5] = {10,20,30,40,50};
+int (*p)[5] = &arr;
+
+printf("%d", (*p)[2]);
+</pre>
+</div>
+
+<!-- ARRAY OF POINTERS -->
+<div class="section">
+<h2>Array of Pointers</h2>
+<p>
+An array of pointers stores multiple addresses.
+It is commonly used to handle strings efficiently.
+</p>
+
+<pre>
+char *names[] = {"C", "C++", "Python"};
+
+for(int i=0;i<3;i++)
+  printf("%s\n", names[i]);
+</pre>
+</div>
+
+<!-- FUNCTIONS RETURNING POINTERS -->
+<div class="section">
+<h2>Functions Returning Pointers</h2>
+<p>
+Functions can return pointers, but the returned address must remain valid
+after the function execution.
+</p>
+
+<pre>
+int* getValue() {
+  static int x = 100;
+  return &x;
+}
+</pre>
+
+<div class="highlight">
+Never return address of a local (stack) variable
+</div>
+</div>
+
+<!-- DMA INTRO -->
+<div class="section">
+<h2>Introduction to Dynamic Memory Allocation</h2>
+<p>
+Dynamic memory allocation allows memory to be allocated at runtime
+using heap memory, making programs flexible and efficient.
+</p>
+
+<div class="flow">
+  <div>malloc()</div>
+  <div>calloc()</div>
+  <div>realloc()</div>
+  <div>free()</div>
+</div>
+</div>
+
+<!-- MALLOC -->
+<div class="section">
+<h2>malloc()</h2>
+<p>
+Allocates a single block of memory with uninitialized values.
+</p>
+
+<pre>
+int *arr = (int*)malloc(5 * sizeof(int));
+if(arr == NULL) return 1;
+</pre>
+</div>
+
+<!-- CALLOC -->
+<div class="section">
+<h2>calloc()</h2>
+<p>
+Allocates multiple blocks and initializes all values to zero.
+</p>
+
+<pre>
+int *arr = (int*)calloc(5, sizeof(int));
+</pre>
+</div>
+
+<!-- REALLOC -->
+<div class="section">
+<h2>realloc()</h2>
+<p>
+Resizes previously allocated memory without losing existing data.
+</p>
+
+<pre>
+arr = (int*)realloc(arr, 10 * sizeof(int));
+</pre>
+</div>
+
+<!-- FREE -->
+<div class="section">
+<h2>free()</h2>
+<p>
+Releases dynamically allocated memory back to the system.
+</p>
+
+<pre>
+free(arr);
+</pre>
+</div>
+
+<!-- FILE MANAGEMENT -->
+<div class="section">
+<h2>Introduction to File Management in C</h2>
+<p>
+File handling allows permanent storage of data.
+C supports both text and binary file operations.
+</p>
+</div>
+
+<!-- FILE FUNCTIONS -->
+<div class="section">
+<h2>Standard File Handling Functions</h2>
+<p>
+C provides built-in functions to create, read, write and close files.
+</p>
+
+<div class="flow">
+  <div>fopen()</div>
+  <div>fclose()</div>
+  <div>fprintf()</div>
+  <div>fscanf()</div>
+  <div>fgetc()</div>
+  <div>fputc()</div>
+</div>
+
+<pre>
+FILE *fp = fopen("data.txt","w");
+fprintf(fp,"Hello PPS");
+fclose(fp);
+</pre>
+</div>
+
+<!-- SUMMARY -->
+<div class="section">
+<h2>Summary</h2>
+<p>
+This chapter explains how memory and files are handled in C.
+Pointers and dynamic memory allocation provide flexibility,
+while file handling enables permanent data storage.
+</p>
+</div>
+
+<footer>© 2025 STRINK EDU • PPS Chapter-6 Notes</footer>
+
+</div>
+</body>
+</html>

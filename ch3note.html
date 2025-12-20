@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 3 – Multiple Integration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #020617);
+      color: #e5e7eb;
+      line-height: 1.85;
+      padding: 30px;
+    }
+    .container { max-width: 1200px; margin: auto; }
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      background: linear-gradient(to right, #22c55e, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: #cbd5f5; margin-bottom: 40px; }
+    .card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 30px;
+      margin-bottom: 32px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(14px);
+    }
+    .card h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: #60a5fa;
+    }
+    .card h3 {
+      margin-top: 22px;
+      font-size: 1.35rem;
+      color: #facc15;
+    }
+    p { margin-top: 12px; }
+    ul { margin: 12px 0 12px 22px; }
+    li { margin-bottom: 8px; }
+    .formula {
+      background: rgba(0,0,0,0.45);
+      border-left: 4px solid #22c55e;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-family: monospace;
+      color: #bbf7d0;
+      border-radius: 10px;
+    }
+    .note {
+      background: rgba(250,204,21,0.15);
+      border-left: 4px solid #facc15;
+      padding: 14px 18px;
+      margin: 18px 0;
+      border-radius: 10px;
+      color: #fde68a;
+    }
+    .example {
+      background: rgba(56,189,248,0.15);
+      border-left: 4px solid #38bdf8;
+      padding: 14px 18px;
+      margin: 18px 0;
+      border-radius: 10px;
+      color: #e0f2fe;
+    }
+    .important {
+      background: rgba(239,68,68,0.18);
+      border-left: 4px solid #f87171;
+      padding: 14px 18px;
+      margin: 18px 0;
+      border-radius: 10px;
+      color: #fee2e2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chapter 3: Multiple Integration</h1>
+    <p class="subtitle">Double Integrals, Change of Order, Polar Coordinates & Applications</p>
+
+    <div class="card">
+      <h2>1. Introduction to Multiple Integration</h2>
+      <p>Multiple integration is the extension of single-variable integration to functions of two or more variables. It is mainly used to calculate <b>area, volume, mass, centroid</b> and other physical quantities.</p>
+      <p>If a function depends on two variables, say <b>f(x, y)</b>, then integration is performed over a region in the <b>xy-plane</b>.</p>
+      <div class="formula">∬<sub>R</sub> f(x, y) dA</div>
+      <div class="note">Here, R represents a bounded region in the xy-plane.</div>
+    </div>
+
+    <div class="card">
+      <h2>2. Double Integrals</h2>
+      <p>A double integral is an integral of a function of two variables over a region.</p>
+      <h3>Iterated Integrals</h3>
+      <p>Double integrals are evaluated as <b>iterated integrals</b>, integrating one variable at a time.</p>
+      <div class="formula">∫<sub>a</sub><sup>b</sup> ∫<sub>g(x)</sub><sup>h(x)</sup> f(x, y) dy dx</div>
+      <p>or</p>
+      <div class="formula">∫<sub>c</sub><sup>d</sup> ∫<sub>p(y)</sub><sup>q(y)</sup> f(x, y) dx dy</div>
+      <div class="example">Inner integral is evaluated first, outer integral later.</div>
+    </div>
+
+    <div class="card">
+      <h2>3. Region of Integration</h2>
+      <p>The region of integration defines the limits of the double integral.</p>
+      <h3>Type I Region</h3>
+      <p>Region bounded by x = a to b and y = g(x) to h(x).</p>
+      <h3>Type II Region</h3>
+      <p>Region bounded by y = c to d and x = p(y) to q(y).</p>
+      <div class="important">Understanding the region is the key to solving double integrals correctly.</div>
+    </div>
+
+    <div class="card">
+      <h2>4. Change of Order of Integration</h2>
+      <p>Sometimes changing the order of integration simplifies the problem.</p>
+      <p>We convert:</p>
+      <div class="formula">∫ ∫ f(x, y) dy dx  →  ∫ ∫ f(x, y) dx dy</div>
+      <h3>Steps</h3>
+      <ul>
+        <li>Draw the region of integration</li>
+        <li>Identify new limits</li>
+        <li>Rewrite the integral</li>
+      </ul>
+      <div class="example">Very useful when inner integral becomes difficult.</div>
+    </div>
+
+    <div class="card">
+      <h2>5. Double Integrals in Polar Coordinates</h2>
+      <p>For circular or symmetric regions, polar coordinates simplify calculations.</p>
+      <div class="formula">x = r cosθ ,  y = r sinθ</div>
+      <div class="formula">dA = r dr dθ</div>
+      <h3>Polar Integral Form</h3>
+      <div class="formula">∬ f(x, y) dA = ∫ ∫ f(r cosθ, r sinθ) r dr dθ</div>
+      <div class="note">Always include extra factor r while converting to polar coordinates.</div>
+    </div>
+
+    <div class="card">
+      <h2>6. Applications: Area Using Double Integrals</h2>
+      <p>The area of a region R can be found using:</p>
+      <div class="formula">Area = ∬<sub>R</sub> 1 dA</div>
+      <p>In polar coordinates:</p>
+      <div class="formula">Area = ∫ ∫ r dr dθ</div>
+      <div class="example">Used to find area of circles, ellipses and bounded curves.</div>
+    </div>
+
+    <div class="card">
+      <h2>7. Applications: Volume Using Double Integrals</h2>
+      <p>The volume under a surface z = f(x, y) over region R is:</p>
+      <div class="formula">V = ∬<sub>R</sub> f(x, y) dA</div>
+      <p>In polar coordinates:</p>
+      <div class="formula">V = ∫ ∫ f(r cosθ, r sinθ) r dr dθ</div>
+      <div class="important">This formula is heavily used in engineering and physics.</div>
+    </div>
+
+    <div class="card">
+      <h2>8. Physical Interpretation</h2>
+      <ul>
+        <li>Double integral of density → Mass</li>
+        <li>Double integral of height → Volume</li>
+        <li>Double integral of 1 → Area</li>
+      </ul>
+      <div class="note">Multiple integration gives real-world meaning to abstract mathematics.</div>
+    </div>
+
+  </div>
+</body>
+</html>

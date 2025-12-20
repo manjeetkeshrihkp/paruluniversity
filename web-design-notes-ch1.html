@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1 – HTML & CSS Basics</title>
+
+<style>
+:root{
+  --primary:#6366f1;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(99,102,241,.2);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,system-ui,sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#eef2ff,#f8fafc);
+  color:var(--text);
+  line-height:1.7;
+}
+
+.container{
+  max-width:900px;
+  margin:40px auto 80px;
+  padding:40px;
+  background:var(--card);
+  border-radius:20px;
+  box-shadow:0 30px 60px rgba(0,0,0,.08);
+}
+
+a.back{
+  display:inline-block;
+  margin-bottom:20px;
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:600;
+}
+
+h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+h2{
+  margin-top:35px;
+  color:var(--primary);
+}
+
+h3{
+  margin-top:20px;
+}
+
+p{
+  margin-top:10px;
+  color:var(--muted);
+}
+
+ul{
+  margin-top:10px;
+  padding-left:20px;
+}
+
+li{
+  margin-bottom:6px;
+}
+
+.card{
+  background:#f8fafc;
+  padding:22px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  margin-top:20px;
+}
+
+pre{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:16px;
+  border-radius:12px;
+  margin-top:12px;
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  margin-top:15px;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:12px;
+  border:1px solid var(--border);
+  text-align:left;
+}
+
+th{
+  background:#eef2ff;
+}
+
+hr{
+  margin:30px 0;
+  border:none;
+  border-top:1px solid var(--border);
+}
+
+@media(max-width:600px){
+  .container{padding:24px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="web-design.html" class="back">← Back to Web Designing</a>
+
+<h1>Chapter 1: Introduction to HTML & CSS</h1>
+<p>This chapter introduces the fundamentals of HTML and CSS used in web development.</p>
+
+<hr>
+
+<h2>1. HTML Basics</h2>
+
+<div class="card">
+<p>
+HTML stands for <strong>HyperText Markup Language</strong>.  
+It is used to create the <strong>structure of web pages</strong>.
+HTML is not a programming language, it is a markup language.
+</p>
+
+<h3>Features of HTML</h3>
+<ul>
+  <li>Easy to learn and use</li>
+  <li>Platform independent</li>
+  <li>Supported by all web browsers</li>
+  <li>Works with CSS and JavaScript</li>
+  <li>Supports multimedia content</li>
+</ul>
+
+<h3>Basic HTML Structure</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;Welcome to my website&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h3>Common HTML Tags</h3>
+<table>
+<tr><th>Tag</th><th>Description</th></tr>
+<tr><td>&lt;h1&gt; – &lt;h6&gt;</td><td>Headings</td></tr>
+<tr><td>&lt;p&gt;</td><td>Paragraph</td></tr>
+<tr><td>&lt;a&gt;</td><td>Hyperlink</td></tr>
+<tr><td>&lt;img&gt;</td><td>Image</td></tr>
+<tr><td>&lt;div&gt;</td><td>Container</td></tr>
+</table>
+
+<h3>HTML Attributes</h3>
+<pre>
+&lt;a href="https://google.com"&gt;Google&lt;/a&gt;
+</pre>
+</div>
+
+<hr>
+
+<h2>2. CSS Introduction</h2>
+
+<div class="card">
+<p>
+CSS stands for <strong>Cascading Style Sheets</strong>.  
+CSS is used to style and design HTML elements.
+</p>
+
+<h3>Why CSS is Used</h3>
+<ul>
+  <li>Improves website appearance</li>
+  <li>Separates content from design</li>
+  <li>Creates responsive layouts</li>
+  <li>Reduces code repetition</li>
+</ul>
+
+<h3>CSS Syntax</h3>
+<pre>
+selector {
+  property: value;
+}
+</pre>
+
+<h3>Example</h3>
+<pre>
+p {
+  color: blue;
+  font-size: 16px;
+}
+</pre>
+</div>
+
+<hr>
+
+<h2>3. Types of CSS</h2>
+
+<div class="card">
+
+<h3>1. Inline CSS</h3>
+<p>CSS applied directly inside an HTML tag.</p>
+<pre>
+&lt;p style="color:red;"&gt;Hello&lt;/p&gt;
+</pre>
+
+<h3>2. Internal CSS</h3>
+<p>CSS written inside the &lt;style&gt; tag in the head section.</p>
+<pre>
+&lt;style&gt;
+p { color: blue; }
+&lt;/style&gt;
+</pre>
+
+<h3>3. External CSS (Recommended)</h3>
+<p>CSS written in a separate file and linked to HTML.</p>
+<pre>
+&lt;link rel="stylesheet" href="style.css"&gt;
+</pre>
+
+<table>
+<tr><th>Type</th><th>Reusable</th><th>Best Practice</th></tr>
+<tr><td>Inline</td><td>No</td><td>No</td></tr>
+<tr><td>Internal</td><td>Limited</td><td>Sometimes</td></tr>
+<tr><td>External</td><td>Yes</td><td>Yes</td></tr>
+</table>
+
+</div>
+
+<hr>
+
+<h2>Summary</h2>
+<ul>
+<li>HTML provides structure to webpages</li>
+<li>CSS styles and designs webpages</li>
+<li>External CSS is the most professional approach</li>
+</ul>
+
+</div>
+
+</body>
+</html>

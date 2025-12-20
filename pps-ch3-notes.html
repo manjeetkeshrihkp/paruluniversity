@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPS Chapter 2 | C Fundamentals</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --purple:#818cf8;
+  --green:#22c55e;
+  --grad:linear-gradient(135deg,#38bdf8,#2563eb);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  padding:30px;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* BACK BUTTON */
+.back-wrap{
+  display:flex;
+  justify-content:flex-start;
+  margin:10px 0 35px;
+}
+.back-btn{
+  background:#020617;
+  border:1px solid var(--border);
+  padding:10px 18px;
+  border-radius:10px;
+  font-size:.95rem;
+  font-weight:500;
+  color:var(--blue);
+  transition:.25s;
+}
+.back-btn:hover{
+  transform:translateX(-4px);
+  box-shadow:0 6px 18px rgba(56,189,248,.25);
+}
+
+h1{
+  text-align:center;
+  font-size:2.9rem;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:60px;
+}
+
+/* SECTION CARD */
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:36px;
+  margin-bottom:40px;
+  position:relative;
+  overflow:hidden;
+}
+
+.section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left,rgba(56,189,248,.14),transparent 60%);
+}
+
+.section h2{
+  color:var(--blue);
+  margin-bottom:18px;
+  font-size:1.65rem;
+}
+
+.section p{
+  line-height:1.95;
+  color:#cbd5f5;
+  font-size:1.05rem;
+}
+
+/* SUB HEAD */
+.sub{
+  margin-top:26px;
+  font-weight:600;
+  color:var(--purple);
+}
+
+/* HIGHLIGHT */
+.highlight{
+  background:rgba(56,189,248,.15);
+  border-left:5px solid var(--blue);
+  padding:18px 22px;
+  margin:22px 0;
+  border-radius:14px;
+}
+
+/* FLOW BLOCK */
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:20px;
+}
+.flow div{
+  padding:12px 18px;
+  border-radius:14px;
+  background:rgba(129,140,248,.18);
+  border:1px solid var(--border);
+  font-size:.9rem;
+}
+
+/* CODE */
+pre{
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  margin:22px 0;
+  overflow-x:auto;
+  color:#a5f3fc;
+  font-size:.95rem;
+}
+
+/* TABLE */
+.table{
+  margin-top:24px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+.table div{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  padding:14px 18px;
+  background:#020617;
+  border-bottom:1px solid var(--border);
+}
+.table .head{
+  color:var(--blue);
+  font-weight:600;
+}
+
+footer{
+  text-align:center;
+  margin-top:80px;
+  color:#64748b;
+  font-size:.95rem;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="back-wrap">
+  <a href="pps.html" class="back-btn">← Back to PPS</a>
+</div>
+
+<h1>Chapter 2: C Programming Fundamentals</h1>
+<p class="subtitle">
+Constants • Variables • Data Types • Operators • Expressions
+</p>
+
+<!-- 1 CHARACTER SET -->
+<div class="section">
+<h2>1️⃣ Character Set</h2>
+<p>
+The <b>character set</b> defines all valid characters that can be used to write a C program.
+Any character outside this set will cause a compilation error.
+</p>
+
+<div class="flow">
+  <div>Alphabets (A–Z, a–z)</div>
+  <div>Digits (0–9)</div>
+  <div>Special Symbols</div>
+  <div>White Spaces</div>
+</div>
+
+<div class="highlight">
+✔ C is <b>case-sensitive</b> → <code>sum</code> ≠ <code>Sum</code>
+</div>
+</div>
+
+<!-- 2 TOKENS -->
+<div class="section">
+<h2>2️⃣ C Tokens</h2>
+<p>
+C tokens are the <b>smallest individual units</b> of a program that are meaningful to the compiler.
+During compilation, the compiler breaks the program into tokens.
+</p>
+
+<div class="flow">
+  <div>Keywords</div>
+  <div>Identifiers</div>
+  <div>Constants</div>
+  <div>Strings</div>
+  <div>Operators</div>
+</div>
+
+<pre>
+int total = a + b;
+</pre>
+
+<div class="highlight">
+int → keyword | total → identifier | = → operator | a,b → identifiers
+</div>
+</div>
+
+<!-- 3 KEYWORDS -->
+<div class="section">
+<h2>3️⃣ Keywords</h2>
+<p>
+Keywords are <b>reserved words</b> that have predefined meaning in C.
+They cannot be used as variable names or function names.
+</p>
+
+<div class="flow">
+  <div>int</div>
+  <div>float</div>
+  <div>if</div>
+  <div>else</div>
+  <div>while</div>
+  <div>return</div>
+</div>
+
+<div class="highlight">
+✔ Keywords are always written in <b>lowercase</b>
+</div>
+</div>
+
+<!-- 4 IDENTIFIERS -->
+<div class="section">
+<h2>4️⃣ Identifiers</h2>
+<p>
+Identifiers are user-defined names used to identify variables, functions, arrays,
+structures, etc.
+</p>
+
+<div class="sub">Rules for Identifiers</div>
+<ul style="margin-left:22px;line-height:1.9;color:#cbd5f5">
+<li>Must start with an alphabet or underscore (_)</li>
+<li>Cannot start with a digit</li>
+<li>No spaces allowed</li>
+<li>No special symbols except underscore</li>
+<li>Maximum 31 characters are significant</li>
+</ul>
+
+<pre>
+// Valid
+int total_marks;
+float avgScore;
+
+// Invalid
+int 4marks;     // ❌ starts with digit
+int total$sum;  // ❌ special symbol
+</pre>
+</div>
+
+<!-- 5 CONSTANTS -->
+<div class="section">
+<h2>5️⃣ Constants</h2>
+<p>
+Constants are values that <b>do not change</b> during execution of a program.
+They improve safety and readability.
+</p>
+
+<div class="flow">
+  <div>Integer Constants</div>
+  <div>Real Constants</div>
+  <div>Character Constants</div>
+  <div>String Constants</div>
+</div>
+
+<pre>
+const int MAX_USERS = 100;
+const float PI = 3.14159;
+const char GRADE = 'A';
+</pre>
+</div>
+
+<!-- 6 DATA TYPES -->
+<div class="section">
+<h2>6️⃣ Data Types</h2>
+<p>
+A data type specifies:
+<b>what type of data</b> a variable can store and
+<b>how much memory</b> it occupies.
+</p>
+
+<div class="flow">
+  <div>Primary</div>
+  <div>Derived</div>
+  <div>User-Defined</div>
+</div>
+
+<pre>
+int age = 20;
+float salary = 35000.50;
+char gender = 'M';
+</pre>
+
+<div class="highlight">
+✔ Correct data type selection improves memory efficiency
+</div>
+</div>
+
+<!-- 7 VARIABLE DECLARATION -->
+<div class="section">
+<h2>7️⃣ Declaration of Variables</h2>
+<p>
+Variable declaration tells the compiler:
+<b>what the variable name is</b> and
+<b>what type of data it will hold</b>.
+</p>
+
+<pre>
+int count;
+double total, average;
+</pre>
+
+<div class="sub">Using typedef</div>
+<pre>
+typedef int units;
+typedef float marks;
+
+units itemCount;
+marks physicsScore;
+</pre>
+</div>
+
+<!-- 8 OPERATORS -->
+<div class="section">
+<h2>8️⃣ Operators in C</h2>
+<p>
+Operators are symbols that perform operations on operands
+(variables or constants).
+</p>
+
+<div class="flow">
+  <div>Arithmetic</div>
+  <div>Relational</div>
+  <div>Logical</div>
+  <div>Assignment</div>
+  <div>Increment / Decrement</div>
+  <div>Bitwise</div>
+  <div>Conditional</div>
+</div>
+
+<pre>
+int a = 10, b = 3;
+printf("%d", a + b);   // Arithmetic
+printf("%d", a > b);   // Relational
+</pre>
+</div>
+
+<!-- 9 PRECEDENCE -->
+<div class="section">
+<h2>9️⃣ Operator Precedence & Associativity</h2>
+<p>
+Operator precedence decides the <b>order of evaluation</b> in expressions.
+</p>
+
+<div class="table">
+  <div class="head"><div>Operators</div><div>Example</div><div>Priority</div></div>
+  <div><div>* / %</div><div>a*b</div><div>High</div></div>
+  <div><div>+ -</div><div>a+b</div><div>Low</div></div>
+</div>
+
+<div class="highlight">
+Expression: <code>10 + 5 * 2</code> → Result = <b>20</b>
+</div>
+</div>
+
+<!-- 10 TYPE CONVERSION -->
+<div class="section">
+<h2>🔟 Type Conversion</h2>
+<p>
+Type conversion converts one data type into another.
+</p>
+
+<div class="sub">Implicit Conversion</div>
+<pre>
+int a = 5;
+float b = 2.5;
+float result = a + b; // automatic
+</pre>
+
+<div class="sub">Explicit Conversion (Type Casting)</div>
+<pre>
+float x = 5.75;
+int y = (int)x; // manual
+</pre>
+</div>
+
+<!-- SUMMARY -->
+<div class="section">
+<h2>📌 Summary</h2>
+<p>
+This chapter forms the <b>core foundation</b> of C programming.
+Mastery of tokens, data types, operators and expressions is essential
+for loops, functions, arrays and real-world problem solving.
+</p>
+</div>
+
+<footer>© 2025 STRINK EDU • PPS Chapter-2 Advanced Notes</footer>
+
+</div>
+</body>
+</html>

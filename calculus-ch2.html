@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculus – Chapter 2 | Multivariable Calculus</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    body{
+      background:radial-gradient(circle at top, #1e293b, #020617);
+      color:#e5e7eb;
+      padding:30px;
+      overflow-x:hidden;
+      animation:bgShift 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgShift{
+      0%{background-position:0% 50%;}
+      100%{background-position:100% 50%;}
+    }
+
+    a{color:inherit;text-decoration:none;}
+
+    .container{
+      max-width:1100px;
+      margin:auto;
+    }
+
+    .back-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:25px;
+      padding:10px 16px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#38bdf8,#2563eb);
+      color:white;
+      font-weight:500;
+      box-shadow:0 10px 30px rgba(56,189,248,.35);
+      transition:transform .3s, box-shadow .3s;
+    }
+
+    .back-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 15px 40px rgba(56,189,248,.55);
+    }
+
+    h1{
+      text-align:center;
+      font-size:2.3rem;
+      margin-bottom:6px;
+      text-shadow:0 0 25px rgba(56,189,248,.35);
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#94a3b8;
+      margin-bottom:50px;
+    }
+
+    .video-card{
+      background:rgba(2,6,23,.75);
+      backdrop-filter:blur(10px);
+      border-radius:22px;
+      padding:20px;
+      margin-bottom:45px;
+      border:1px solid rgba(56,189,248,.15);
+      box-shadow:0 30px 80px rgba(0,0,0,.6);
+      animation:fadeUp .8s ease both;
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(30px);} 
+      to{opacity:1;transform:translateY(0);} 
+    }
+
+    .video-frame{
+      border-radius:18px;
+      overflow:hidden;
+      margin-bottom:18px;
+      box-shadow:0 0 35px rgba(56,189,248,.25);
+    }
+
+    iframe{
+      width:100%;
+      height:420px;
+    }
+
+    .video-info h2{
+      font-size:1.45rem;
+      margin-bottom:8px;
+    }
+
+    .video-info p{
+      color:#cbd5f5;
+      line-height:1.7;
+      font-size:.95rem;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      background:linear-gradient(135deg,#38bdf8,#2563eb);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:.8rem;
+      box-shadow:0 0 18px rgba(56,189,248,.35);
+      animation:pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 18px rgba(56,189,248,.25);} 
+      50%{box-shadow:0 0 35px rgba(56,189,248,.65);} 
+    }
+
+    footer{
+      text-align:center;
+      margin-top:70px;
+      color:#64748b;
+      font-size:.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="calculus.html" class="back-btn">⬅ Back to Calculus</a>
+  <h1>🎥 Calculus – Chapter 2</h1>
+  <p class="subtitle">Multivariable Calculus • BTech / Engineering First Year</p>
+
+  <!-- Topic 1 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/_hhDtoFZ-kQ" title="Functions of Several Variables" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>1️⃣ Functions of Several Variables</h2>
+      <p>Introduction to functions of two or more variables, domain, range and basic visualization for BTech students.</p>
+      <div class="tags"><span class="tag">Multivariable</span><span class="tag">Basics</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 2 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/VIMZq5x4Wqk" title="Limits and Continuity of Multivariable Functions" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>2️⃣ Limits & Continuity (Multivariable)</h2>
+      <p>Limits and continuity of functions of several variables with standard university examples.</p>
+      <div class="tags"><span class="tag">Limits</span><span class="tag">Continuity</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 3 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/tWHWOSrbBDI" title="Partial Derivatives" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>3️⃣ Partial Derivatives</h2>
+      <p>Definition, notation and computation of partial derivatives with solved problems.</p>
+      <div class="tags"><span class="tag">Partial Derivative</span><span class="tag">Numericals</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 4 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/T9its2keo-k" title="Chain Rule and Implicit Functions" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>4️⃣ Chain Rule & Implicit Functions</h2>
+      <p>Chain rule for multivariable functions and implicit differentiation explained clearly.</p>
+      <div class="tags"><span class="tag">Chain Rule</span><span class="tag">Implicit</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 5 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/bTs7ncA_AtY" title="Euler’s Theorem" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>5️⃣ Euler’s Theorem</h2>
+      <p>Euler’s theorem on homogeneous functions with examples relevant to exams.</p>
+      <div class="tags"><span class="tag">Euler</span><span class="tag">Homogeneous</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 6 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/cYYTkoOYFMM" title="Taylor Expansion" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>6️⃣ Taylor Expansion (Multivariable)</h2>
+      <p>Taylor series expansion of functions of several variables.</p>
+      <div class="tags"><span class="tag">Taylor</span><span class="tag">Series</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 7 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/xwOhlrBGYiE" title="Maxima and Minima" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>7️⃣ Maxima & Minima</h2>
+      <p>Finding maxima and minima of functions of several variables.</p>
+      <div class="tags"><span class="tag">Optimization</span><span class="tag">Exam Focus</span></div>
+    </div>
+  </div>
+
+  <!-- Topic 8 -->
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/etLoYBJMCX8" title="Lagrange Multipliers" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-info">
+      <h2>8️⃣ Lagrange Multipliers</h2>
+      <p>Method of Lagrange multipliers for constrained optimization problems.</p>
+      <div class="tags"><span class="tag">Lagrange</span><span class="tag">Constraints</span></div>
+    </div>
+  </div>
+
+  <footer>© 2025 STRINK EDU • Calculus Chapter 2</footer>© 2025 STRINK EDU • Calculus Chapter 2</footer>
+</div>
+
+</body>
+</html>

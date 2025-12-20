@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 4 – Vector Calculus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #020617, #0f172a, #020617);
+      color: #e5e7eb;
+      line-height: 1.9;
+      padding: 30px;
+    }
+    .container { max-width: 1250px; margin: auto; }
+    h1 {
+      font-size: 2.9rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      background: linear-gradient(to right, #a855f7, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: #c7d2fe; margin-bottom: 42px; }
+    .card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 32px;
+      margin-bottom: 34px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.45);
+      backdrop-filter: blur(14px);
+    }
+    .card h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: #7dd3fc;
+    }
+    .card h3 {
+      margin-top: 24px;
+      font-size: 1.35rem;
+      color: #fde047;
+    }
+    p { margin-top: 12px; }
+    ul { margin: 12px 0 12px 22px; }
+    li { margin-bottom: 8px; }
+    .formula {
+      background: rgba(0,0,0,0.5);
+      border-left: 4px solid #22c55e;
+      padding: 15px 18px;
+      margin: 18px 0;
+      font-family: monospace;
+      color: #bbf7d0;
+      border-radius: 10px;
+    }
+    .note {
+      background: rgba(253,224,71,0.15);
+      border-left: 4px solid #fde047;
+      padding: 15px 18px;
+      margin: 18px 0;
+      border-radius: 10px;
+      color: #fef9c3;
+    }
+    .example {
+      background: rgba(34,211,238,0.15);
+      border-left: 4px solid #22d3ee;
+      padding: 15px 18px;
+      margin: 18px 0;
+      border-radius: 10px;
+      color: #ecfeff;
+    }
+    .important {
+      background: rgba(244,63,94,0.2);
+      border-left: 4px solid #fb7185;
+      padding: 15px 18px;
+      margin: 18px 0;
+      border-radius: 10px;
+      color: #ffe4e6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chapter 4: Vector Calculus</h1>
+    <p class="subtitle">Vector Functions, Differential Operators, Line & Surface Integrals, Green, Gauss and Stokes Theorems</p>
+
+    <div class="card">
+      <h2>1. Vector Functions</h2>
+      <p>A <b>vector function</b> assigns a vector to each value of a scalar parameter. It is commonly used to describe curves and motion in space.</p>
+      <div class="formula">r(t) = x(t)i + y(t)j + z(t)k</div>
+      <p>Here, x(t), y(t), z(t) are scalar functions of parameter t.</p>
+      <h3>Derivative of Vector Function</h3>
+      <div class="formula">dr/dt = dx/dt i + dy/dt j + dz/dt k</div>
+      <div class="note">The derivative represents the velocity vector in physics.</div>
+    </div>
+
+    <div class="card">
+      <h2>2. Gradient (∇f)</h2>
+      <p>The gradient of a scalar function points in the direction of the <b>maximum rate of increase</b> of the function.</p>
+      <div class="formula">∇f = (∂f/∂x)i + (∂f/∂y)j + (∂f/∂z)k</div>
+      <h3>Geometrical Interpretation</h3>
+      <p>The gradient is perpendicular (normal) to the level surface f(x, y, z) = constant.</p>
+      <div class="example">Used to find normal vectors and direction of steepest ascent.</div>
+    </div>
+
+    <div class="card">
+      <h2>3. Divergence (∇·F)</h2>
+      <p>Divergence measures the <b>outflow or inflow</b> of a vector field from a point.</p>
+      <div class="formula">∇·F = ∂F₁/∂x + ∂F₂/∂y + ∂F₃/∂z</div>
+      <p>If divergence is positive, the field behaves like a source; if negative, like a sink.</p>
+      <div class="note">Widely used in fluid flow and electromagnetism.</div>
+    </div>
+
+    <div class="card">
+      <h2>4. Curl (∇×F)</h2>
+      <p>Curl measures the <b>rotational tendency</b> of a vector field.</p>
+      <div class="formula">∇×F = | i  j  k ; ∂/∂x  ∂/∂y  ∂/∂z ; F₁  F₂  F₃ |</div>
+      <p>If curl is zero, the field is called <b>irrotational</b>.</p>
+      <div class="important">Curl is crucial in understanding circulation and magnetic fields.</div>
+    </div>
+
+    <div class="card">
+      <h2>5. Line Integrals</h2>
+      <p>Line integrals calculate the integral of a vector field along a curve.</p>
+      <div class="formula">∫<sub>C</sub> F · dr</div>
+      <p>Used to compute work done by a force along a path.</p>
+      <h3>Path Independence</h3>
+      <p>If curl F = 0, the line integral is path independent.</p>
+    </div>
+
+    <div class="card">
+      <h2>6. Surface Integrals</h2>
+      <p>Surface integrals extend integration to curved surfaces.</p>
+      <div class="formula">∬<sub>S</sub> F · n dS</div>
+      <p>This represents the flux of vector field across a surface.</p>
+      <div class="example">Used in heat flow and fluid mechanics.</div>
+    </div>
+
+    <div class="card">
+      <h2>7. Green’s Theorem</h2>
+      <p>Green’s theorem relates a line integral around a closed curve to a double integral over the enclosed region.</p>
+      <div class="formula">∮ (P dx + Q dy) = ∬ (∂Q/∂x − ∂P/∂y) dA</div>
+      <div class="note">Applicable only in 2D for simple closed curves.</div>
+    </div>
+
+    <div class="card">
+      <h2>8. Gauss Divergence Theorem</h2>
+      <p>Gauss theorem converts a surface integral into a volume integral.</p>
+      <div class="formula">∬<sub>S</sub> F · n dS = ∭<sub>V</sub> (∇·F) dV</div>
+      <p>This theorem simplifies flux calculations greatly.</p>
+    </div>
+
+    <div class="card">
+      <h2>9. Stokes’ Theorem</h2>
+      <p>Stokes theorem relates a surface integral of curl to a line integral along the boundary curve.</p>
+      <div class="formula">∮ F · dr = ∬ (∇×F) · n dS</div>
+      <div class="important">A powerful theorem connecting circulation and rotation.</div>
+    </div>
+
+    <div class="card">
+      <h2>10. Applications of Vector Calculus</h2>
+      <ul>
+        <li>Fluid flow and continuity equations</li>
+        <li>Electromagnetic field analysis</li>
+        <li>Heat transfer and diffusion</li>
+        <li>Engineering and AI-based simulations</li>
+      </ul>
+      <div class="note">Vector calculus provides a unified framework to study physical systems.</div>
+    </div>
+
+  </div>
+</body>
+</html>
